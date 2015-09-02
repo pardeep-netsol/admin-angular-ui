@@ -1,0 +1,56 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 lead">User profile<hr></div>
+          </div>
+          <div class="row">
+			<div class="col-md-4 text-center">
+              <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
+              display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120">
+            </div>
+            <div class="col-md-8">
+              <!-- <div class="row">
+                <div class="col-md-12">
+                  <h1 class="only-bottom-margin">{{userprofile.data.first_name}}&nbsp{{userprofile.data.last_name}}</h1>
+                </div>
+              </div> -->
+              <div class="row">
+                <div class="col-md-6">
+                  <span class="text-muted">First Name:</span> <input type="text" ng-model="user.first_name" value="{{user.first_name}}"><br>
+                  <span class="text-muted">Last Name:</span> <input type="text" ng-model="user.last_name" value="{{user.last_name}}"<br>
+                  <span class="text-muted">Email:</span> <input type="text" ng-model="user.email" value="{{user.email}}"<br>
+                  <span class="text-muted">Birth date:</span> <input type="text" id="datepicker" ng-model="user.dob" value="{{userprofile.data.dob}}" data-ng-datepicker> <br>
+                  <span class="text-muted">Gender:</span> 
+                  <select ng-model="user.gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select><br>
+
+                  <!-- <input id="datepicker" type="text" data-ng-datepicker data-ng-options="datepickerOptions" data-ng-model="user.dob"> -->
+                    <!-- <small class="text-muted">Created: {{userprofile.data.created_at}}</small> -->
+                </div>
+                <!-- <div class="col-md-6">
+                  <div class="activity-mini">
+                    <i class="glyphicon glyphicon-comment text-muted"></i> 500
+                  </div>
+                  <div class="activity-mini">
+                    <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <hr><button class="btn btn-default pull-right" ng-click="savedetails(user)"><i class="glyphicon glyphicon-save"></i> Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

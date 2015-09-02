@@ -1,0 +1,22 @@
+	<table class="table">
+		<thead>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Gender</th>
+			<th>Phone Number</th>
+			<th>DOB</th>
+			<th>Country</th>
+			<th>State</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="user in users.data">
+				<td>{{user.first_name}}&nbsp{{user.last_name}}</td>
+				<td>{{user.email}}</td>
+				<td>{{user.gender}}</td>
+				<td>{{user.phone_number}}</td>
+				<td>{{user.dob}}</td>
+				<td>{{user.country_hash}}</td>
+				<td>{{user.state_hash}}</td>
+			</tr>
+		</tbody>
+	</table>
