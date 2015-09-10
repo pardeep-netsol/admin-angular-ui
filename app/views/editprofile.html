@@ -9,8 +9,8 @@
           </div>
           <div class="row">
 			<div class="col-md-4 text-center">
-              <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
-              display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120">
+              <!-- <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
+              display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120"> -->
             </div>
             <div class="col-md-8">
               <!-- <div class="row">
@@ -21,14 +21,29 @@
               <div class="row">
                 <div class="col-md-6">
                   <span class="text-muted">First Name:</span> <input type="text" ng-model="user.first_name" value="{{user.first_name}}"><br>
-                  <span class="text-muted">Last Name:</span> <input type="text" ng-model="user.last_name" value="{{user.last_name}}"<br>
-                  <span class="text-muted">Email:</span> <input type="text" ng-model="user.email" value="{{user.email}}"<br>
-                  <span class="text-muted">Birth date:</span> <input type="text" id="datepicker" ng-model="user.dob" value="{{userprofile.data.dob}}" data-ng-datepicker> <br>
+                  <span class="text-muted">Last Name:</span> <input type="text" ng-model="user.last_name" value="{{user.last_name}}"><br>
+                  <!-- <span class="text-muted">Email:</span> <input type="text" ng-model="user.email" value="{{user.email}}"><br> -->
+                  <span class="text-muted">Birth date:</span> <ng-datepicker locale="sl" format="DD/MM/YYYY" view-format="DD/MM/YYYY" ng-model="user.dob">
+                  </ng-datepicker><br>
                   <span class="text-muted">Gender:</span> 
                   <select ng-model="user.gender">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </select><br>
+                  <span class="text-muted">Alternate Email Address:</span> <input type="text" ng-model="user.alternate_email_address" value="{{user.alternate_email_address}}"><br>
+                  <span class="text-muted">Phone:</span> <input type="text" ng-model="user.phone_number" value="{{user.phone_number}}"><br>
+                  <span class="text-muted">Alternate Phone Number:</span> <input type="text" ng-model="user.alternate_phone_number" value="{{user.alternate_phone_number}}"><br>
+                  <span class="text-muted">Address 1:</span> <input type="text" ng-model="user.address1" value="{{user.address1}}"><br>
+                  <span class="text-muted">Address 2:</span> <input type="text" ng-model="user.address2" value="{{user.address2}}"><br>
+                  <span class="text-muted">Country:</span> 
+                  <select  ng-change="getCountryStates(user.country_hash)" ng-options="country.name for country in countries track by country.name" ng-model="user.country_hash"></select><br>
+                  <span class="text-muted">State:</span> 
+                  <select ng-model="user.state_hash"  ng-options="state.name for state in states track by state.name" ></select><br>
+                  <span class="text-muted">Zip:</span> <input type="text" ng-model="user.zip_code" value="{{user.zip_code}}"><br>
+
+
+
+                  
 
                   <!-- <input id="datepicker" type="text" data-ng-datepicker data-ng-options="datepickerOptions" data-ng-model="user.dob"> -->
                     <!-- <small class="text-muted">Created: {{userprofile.data.created_at}}</small> -->

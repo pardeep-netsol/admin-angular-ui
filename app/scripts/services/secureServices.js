@@ -1,7 +1,88 @@
-'user strict'
+'use strict'
 
-angular.module('angularjsApp').factory('secureService',function($http, wsURL){
+angular.module('angularjsApp').factory('secureService',function($http, wsURL, $location, credentialStore, $localstorage, $rootScope){
 	
+  
+	var getAllCategories = function(){
+  	var url = wsURL + "categories/roots.json"
+		return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
+      if (!data.error) {
+       	return data;
+     	}
+    });
+	}
+  var getchildren = function(name){
+    var url = wsURL + "categories/children.json?name="+name
+    return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
+      if (!data.error) {
+        return data;
+      }
+    });
+  }
+
+  var getCountries = function(){
+    var url = wsURL + "countries.json"
+    return $http.get(url).then(function(data, status, headers, config){
+      if (!data.error) {
+        return data;
+      }
+    });
+  }
+
+  var getStates = function(country){
+    var url = wsURL + "countries/states.json?country="+country
+    return $http.get(url).then(function(data, status, headers, config){
+      if (!data.error) {
+        return data;
+      }
+    });
+  }
+
+  
+  
+  var login = function(user){
+    var url = "http://localhost:3000/users/sign_in.json"
+    var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
+    return $http.post(url, user, header).then(function(data, status, headers, config){
+      credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
+      var categories = getCategoryTree();
+      categories.then(function(result){
+        credentialStore.setCategorires(result);
+      });
+      
+      $location.path('/');
+      $('#login-modal').modal('hide');
+    });
+  }
+
+  var getCategoryTree = function(){
+    var url = wsURL + "categories/tree.json"
+    return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
+      if (!data.error) {
+        return data;
+      }
+    });
+  }
+
+
+	var getpage = function(categoryname, pagename){
+		var url = wsURL + "pages/page?name="+pagename+"&categoryname="+categoryname
+		return $http.get(url).then(function(data, status, headers, config){
+    	if (!data.error) {
+       	return data;
+     	}
+    });
+	}
+
+	var getCategoryPages = function(categoryName){
+   	var url = wsURL + "categories/pages.json?category_name="+categoryName
+		return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
+    	if (!data.error) {
+       	return data;
+     	}
+    });
+	}
+
 	var getallUser = function(){
 		var url = wsURL + "users";
     return $http.get(url).then(function(data, status, headers, config){
@@ -10,16 +91,37 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL){
      	}
     });
   }
-  var getuserprofile = function(){
-  	var url = wsURL + "users/1";
-  	return $http.get(url).then(function(data, status, headers, config){
-    	if (!data.error) {
-       	return data;
-     	}
+  var getuserprofile = function(id){
+    var url = wsURL + "users/"+id+".json";
+  	return $http.get(url,credentialStore.getheaders()).then(function(data, status, headers, config){
+     	return data;
+    });
+  }
+
+  var updateUser = function(user_data, id){
+   	var url = wsURL + "users/"+id+".json"
+  	$http.put(url, user_data, credentialStore.getheaders()).success(function(data){
+      if (data.error){
+        alert("Error: " + data.error);
+      }
+      else {
+        credentialStore.updateUserData(data.user)
+        $location.path('/profile');
+      }
+    }).finally(function(){
     });
   }
 	return {
+		getAllCategories:getAllCategories,
+		getCategoryPages:getCategoryPages,
 		getallUser:getallUser,
-		getuserprofile:getuserprofile
+		getuserprofile:getuserprofile,
+		updateUser:updateUser,
+		getpage:getpage,
+    getCategoryTree:getCategoryTree,
+    login:login,
+    getCountries:getCountries,
+    getStates:getStates,
+    getchildren:getchildren
 	};
 });

@@ -9,30 +9,41 @@
           </div>
           <div class="row">
 			<div class="col-md-4 text-center">
-              <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
-              display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120">
+              <!-- <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
+              display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120"> -->
             </div>
             <div class="col-md-8">
               <div class="row">
                 <div class="col-md-12">
-                  <h1 class="only-bottom-margin">{{userprofile.data.first_name}}&nbsp{{userprofile.data.last_name}}</h1>
+                  <h1 class="only-bottom-margin">{{user.first_name}}&nbsp{{user.last_name}}</h1>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
-                  <span class="text-muted">Email:</span> {{userprofile.data.email}}<br>
-                  <span class="text-muted">Birth date:</span> {{userprofile.data.dob}}<br>
-                  <span class="text-muted">Gender:</span> {{userprofile.data.gender}}<br><br>
-                  <small class="text-muted">Created: {{userprofile.data.created_at}}</small>
+                <div class="col-md-8">
+                  <span class="text-muted">Email:</span> {{user.email}}<br>
+                  <span class="text-muted">Alternate Email:</span> {{user.alternate_email_address}}<br>
+                  <span class="text-muted">Birth date:</span> {{user.dob}}<br>
+                  <span class="text-muted">Gender:</span> {{user.gender}}<br>
+                  <span class="text-muted">Phone:</span> {{user.phone_number}}<br>
+                  <span class="text-muted">Alternate Phone:</span> {{user.alternate_phone_number}}<br>
+                  <span class="text-muted">Address 1:</span> {{user.address1}}<br>
+                  <span class="text-muted">Address 2:</span> {{user.address2}}<br>
+                   <span class="text-muted">Zip:</span> {{user.zip_code}}<br>
+                  <span class="text-muted">Country:</span> {{user.country_hash}}<br>
+                  <span class="text-muted">State:</span> {{user.state_hash}}<br>
+             <!--      <span class="text-muted">Current Signin At:</span> {{user.current_sign_in_at | --> <!-- date:'medium'}}<br> -->
+                  <!-- <span class="text-muted">Current IP:</span> {{user.current_sign_in_ip}}<br>
+                  <span class="text-muted">Last Signin IP:</span> {{user.last_sign_in_ip}}<br> -->
+                  <!-- <span class="text-muted">SignIn Count:</span> {{user.sign_in_count}}<br> -->
                 </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                   <div class="activity-mini">
                     <i class="glyphicon glyphicon-comment text-muted"></i> 500
                   </div>
                   <div class="activity-mini">
                     <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>

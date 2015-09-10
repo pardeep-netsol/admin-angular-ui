@@ -15,7 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'jkuri.datepicker',
+    'ui.tree'
   ])
   .constant("wsURL", "http://localhost:3000/api/v1/")
   .config(function ($routeProvider, $httpProvider) {
@@ -28,6 +30,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      // .when('/:categoryName', {
+      //   templateUrl: 'views/main.html',
+      //   controller: 'MainCtrl',
+      //   controllerAs: 'main'
+      // })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
@@ -48,8 +55,40 @@ angular
         controller: 'UserCtrl',
         controllerAs: 'users'
       })
+       .when('/categories/:categoryName', {
+        templateUrl:'views/categoryPages.html',
+        controller: 'CategoryCtrl',
+        controllerAs: 'category'
+      })
+       .when('/page/:pageName', {
+        templateUrl:'views/page.html',
+        controller: 'PageCtrl',
+        controllerAs: 'page'
+      })
       .otherwise({
         redirectTo: '/'
       });
 
-  });
+  })
+.run(function(secureService , $rootScope, $location, credentialStore){
+  // var categories = secureService.getCategoryTree();
+  // categories.then(function(result){
+  //   $rootScope.allcategories = result.data;
+  // });
+  $rootScope.user = {
+    user:{email: "",
+    password: ""
+  }}
+
+  if(!credentialStore.isLoggedIn()){
+    $location.path('/');
+  }
+  $rootScope.login = function(user){
+    secureService.login(user);
+    // alert(user.email);
+  }
+  $rootScope.logout = function(){
+    credentialStore.removeUserData();
+  }
+  $rootScope.countries = secureService.getCountries();
+});

@@ -1,0 +1,114 @@
+{{page}}
+<li ng-repeat="page in categoryPages.data">
+	<a ng-href="#/page/{{page.name}}">{{page.name}}</page></a>
+</li>
+
+<!-- <div ui-tree class="tree-node tree-node-content">
+  <ol ui-tree-nodes="" ng-model="list" >
+    <li ng-repeat="item in list" ui-tree-node collapsed = "true" >
+      <div ui-tree-handle>
+        <a class="btn btn-success btn-xs" ng-if="(item.sub_categories && item.sub_categories.length > 0) || item.pages" data-nodrag ng-click="toggle(this)" >
+          <span class="glyphicon" ng-class="{
+            'glyphicon-chevron-right': collapsed,
+            'glyphicon-chevron-down': !collapsed}">
+          </span>
+        </a>
+        {{item.name}}
+      </div>
+      <ol ui-tree-nodes="" ng-model="item.sub_categories">
+        <li ng-repeat="subItem in item.sub_categories" ui-tree-node collapsed = "true" >
+          <div ui-tree-handle>
+            <a class="btn btn-success btn-xs" ng-if="subItem.pages && subItem.pages.length > 0" data-nodrag ng-click="toggle(this)">
+          <span class="glyphicon" ng-class="{
+            'glyphicon-chevron-right': collapsed,
+            'glyphicon-chevron-down': !collapsed}">
+          </span>
+        </a>
+            {{subItem.name}}
+          </div>
+          <ol ui-tree-nodes="" ng-model="item.sub_categories.pages">
+            <li ng-repeat="subItem in subItem.pages" ui-tree-node collapsed = "true">
+              <div ui-tree-handle>
+                {{subItem.name}}
+              </div>
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <ol ui-tree-nodes="" ng-model="item.pages">
+          <li ng-repeat="subItem in item.pages" ui-tree-node collapsed = "true">
+            <div ui-tree-handle>
+              {{subItem.name}}
+            </div>
+          </li>
+        </ol>
+    </li>
+  </ol>
+</div>
+ -->
+<!-- 
+
+<script type="text/ng-template" id="nodes_renderer.html">
+  <div ui-tree-handle>
+    {{item.name}}
+  </div>
+  <ol ui-tree-nodes="" ng-model="item.sub_categories">
+    <li ng-repeat="item in item.sub_categories" ui-tree-node ng-include="'nodes_renderer.html'">
+    </li>
+  </ol>
+</script>
+<div ui-tree>
+  <ol ui-tree-nodes="" ng-model="list" id="tree-root">
+    <li ng-repeat="item in list" ui-tree-node ng-include="'nodes_renderer.html'" collapsed = "true"></li>
+  </ol>
+</div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="nodes_renderer.html">
+  <div ui-tree-handle class="tree-node tree-node-content">
+    <a class="btn btn-success btn-xs" ng-if="node.sub_categories && node.sub_categories.length > 0" data-nodrag ng-click="toggle(this)">
+      <span class="glyphicon" ng-class="{
+          'glyphicon-chevron-right': collapsed,
+          'glyphicon-chevron-down': !collapsed}">
+      </span>
+    </a>
+    {{node.name}}
+    </div>
+    <ol ui-tree-nodes="" ng-model="list.sub_categories" ng-class="{hidden: collapsed}">
+      <li ng-repeat="node in list.sub_categories" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+    </ol>
+
+</script>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Basic Example</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div ui-tree id="tree-root">
+      <ol ui-tree-nodes ng-model="list">
+        <li ng-repeat="node in list" ui-tree-node ng-include="'nodes_renderer.html'" data-nodrag collapsed = "true"></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- <div class="col-sm-6">
+    <div class="info">
+      {{info}}
+    </div>
+    <pre class="code">{{ data | json }}</pre>
+  </div>
+<!-- </div> -->

@@ -1,34 +1,55 @@
+"use strict"
 angular.module('angularjsApp')
-  .controller('UserCtrl', function ($scope, secureService) {
-  	// $scope.showUsers = function() {
-     // 	var usersData = secureService.getallUser();
-    	// usersData.then(function(result){
-    	// 	$scope.users = result;
-     // 	});
-  		$scope.datepickerOptions = {
-    		format: 'yyyy-mm-dd',
-    		language: 'fr',
-    		autoclose: true,
-   	 		weekStart: 0
-  		};
+  .controller('UserCtrl', function ($scope, secureService, $rootScope, $location) {
+  	
+    var edituserprofile = function(){
+      var state = secureService.getStates($rootScope.current_user.country_hash);
+      state.then(function(result){
+        $scope.states = result.data.states;
+        // $scope.countries = $rootScope.countries
+        var country = $rootScope.countries;
+        country.then(function(result){
+          $scope.countries = result.data.countries;
+        });
+      });
+    }
+    if ($location.url() == "/editprofile"){
+      edituserprofile();
+    }
+        
+    var userprofile = $rootScope.current_user
+    $scope.user = {
+    	first_name: userprofile.first_name,
+    	last_name: userprofile.last_name,
+    	gender: userprofile.gender,
+    	dob: userprofile.dob,
+    	email: userprofile.email,
+      country_hash: userprofile.country_hash,
+      state_hash: userprofile.state_hash,
+      created_at: userprofile.created_at,
+      phone_number: userprofile.phone_number,
+      alternate_phone_number: userprofile.alternate_phone_number,
+      alternate_email_address: userprofile.alternate_email_address,
+      address1: userprofile.address1,
+      address2: userprofile.address2,
+      zip_code: userprofile.zip_code,
+      sign_in_count: userprofile.sign_in_count,
+      current_sign_in_at: userprofile.current_sign_in_at,
+      current_sign_in_ip: userprofile.current_sign_in_ip,
+      last_sign_in_ip: userprofile.last_sign_in_ip
+    }
+    $scope.savedetails =function(user){
+      user.country_hash = user.country_hash.name
+      user.state_hash = user.state_hash.name
+      var userparams = {'user': user}
+    	secureService.updateUser(userparams, $rootScope.current_user.id)
+    }
 
-     	var profile = secureService.getuserprofile();
-     	profile.then(function(result){
-     		$scope.userprofile = result;
-     		$scope.user = {
-     			first_name: result.data.first_name,
-     			last_name: result.data.last_name,
-     			gender: result.data.gender,
-     			dob: result.data.dob,
-     			email: result.data.email
-     		}
-     	});
-
-     	$scope.savedetails =function(user){
-     		alert(user.first_name);
-     	}
-
-    // }
+    $scope.getCountryStates = function(country){
+      $scope.states = [];
+      var state = secureService.getStates(country.name);
+      state.then(function(result){
+        $scope.states = result.data.states;
+      });
+    }
   });
-
-
