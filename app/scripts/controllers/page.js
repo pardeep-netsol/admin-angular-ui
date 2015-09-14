@@ -9,19 +9,11 @@
  */
 angular.module('angularjsApp')
   .controller('PageCtrl', function ($scope, secureService, $routeParams, $rootScope, $localstorage ) {
-    $scope.page12 = "The is Demo page"+ $localstorage.get('category_name');
+    $scope.page12 = "The is Demo page"+ $routeParams.categoryName;
 
-    var requestpage = secureService.getpage($localstorage.get('category_name'), $routeParams.pageName); 
+    var requestpage = secureService.getpage($routeParams.categoryName, $routeParams.pageName); 
     requestpage.then(function(result){
    		$scope.page = result;
-   		$scope.content = result.data.content;
-    		// alert("hello");
-
+   		$scope.content = result.data.page.content;
     });
-    // $scope.getimage = function(){
-    // 	alert("hello");
-    // };
-    // function getimage(){
-    // 	alert("hello");
-    // };
   });

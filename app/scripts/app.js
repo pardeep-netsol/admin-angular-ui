@@ -60,7 +60,7 @@ angular
         controller: 'CategoryCtrl',
         controllerAs: 'category'
       })
-       .when('/page/:pageName', {
+       .when('/:categoryName/:pageName', {
         templateUrl:'views/page.html',
         controller: 'PageCtrl',
         controllerAs: 'page'

@@ -66,8 +66,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
 
 
 	var getpage = function(categoryname, pagename){
-		var url = wsURL + "pages/page?name="+pagename+"&categoryname="+categoryname
-		return $http.get(url).then(function(data, status, headers, config){
+		var url = wsURL + "pages/page.json?name="+pagename+"&category_name="+categoryname
+		return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
     	if (!data.error) {
        	return data;
      	}

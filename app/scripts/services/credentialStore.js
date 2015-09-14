@@ -26,7 +26,6 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
    }
 
    function setCategorires(Categories){
-    debugger
     $rootScope.allCategories = Categories.data;
    }
 
@@ -53,6 +52,7 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
   function removeUserData(){
     $rootScope.current_user = null;
     $rootScope.Token = null;
+    $rootScope.allCategories = [];
     // $localstorage.set('jwtToken', null);
   }
 

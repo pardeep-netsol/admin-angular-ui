@@ -98,6 +98,14 @@
 a[ng-click]{
     cursor: pointer;
 }
+.btn{
+  padding: 12px;
+}
+.btn-default {
+  background-color: #f8f8f8;
+  color: #777;
+  border-color: #f8f8f8;
+}
 
 
 /*  ************************* */
