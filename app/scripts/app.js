@@ -19,7 +19,7 @@ angular
     'jkuri.datepicker',
     'ui.tree'
   ])
-  .constant("wsURL", "http://localhost:3000/api/v1/")
+  .constant("wsURL", "http://172.16.13.86:3000/api/v1/")
   .config(function ($routeProvider, $httpProvider) {
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];

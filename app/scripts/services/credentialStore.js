@@ -5,8 +5,8 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
     $rootScope.current_user = user;
     $rootScope.Token = jwtToken;
     $rootScope.Email = user.email;
-    $localstorage.set("Token", jwtToken);
-    $localstorage.set("Email", user.email);
+    // $localstorage.set("Token", jwtToken);
+    // $localstorage.set("Email", user.email);
     // var categories = categories;
     // categories.then(function(result){
     //   $rootScope.allcategories = result.data;
@@ -41,13 +41,13 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
   }
 
   function getToken(){
-    // return $rootScope.Token;
-    return $localstorage.get("Token")
+    return $rootScope.Token;
+    // return $localstorage.get("Token")
   }
 
   function getEmail(){
-    // return $rootScope.Email;
-    return $localstorage.get("Email")
+     return $rootScope.Email;
+    // return $localstorage.get("Email")
   }
 
   function removeUserData(){

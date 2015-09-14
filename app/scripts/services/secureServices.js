@@ -41,7 +41,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   
   
   var login = function(user){
-    var url = "http://localhost:3000/users/sign_in.json"
+    var url = "http://172.16.13.86:3000/users/sign_in.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data, status, headers, config){
       credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
