@@ -46,6 +46,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
       credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
+      debugger
       var categories = getCategoryTree();
       categories.then(function(result){
         credentialStore.setCategorires(result);
@@ -60,6 +61,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
   var getCategoryTree = function(){
+    debugger
     var url = wsURL + "categories/tree.json"
     return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
       if (!data.error) {
