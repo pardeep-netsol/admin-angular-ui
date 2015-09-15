@@ -107,6 +107,11 @@ a[ng-click]{
   border-color: #f8f8f8;
 }
 
+.btn-default:hover {
+    background-color: #f8f8f8;
+    border-color: #f8f8f8;
+    color: #777;
+}
 
 /*  ************************* */
 .dropdown-submenu{position:relative;}

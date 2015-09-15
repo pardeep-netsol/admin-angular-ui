@@ -14,6 +14,12 @@ angular.module('angularjsApp')
     var requestpage = secureService.getpage($routeParams.categoryName, $routeParams.pageName); 
     requestpage.then(function(result){
    		$scope.page = result;
-   		$scope.content = result.data.page.content;
+   		$scope.div = document.createElement('div');
+      $scope.div.innerHTML = result.data.page.content;
+      $($scope.div.getElementsByTagName('img')).map(function(){
+        var src = "http://localhost:3000"+$(this).attr('src');
+        this.src = src;
+      });
+      $scope.page_content = $($scope.div).prop('outerHTML');
     });
   });
