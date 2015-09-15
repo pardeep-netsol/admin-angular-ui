@@ -42,11 +42,11 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   
   
   var login = function(user){
-    var url = "http://172.16.13.52:3000/users/sign_in.json"
+    // var url = "http://localhost:3000/users/sign_in.json"
+    var url = "http://192.168.0.202:8500/users/sign_in.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
       credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
-      debugger
       var categories = getCategoryTree();
       categories.then(function(result){
         credentialStore.setCategorires(result);
@@ -61,7 +61,6 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
   var getCategoryTree = function(){
-    debugger
     var url = wsURL + "categories/tree.json"
     return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
       if (!data.error) {
