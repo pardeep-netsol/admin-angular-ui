@@ -1,15 +1,4 @@
-{{page12}}<br>
+<br>
 
-<p ng-bind-html="content" id="content_div"></p>
-<script type="text/javascript">
+<p ng-bind-html="page_content" id="content_div"></p>
 
-	$(document).ready(function(){
-		$("#content_div").bind("DOMSubtreeModified", function() {
-    	$("#content_div img").map(function(){
-    		var src = $(this).attr('src');
-    		var new_src = "http://localhost:3000" + src
-    		this.src = new_src;
-    	});
-   	});
-	});
-</script>

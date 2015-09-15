@@ -47,28 +47,36 @@
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                  <li class="dropdown-submenu" ng-repeat="subcategory in category.sub_categories">
+                  <li class="dropdown-submenu" ng-repeat="subcategory in category.sub_categories" ng-if="category.sub_categories.length > 0">
                     <a tabindex="-1" ng-click="">{{subcategory.name}}</a>
                     <ul class="dropdown-menu">
                       <li ng-repeat="page in subcategory.pages">
                         <a tabindex="-1" href="#/{{subcategory.name}}/{{page.name}}">{{page.name}}</a>
                       </li>
-                      <!-- <li class="dropdown-submenu">
-                        <a href="#">More..</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">3rd level</a></li>
-                          <li><a href="#">3rd level</a></li>
-                        </ul>
-                      </li> -->
-                      <!-- <li><a href="#">Second level</a></li>
-                      <li><a href="#">Second level</a></li> -->
                     </ul>
                   </li>
+
                 </ul>
+                </div></li>
+                <li>
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Faqs
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <li ng-repeat = "faq in allfaqs.faq_categories">
+                        <a href="#/faqs/{{faq.name}}">{{faq.name}}</a></li>
+                      <!-- <li><a href="#">Another action</a></li> -->
+                      <!-- <li><a href="#">Something else here</a></li> -->
+                      <!-- <li><a href="#">Separated link</a></li> -->
+                    </ul>
+                  </div>
+                </li>
                 <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                   <li ><a href="#/">Sub Category</a></li>
                 </ul> -->
-              </div></li>
+              
                 <!-- <a ng-href="#/{{category.name}}" ng-click="">{{category.name}}</a></li> -->
               <!-- <li class="active"><a href="#/">Home{{categories}}</a></li> -->
               <li><a ng-href="#/about">About</a></li>
@@ -151,6 +159,7 @@
         <script src="scripts/controllers/users.js"></script>
         <script src="scripts/controllers/categories.js"></script>
         <script src="scripts/controllers/page.js"></script>
+        <script src="scripts/controllers/faq.js"></script>
         
         <!-- endbuild -->
 </body>

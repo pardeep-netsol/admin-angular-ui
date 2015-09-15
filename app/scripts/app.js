@@ -30,11 +30,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      // .when('/:categoryName', {
-      //   templateUrl: 'views/main.html',
-      //   controller: 'MainCtrl',
-      //   controllerAs: 'main'
-      // })
+      .when('/faqs/:faqCategoryName', {
+        templateUrl: 'views/faqs.html',
+        controller: 'FaqCtrl',
+        controllerAs: 'faq'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
@@ -71,10 +71,10 @@ angular
 
   })
 .run(function(secureService , $rootScope, $location, credentialStore){
-  // var categories = secureService.getCategoryTree();
-  // categories.then(function(result){
-  //   $rootScope.allcategories = result.data;
-  // });
+  var faqs = secureService.getallfaqs();
+  faqs.then(function(result){
+    $rootScope.allfaqs = result.data;
+  });
   $rootScope.user = {
     user:{email: "",
     password: ""
@@ -91,4 +91,6 @@ angular
     credentialStore.removeUserData();
   }
   $rootScope.countries = secureService.getCountries();
+  // $rootScope.faqs = secureService.getallfaqs();
+  debugger
 });
