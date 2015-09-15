@@ -42,18 +42,21 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   
   
   var login = function(user){
-    var url = "http://localhost:3000/users/sign_in.json"
+    var url = "http://172.16.13.52:3000/users/sign_in.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
-    return $http.post(url, user, header).then(function(data, status, headers, config){
+    return $http.post(url, user, header).then(function(data){ 
       credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
       var categories = getCategoryTree();
       categories.then(function(result){
         credentialStore.setCategorires(result);
+        $location.path('/');
+        $('#login-modal').modal('hide');
       });
-      
-      $location.path('/');
-      $('#login-modal').modal('hide');
-    });
+    },function(data){
+      alert("error");
+    }
+  );//,function(data,status, headers, config)){
+    
   }
 
   var getCategoryTree = function(){

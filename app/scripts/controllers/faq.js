@@ -4,6 +4,9 @@ angular.module('angularjsApp')
    	var allfaqs = secureService.getfaqbycategory($routeParams.faqCategoryName);
     allfaqs.then(function(result){
       $scope.faqs = result.data.faqs;
-    });
-   
+    }); 
+    $scope.myvalue =true;
+    $scope.toggle = function(){
+    	$scope.myvalue = !$scope.myvalue
+    } 
   });
