@@ -20,9 +20,15 @@ angular
     'ui.tree'
     // 'satellizer'
   ])
+
   .constant("wsURL", "http://localhost:3000/api/v1/")
   // .constant("wsURL", "http://192.168.0.202:8500/api/v1/")
   .config(function ($routeProvider, $httpProvider,  $locationProvider) {
+
+//   // .constant("wsURL", "http://localhost:3000/api/v1/")
+//   .constant("wsURL", "http://192.168.0.202:8500/api/v1/")
+//   .config(function ($routeProvider, $httpProvider, $authProvider, $locationProvider) {
+
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
@@ -143,9 +149,12 @@ angular
  
   $rootScope.countries = secureService.getCountries();
   // $rootScope.faqs = secureService.getallfaqs();
+<<<<<<< HEAD
 
   // $http.defaults.headers.common.Authorization = 'Token token=' + $rootScope.Token;
   // $http.defaults.headers.common['user-email'] = $rootScope.Email;
   // $http.defaults.headers.common['Content-Type'] = 'application/json';
   
+=======
+>>>>>>> 2606965415a1440ba897d3fde54642f90b1115b4
 });

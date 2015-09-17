@@ -111,6 +111,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     var url = wsURL + "/faq_categories.json"
     return $http.get(url).then(function(data, status, headers, config){
       return data;
+
     });
   }
 

@@ -1,71 +1,110 @@
-<br>
 <div class="container">
+    <h1 style="text-align:center;">Edit User Profile</h1>
+    <hr>
   <div class="row">
-    <div class="col-md-9">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-12 lead">User profile<hr></div>
-          </div>
-          <div class="row">
-			<div class="col-md-4 text-center">
-              <!-- <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
-              display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120"> -->
+      <!-- left column -->
+      <!-- <div class="col-md-3">
+        <div class="text-center">
+          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+          <h6>Upload a different photo...</h6>
+          
+          <input type="file" class="form-control">
+        </div>
+      </div> -->
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <!-- <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+          This is an <strong>.alert</strong>. Use this to show important messages to the user.
+        </div> --> 
+        <form class="form-horizontal col-md-12" role="form" style="left:45%;">
+          <div class="form-group">
+            <label class="col-lg-3 control-label"><span class="text-muted">First Name:</span> </label>
+            <div class="col-lg-8">
+              <input type="text" ng-model="user.first_name" value="{{user.first_name}}">
             </div>
-            <div class="col-md-8">
-              <!-- <div class="row">
-                <div class="col-md-12">
-                  <h1 class="only-bottom-margin">{{userprofile.data.first_name}}&nbsp{{userprofile.data.last_name}}</h1>
-                </div>
-              </div> -->
-              <div class="row">
-                <div class="col-md-6">
-                  <span class="text-muted">First Name:</span> <input type="text" ng-model="user.first_name" value="{{user.first_name}}"><br>
-                  <span class="text-muted">Last Name:</span> <input type="text" ng-model="user.last_name" value="{{user.last_name}}"><br>
-                  <!-- <span class="text-muted">Email:</span> <input type="text" ng-model="user.email" value="{{user.email}}"><br> -->
-                  <span class="text-muted">Birth date:</span> <ng-datepicker locale="sl" format="DD/MM/YYYY" view-format="DD/MM/YYYY" ng-model="user.dob">
-                  </ng-datepicker><br>
-                  <span class="text-muted">Gender:</span> 
-                  <select ng-model="user.gender">
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label"><span class="text-muted">Last Name:</span></label>
+            <div class="col-lg-8">
+              <input type="text" ng-model="user.last_name" value="{{user.last_name}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label"> <span class="text-muted">Gender:</label>
+            <div class="col-lg-8">
+             <select ng-model="user.gender">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
-                  </select><br>
-                  <span class="text-muted">Alternate Email Address:</span> <input type="text" ng-model="user.alternate_email_address" value="{{user.alternate_email_address}}"><br>
-                  <span class="text-muted">Phone:</span> <input type="text" ng-model="user.phone_number" value="{{user.phone_number}}"><br>
-                  <span class="text-muted">Alternate Phone Number:</span> <input type="text" ng-model="user.alternate_phone_number" value="{{user.alternate_phone_number}}"><br>
-                  <span class="text-muted">Address 1:</span> <input type="text" ng-model="user.address1" value="{{user.address1}}"><br>
-                  <span class="text-muted">Address 2:</span> <input type="text" ng-model="user.address2" value="{{user.address2}}"><br>
-                  <span class="text-muted">Country:</span> 
-                  <select  ng-change="getCountryStates(user.country_hash)" ng-options="country.name for country in countries track by country.name" ng-model="user.country_hash"></select><br>
-                  <span class="text-muted">State:</span> 
-                  <select ng-model="user.state_hash"  ng-options="state.name for state in states track by state.name" ></select><br>
-                  <span class="text-muted">Zip:</span> <input type="text" ng-model="user.zip_code" value="{{user.zip_code}}"><br>
-
-
-
-                  
-
-                  <!-- <input id="datepicker" type="text" data-ng-datepicker data-ng-options="datepickerOptions" data-ng-model="user.dob"> -->
-                    <!-- <small class="text-muted">Created: {{userprofile.data.created_at}}</small> -->
-                </div>
-                <!-- <div class="col-md-6">
-                  <div class="activity-mini">
-                    <i class="glyphicon glyphicon-comment text-muted"></i> 500
-                  </div>
-                  <div class="activity-mini">
-                    <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
-                  </div>
-                </div> -->
+                  </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label"><span class="text-muted">Alternate Email Address:</span></label>
+            <div class="col-lg-8">
+              <input type="text" ng-model="user.alternate_email_address" value="{{user.alternate_email_address}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label"><span class="text-muted">Birth date:</span></label>
+            <div class="col-lg-8">
+                <ng-datepicker locale="sl" format="DD/MM/YYYY" view-format="DD/MM/YYYY" ng-model="user.dob">
+                  </ng-datepicker>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <hr><button class="btn btn-default pull-right" ng-click="savedetails(user)"><i class="glyphicon glyphicon-save"></i> Update</button>
+          <div class="form-group">
+            <label class="col-md-3 control-label"> <span class="text-muted">Phone:</span></label>
+            <div class="col-md-8">
+              <input type="text" ng-model="user.phone_number" value="{{user.phone_number}}">
             </div>
           </div>
-        </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"><span class="text-muted">Alternate Phone Number:</span></label>
+            <div class="col-md-8">
+              <input type="text" ng-model="user.alternate_phone_number" value="{{user.alternate_phone_number}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"><span class="text-muted">Address 1:</span></label>
+            <div class="col-md-8">
+             <input type="text" ng-model="user.address1" value="{{user.address1}}">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label"><span class="text-muted">Address 2:</span></label>
+            <div class="col-md-8">
+             <input type="text" ng-model="user.address2" value="{{user.address2}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"><span class="text-muted">Country:</span></label>
+            <div class="col-md-8">
+             <select  ng-change="getCountryStates(user.country_hash)" ng-options="country.name for country in countries track by country.name" ng-model="user.country_hash"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"><span class="text-muted">State:</span></label>
+            <div class="col-md-8">
+             <select ng-model="user.state_hash"  ng-options="state.name for state in states track by state.name" ></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"> <span class="text-muted">Zip:</span></label>
+            <div class="col-md-8">
+             <input type="text" ng-model="user.zip_code" value="{{user.zip_code}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-8">
+              <hr><button class="btn btn-primary " ng-click="savedetails(user)"><i class="glyphicon glyphicon-user"></i> Update</button>
+            </div>
+            </div>
+          </div>
+        </form>
       </div>
-    </div>
   </div>
 </div>
+<hr>
