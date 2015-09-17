@@ -16,8 +16,9 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/custom.css">
     <!-- endbuild -->
+    <base href="/">
   </head>
-  <body ng-app="angularjsApp">
+  <body ng-app="angularjsApp" id="appBody">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -66,7 +67,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                       <li ng-repeat = "faq in allfaqs.faq_categories">
-                        <a href="#/faqs/{{faq.name}}">{{faq.name}}</a></li>
+                        <a href="/faqs/{{faq.name}}">{{faq.name}}</a></li>
                       <!-- <li><a href="#">Another action</a></li> -->
                       <!-- <li><a href="#">Something else here</a></li> -->
                       <!-- <li><a href="#">Separated link</a></li> -->
@@ -82,8 +83,8 @@
               <li><a ng-href="#/about">About</a></li>
           <!--     <li><a ng-href="#/users">Users</a></li> -->
               <li ng-if='current_user'><a ng-href="#/profile">{{current_user.first_name}}&nbsp{{current_user.last_name}}</a></li>
-              <li ng-if='current_user'><a ng-href="#/" ng-click='logout()'>Logout</a></li>
-              <li ng-if="!current_user"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+              <li ng-if='current_user'><a ng-href="/" ng-click='logout()'>Logout</a></li>
+              <li ng-if="!current_user"><a href="/" data-toggle="modal" data-target="#login-modal">Login</a></li>
             </ul>
             
           </div>
@@ -112,6 +113,38 @@
           </form>
           <div class="login-help">
             <a href="#">Register</a> - <a href="#">Forgot Password</a>
+            <button ng-click="authenticate('linkedin')">Sign in with LinkedIn</button>
+            <script type="text/javascript" src="//platform.linkedin.com/in.js">
+              //here goes the api key, and the callback function
+              // api_key: 75qwniykoelwjm
+              // authorize: true
+              // onLoad: onLinkedInLoad
+            </script>
+            <script type="in/Login"></script>
+            <script type="text/javascript">
+            
+    
+              // // Setup an event listener to make an API call once auth is complete
+              // function onLinkedInLoad() {
+              //   IN.Event.on(IN, "auth", getProfileData);
+              // }
+
+              // // Handle the successful return from the API call
+              // function onSuccess(data) {
+              //   console.log(data);
+              //   linked_in(data);
+              // }
+
+              // // Handle an error response from the API call
+              // function onError(error) {
+              //   console.log(error);
+              // }
+              // // Use the API call wrapper to request the member's basic profile data
+              // function getProfileData() {
+              //   IN.API.Raw("/people/~").result(onSuccess).error(onError);
+              // }
+
+            </script>
           </div>
         </div>
       </div>
@@ -131,7 +164,7 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -145,11 +178,14 @@
     <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
     <script src="bower_components/ngDatepicker/src/js/ngDatepicker.js"></script>
+    <script src="bower_components/ngLinkedIn/ngLinkedIn.js"></script>
+    <script src="bower_components/satellizer/satellizer.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/linkedin.js"></script>
         <script src="scripts/services/localstorage.js"></script>
         <script src="scripts/services/secureServices.js"></script>
         <script src="scripts/services/credentialStore.js"></script>
@@ -160,6 +196,7 @@
         <script src="scripts/controllers/categories.js"></script>
         <script src="scripts/controllers/page.js"></script>
         <script src="scripts/controllers/faq.js"></script>
+        <script src="scripts/controllers/linkedin.js"></script>
         
         <!-- endbuild -->
 </body>
