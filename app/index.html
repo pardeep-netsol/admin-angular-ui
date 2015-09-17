@@ -23,10 +23,10 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
+    <div class="header" style="border:0px;">
       <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
+        <div class="container" style="">
+          <div class="navbar-header" style="float:left;">
 
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
               <span class="sr-only">Toggle navigation</span>
@@ -35,10 +35,10 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/">angularjs</a>
+            <a class="navbar-brand" href="#/">Admin Static Content</a>
           </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+          <div class="collapse navbar-collapse" id="js-navbar-collapse" style="float:right;">
             <ul class="nav navbar-nav">
               <li ng-repeat="category in allCategories.categories">
                 <div class="dropdown">
@@ -80,7 +80,7 @@
                 <!-- <a ng-href="#/{{category.name}}" ng-click="">{{category.name}}</a></li> -->
               <!-- <li class="active"><a href="#/">Home{{categories}}</a></li> -->
               <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/users">Users</a></li>
+          <!--     <li><a ng-href="#/users">Users</a></li> -->
               <li ng-if='current_user'><a ng-href="#/profile">{{current_user.first_name}}&nbsp{{current_user.last_name}}</a></li>
               <li ng-if='current_user'><a ng-href="#/" ng-click='logout()'>Logout</a></li>
               <li ng-if="!current_user"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>

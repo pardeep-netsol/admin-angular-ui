@@ -20,9 +20,9 @@
                     <div class = "panel-group" id = "accordion">
                       <div class = "panel panel-default">
                         <div class = "panel-heading dropdown" id = "{{faq.id}}">
-                        	<span style="font-weight:bold;font-size:12px;">QUESTION:</span><a class="cmt_button11" tabindex="-1" ng-click="toggle()"><span style="padding-left:3px;">{{faq.question}}</span></a>
-                            <div  ng-hide="myvalue" >
-                            <span style="font-weight:bold;font-size:12px;">ANSWER:</span><span style="padding-left:3px;">{{faq.answer}}</span>
+                        	<span style="font-weight:bold;font-size:12px;">QUESTION:</span><span class="cmt_button11" tabindex="-1" id = "{{faq.id}}" ng-click="toggle({{faq.id}})"><span style="padding-left:3px;">{{faq.question}}</span></span>
+                            <div   id="div_{{faq.id}}" class="testing">
+                            <span style="font-weight:bold;font-size:12px;">ANSWER:</span><span style=""><span ng-bind-html="to_trusted(faq.answer)"></span></span>
                             </div>
                         </div>
                       </div>

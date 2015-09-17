@@ -1,59 +1,95 @@
-<br>
 <div class="container">
-  <div class="row">
-    <div class="col-md-9">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-12 lead">User profile<hr></div>
-          </div>
-          <div class="row">
-			<div class="col-md-4 text-center">
-              <!-- <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
-              display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120"> -->
+      <div class="row">
+      <!-- <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+            <hr><a class="btn btn-default pull-right" ng-href="#/editprofile"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+      </div> -->
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">User Profile</h3>
             </div>
-            <div class="col-md-8">
+            <div class="panel-body">
               <div class="row">
-                <div class="col-md-12">
-                  <h1 class="only-bottom-margin">{{user.first_name}}&nbsp{{user.last_name}}</h1>
+                <div class="col-md-3 col-lg-3 " align="center"> <!-- <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> --> <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
+              display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120"></div>
+                
+                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+                <div class=" col-md-9 col-lg-9 ">
+                <h1 class="only-bottom-margin">{{user.first_name}}&nbsp{{user.last_name}}</h1>
+           
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td> <span class="text-muted">Email:</span></td>
+                        <td>{{user.email}}</td>
+                      </tr>
+                      <tr>
+                        <td><span class="text-muted">Birth date:</span></td>
+                        <td>{{user.dob}}</td>
+                      </tr>
+                      <tr>
+                        <td><span class="text-muted">Gender:</span></td>
+                        <td>{{user.gender}}</td>
+                      </tr>
+                        <tr>
+                        <td><span class="text-muted">Phone:</span> </td>
+                        <td>{{user.phone_number}}</td>
+                      </tr>
+                      <tr>
+                        <td><span class="text-muted">Alternate Phone:</span></td>
+                        <td>{{user.alternate_phone_number}}</td>
+                      </tr>
+                        <td><span class="text-muted">Address 1:</span> </td>
+                        <td>{{user.address1}}</td>
+                           
+                      </tr>
+                      <tr>
+                        <td> <span class="text-muted">Address 2:</span></td>
+                        <td> {{user.address2}}</td>
+                      </tr>
+
+                      <tr>
+                        <td><span class="text-muted">Zip:</span></td>
+                        <td>{{user.zip_code}}</td>
+                      </tr>
+
+                      <tr>
+                        <td><span class="text-muted">Country:</span> </td>
+                        <td>{{user.country_hash}}</td>
+                      </tr>
+
+                      <tr>
+                        <td><span class="text-muted">State:</span></td>
+                        <td>{{user.state_hash}}</td>
+                      </tr>
+                     
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-8">
-                  <span class="text-muted">Email:</span> {{user.email}}<br>
-                  <span class="text-muted">Alternate Email:</span> {{user.alternate_email_address}}<br>
-                  <span class="text-muted">Birth date:</span> {{user.dob}}<br>
-                  <span class="text-muted">Gender:</span> {{user.gender}}<br>
-                  <span class="text-muted">Phone:</span> {{user.phone_number}}<br>
-                  <span class="text-muted">Alternate Phone:</span> {{user.alternate_phone_number}}<br>
-                  <span class="text-muted">Address 1:</span> {{user.address1}}<br>
-                  <span class="text-muted">Address 2:</span> {{user.address2}}<br>
-                   <span class="text-muted">Zip:</span> {{user.zip_code}}<br>
-                  <span class="text-muted">Country:</span> {{user.country_hash}}<br>
-                  <span class="text-muted">State:</span> {{user.state_hash}}<br>
-             <!--      <span class="text-muted">Current Signin At:</span> {{user.current_sign_in_at | --> <!-- date:'medium'}}<br> -->
-                  <!-- <span class="text-muted">Current IP:</span> {{user.current_sign_in_ip}}<br>
-                  <span class="text-muted">Last Signin IP:</span> {{user.last_sign_in_ip}}<br> -->
-                  <!-- <span class="text-muted">SignIn Count:</span> {{user.sign_in_count}}<br> -->
-                </div>
-                <!-- <div class="col-md-6">
-                  <div class="activity-mini">
-                    <i class="glyphicon glyphicon-comment text-muted"></i> 500
-                  </div>
-                  <div class="activity-mini">
-                    <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
-                  </div>
-                </div> -->
-              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <hr><a class="btn btn-default pull-right" ng-href="#/editprofile"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-            </div>
+                 <div class="panel-footer">
+                        <span class="">
+                            <a class="btn btn-sm btn-warning " ng-href="#/editprofile"><i class="glyphicon glyphicon-edit"></i></i> Edit</a>
+                            <!-- <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a> -->
+                        </span>
+                    </div>
+            
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
