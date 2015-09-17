@@ -1,7 +1,11 @@
 "use strict"
 angular.module('angularjsApp')
-  .controller('UserCtrl', function ($scope, secureService, $rootScope, $location) {
+  .controller('UserCtrl', function ($scope, secureService, $rootScope, $location, credentialStore) {
   	
+    if ($rootScope.current_user == undefined){
+      $location.path('/');
+    }
+
     var edituserprofile = function(){
       var state = secureService.getStates($rootScope.current_user.country_hash);
       state.then(function(result){

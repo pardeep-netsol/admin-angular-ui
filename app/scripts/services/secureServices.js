@@ -5,7 +5,9 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   
 	var getAllCategories = function(){
   	var url = wsURL + "categories/roots.json"
-		return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
+    var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}};
+    var header1 = credentialStore.getheaders();
+		return $http.get(url, header1).then(function(data, status, headers, config){
       if (!data.error) {
        	return data;
      	}
@@ -42,11 +44,12 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   
   
   var login = function(user){
-    // var url = "http://localhost:3000/users/sign_in.json"
-    var url = "http://192.168.0.202:8500/users/sign_in.json"
+    debugger
+    var url = "http://localhost:3000/users/sign_in.json"
+    // var url = "http://192.168.0.202:8500/users/sign_in.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
-      credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
+      credentialStore.setUserData(data.data.user)
       var categories = getCategoryTree();
       categories.then(function(result){
         credentialStore.setCategorires(result);
@@ -56,12 +59,13 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     },function(data){
       alert("error");
     }
-  );//,function(data,status, headers, config)){
+  );
     
   }
 
   var getCategoryTree = function(){
-    var url = wsURL + "categories/tree.json"
+    debugger
+    var url = wsURL + "categories/tree.json";
     return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
       if (!data.error) {
         return data;
@@ -71,6 +75,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
 
 
 	var getpage = function(categoryname, pagename){
+    debugger
 		var url = wsURL + "pages/page.json?name="+pagename+"&category_name="+categoryname
 		return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
     	if (!data.error) {
@@ -111,7 +116,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
 
   var getfaqbycategory = function(categoryname){
     var url = wsURL + "/faq_categories/faqs.json?name="+categoryname
-    return $http.get(url).then(function(data, status, headers, config){
+    $http.get(url).then(function(data, status, headers, config){
       return data;
     });
   }

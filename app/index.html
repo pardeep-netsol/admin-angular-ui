@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/custom.css">
     <!-- endbuild -->
-    <base href="/">
   </head>
   <body ng-app="angularjsApp" id="appBody">
     <!--[if lte IE 8]>
@@ -52,7 +51,7 @@
                     <a tabindex="-1" ng-click="">{{subcategory.name}}</a>
                     <ul class="dropdown-menu">
                       <li ng-repeat="page in subcategory.pages">
-                        <a tabindex="-1" href="#/{{subcategory.name}}/{{page.name}}">{{page.name}}</a>
+                        <a tabindex="-1" href="#/content/{{subcategory.name}}/{{page.name}}">{{page.name}}</a>
                       </li>
                     </ul>
                   </li>
@@ -67,7 +66,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                       <li ng-repeat = "faq in allfaqs.faq_categories">
-                        <a href="/faqs/{{faq.name}}">{{faq.name}}</a></li>
+                        <a href="#/faqs/{{faq.name}}">{{faq.name}}</a></li>
                       <!-- <li><a href="#">Another action</a></li> -->
                       <!-- <li><a href="#">Something else here</a></li> -->
                       <!-- <li><a href="#">Separated link</a></li> -->
@@ -80,11 +79,11 @@
               
                 <!-- <a ng-href="#/{{category.name}}" ng-click="">{{category.name}}</a></li> -->
               <!-- <li class="active"><a href="#/">Home{{categories}}</a></li> -->
-              <li><a ng-href="/about">About</a></li>
-              <li><a ng-href="/users">Users</a></li>
+              <li><a ng-href="#/about">About</a></li>
+              <li><a ng-href="#/users">Users</a></li>
               <li ng-if='current_user'><a ng-href="#/profile">{{current_user.first_name}}&nbsp{{current_user.last_name}}</a></li>
-              <li ng-if='current_user'><a ng-href="/" ng-click='logout()'>Logout</a></li>
-              <li ng-if="!current_user"><a href="/" data-toggle="modal" data-target="#login-modal">Login</a></li>
+              <li ng-if='current_user'><a ng-href="#/" ng-click='logout()'>Logout</a></li>
+              <li ng-if="!current_user"><a href="#/" data-toggle="modal" data-target="#login-modal">Login</a></li>
             </ul>
             
           </div>

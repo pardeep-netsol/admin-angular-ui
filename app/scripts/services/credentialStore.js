@@ -1,25 +1,24 @@
 'use strict'
 
 angular.module('angularjsApp').factory('credentialStore',function($rootScope, $localstorage){
-  function setUserData(user, jwtToken){
-    $rootScope.current_user = user;
-    $rootScope.Token = jwtToken;
-    $rootScope.Email = user.email;
-    // $localstorage.set("Token", jwtToken);
-    // $localstorage.set("Email", user.email);
-    // var categories = categories;
-    // categories.then(function(result){
-    //   $rootScope.allcategories = result.data;
-    // });
-
-    // $localstorage.set('jwtToken', jwtToken);
-    // $localstorage.set('type', 'user');
-   }
+  function setUserData(user){
+    sessionStorage.setItem('Token', user.authentication_token);
+    sessionStorage.setItem('Email', user.email);
+    sessionStorage.setItem('current_user', JSON.stringify(user));
+    // $rootScope.current_user = user;
+    // $rootScope.Token = user.authentication_token;
+    // $rootScope.Email = user.email;
+    getCurrentUser();
+  }
+  function getCurrentUser (){
+    return $rootScope.current_user = JSON.parse(sessionStorage.getItem('current_user'));
+  }
 
    function getheaders(){
     var header = {headers: {
                   'Authorization':'Token token='+getToken(),
-                  'user-email':getEmail() 
+                  'user-email':getEmail() ,
+                  'Content-Type':'application/json'
                   }
                 };
     return header;
@@ -27,6 +26,7 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
 
    function setCategorires(Categories){
     $rootScope.allCategories = Categories.data;
+    sessionStorage.setItem('categories', JSON.stringify($rootScope.allCategories));
    }
 
    function updateUserData(user){
@@ -36,16 +36,16 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
    function isLoggedIn(){
     // var jwtToken = $localstorage.get('jwtToken');
     // && jwtToken != null
-    return ($localstorage.get("Token") != null);
+    return (sessionStorage.getItem('Token') != null);
   }
 
   function getToken(){
-    return $rootScope.Token;
+    return sessionStorage.getItem('Token');
     // return $localstorage.get("Token")
   }
 
   function getEmail(){
-     return $rootScope.Email;
+    return sessionStorage.getItem('Email'); 
     // return $localstorage.get("Email")
   }
 
