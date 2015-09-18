@@ -9,13 +9,18 @@ angular.module('angularjsApp')
      return $sce.trustAsHtml(html_code);
      }
 
-      // $scope.div = document.createElement('div');
-      // $scope.div.innerHTML = result.data.faqs.answer;
-      // $($scope.div.getElementsByTagName('img')).map(function(){
-      //   var src = "http://localhost:3000"+$(this).attr('src');
-      //   this.src = src;
-      // });
-      // $scope.faqs_content = $($scope.div).prop('outerHTML');
+      $scope.div = document.createElement('div');
+      var data = ""
+      result.data.faqs.forEach(function(faq){
+        data = data+" "+faq.answer
+      });
+      $scope.div.innerHTML = data;
+      $($scope.div.getElementsByTagName('img')).map(function(){
+        var src = "http://localhost:3000"+$(this).attr('src');
+        this.src = src;
+      });
+      $scope.faqs_content = $($scope.div).prop('outerHTML');
+      debugger
   //     $scope.myvalue =false;
   //   $scope.toggle = function(obj){    	
   //   	var myEl = angular.element(document.querySelector('#div_'+obj));    

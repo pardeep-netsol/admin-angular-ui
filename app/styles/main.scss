@@ -121,6 +121,7 @@ $color_alto_approx: rgb(221, 221, 221);
   }
 }
 .ng-binding > p{margin:-20px 56px 10px; paading-left:3px;}
+.ng-binding > div{margin:-20px 56px 10px; paading-left:3px;}
 .table-user-information > tbody > tr {
     border-top: 1px solid rgb(221, 221, 221);
 }
@@ -139,4 +140,14 @@ $color_alto_approx: rgb(221, 221, 221);
     margin-bottom: 0;
     padding-top: 7px;
 }
+}
+.form-group .col-lg-8 >input{width:52%;}
+.form-group .col-md-8 >input{width:52%;}
+.panel{margin-bottom:0px !important;}
+.test1 >h1 {
+    display: inline-block;
+    font-weight: normal;
+    font-size: 36px;
+    padding:3px 3px 3px 6px;
+    background:#f2efe9;
 }

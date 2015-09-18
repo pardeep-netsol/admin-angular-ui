@@ -108,7 +108,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     });
   }
   var getallfaqs = function(){
-    var url = wsURL + "/faq_categories.json"
+    var url = wsURL + "faq_categories.json"
     return $http.get(url).then(function(data, status, headers, config){
       return data;
 
@@ -116,14 +116,15 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
   var getfaqbycategory = function(categoryname){
-    var url = wsURL + "/faq_categories/faqs.json?name="+categoryname
-    $http.get(url).then(function(data, status, headers, config){
+    var url = wsURL + "faq_categories/faqs.json?name="+categoryname
+    return $http.get(url).then(function(data, status, headers, config){
       return data;
     });
   }
 
   var updateUser = function(user_data, id){
    	var url = wsURL + "users/"+id+".json"
+    debugger
   	$http.put(url, user_data, credentialStore.getheaders()).success(function(data){
       if (data.error){
         alert("Error: " + data.error);
@@ -132,8 +133,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
         credentialStore.updateUserData(data.user)
         $location.path('/profile');
       }
-    }).finally(function(){
-    });
+      debugger
+    })
   }
 	return {
 		getAllCategories:getAllCategories,

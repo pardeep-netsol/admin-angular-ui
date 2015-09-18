@@ -30,6 +30,7 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
    }
 
    function updateUserData(user){
+    debugger
     $rootScope.current_user = user;
    }
 

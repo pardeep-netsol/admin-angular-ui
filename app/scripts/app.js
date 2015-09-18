@@ -149,12 +149,7 @@ angular
  
   $rootScope.countries = secureService.getCountries();
   // $rootScope.faqs = secureService.getallfaqs();
-<<<<<<< HEAD
-
   // $http.defaults.headers.common.Authorization = 'Token token=' + $rootScope.Token;
   // $http.defaults.headers.common['user-email'] = $rootScope.Email;
   // $http.defaults.headers.common['Content-Type'] = 'application/json';
-  
-=======
->>>>>>> 2606965415a1440ba897d3fde54642f90b1115b4
 });
