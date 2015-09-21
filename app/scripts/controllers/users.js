@@ -22,11 +22,12 @@ angular.module('angularjsApp')
     }
         
     var userprofile = $rootScope.current_user
+   
     $scope.user = {
     	first_name: userprofile.first_name,
     	last_name: userprofile.last_name,
     	gender: userprofile.gender,
-    	dob: userprofile.dob,
+    	dob: userprofile.dob != "" ? userprofile.dob : Date.now,
     	email: userprofile.email,
       country_hash: userprofile.country_hash,
       state_hash: userprofile.state_hash,
@@ -42,9 +43,12 @@ angular.module('angularjsApp')
       current_sign_in_ip: userprofile.current_sign_in_ip,
       last_sign_in_ip: userprofile.last_sign_in_ip
     }
+  
     $scope.savedetails =function(user){
-      user.country_hash = user.country_hash.name
-      user.state_hash = user.state_hash.name
+      if (user.country_hash != null){
+        user.country_hash = user.country_hash.name
+        user.state_hash = user.state_hash.name
+      }
       var userparams = {'user': user}
     	secureService.updateUser(userparams, $rootScope.current_user.id)
     }

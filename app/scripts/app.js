@@ -110,51 +110,81 @@ angular
     user:{email: "",
     password: ""
   }}
+
+  $rootScope.registerUser={
+    user:{
+      email: "",
+      password:"",
+      password_confirmation:"",
+      first_name:"",
+      last_name:""
+    }
+  }
   if(!credentialStore.isLoggedIn()){
     $location.path('/');
   }
-  if (sessionStorage.getItem('Token') != null) {
+  
+  if (sessionStorage.getItem('Token') != '') {
     $rootScope.current_user = JSON.parse(sessionStorage.getItem('current_user'));
     $rootScope.allCategories = JSON.parse(sessionStorage.getItem('categories'));
   }
 
   $rootScope.login = function(user){
+    if (user.user.email == ""){
+      $("#error_msg").html("Email can't be empty");
+      $("#error_msg").show();
+      return false;
+    }else if(user.user.password==""){
+      $("#error_msg").html("password can't be empty");
+      $("#error_msg").show();
+      return false;
+    }
     secureService.login(user);
-    // alert(user.email);
   }
   $rootScope.logout = function(){
     credentialStore.removeUserData();
   }
 
-  // var linked_in = function(data){
-  //   alert(data);
-  // }
-  // $rootScope.authenticate = function(provider) {
-  //     $auth.authenticate(provider)
-  //       .then(function(data) {
-  //         debugger
-  //         credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
-  //         var categories = getCategoryTree();
-  //         categories.then(function(result){
-  //           credentialStore.setCategorires(result);
-  //           $location.path('/');
-  //           $('#login-modal').modal('hide');
-  //         });
-  //   // Signed in with Google.
-  //     })
-  //   .catch(function(response) {
-  //     // Something went wrong.
-  //   });
-  //   };
- 
+  $rootScope.showRegisterModel = function(){
+    $('#login-modal').modal('hide');
+    $('#signup-modal').modal('show');
+  }
+
+  $rootScope.signUp= function(registeruser){
+    $("#signup_error_msg").hide();
+    $("#signup_server_error_msg").hide();
+    if (registeruser.user.first_name == ""){
+      $("#signup_error_msg").append("<li>First Name can't be empty</li>");
+      $("#signup_error_msg").show();
+      return false;
+    }else if (registeruser.user.last_name == ""){
+      $("#signup_error_msg").html("Last Name can't be empty");
+      $("#signup_error_msg").show();
+      return false;
+    }else if (registeruser.user.email == ""){
+      $("#signup_error_msg").html("Email can't be empty");
+      $("#signup_error_msg").show();
+      return false;
+    }else if (registeruser.user.password == ""){
+      $("#signup_error_msg").html("Password can't be empty");
+      $("#signup_error_msg").show();
+      return false;
+    }else if (registeruser.user.password_confirmation == ""){
+      $("#signup_error_msg").html("Confirm Password can't be empty");
+      $("#signup_error_msg").show();
+      return false;
+    }else if (registeruser.user.password != registeruser.user.password_confirmation){
+      $("#signup_error_msg").html("Password and Confirm Password not match.");
+      $("#signup_error_msg").show();
+      return false;
+    }
+    secureService.registerNewUser(registeruser)
+  }
   $rootScope.countries = secureService.getCountries();
-  // $rootScope.faqs = secureService.getallfaqs();
-<<<<<<< HEAD
 
   // $http.defaults.headers.common.Authorization = 'Token token=' + $rootScope.Token;
   // $http.defaults.headers.common['user-email'] = $rootScope.Email;
   // $http.defaults.headers.common['Content-Type'] = 'application/json';
   
-=======
->>>>>>> 2606965415a1440ba897d3fde54642f90b1115b4
+
 });

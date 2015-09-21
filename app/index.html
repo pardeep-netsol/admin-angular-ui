@@ -66,19 +66,11 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                       <li ng-repeat = "faq in allfaqs.faq_categories">
-                        <a href="#/faqs/{{faq.name}}">{{faq.name}}</a></li>
-                      <!-- <li><a href="#">Another action</a></li> -->
-                      <!-- <li><a href="#">Something else here</a></li> -->
-                      <!-- <li><a href="#">Separated link</a></li> -->
+                        <a href="#/faqs/{{faq.name}}">{{faq.name}}</a>
+                      </li>
                     </ul>
                   </div>
                 </li>
-                <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li ><a href="#/">Sub Category</a></li>
-                </ul> -->
-              
-                <!-- <a ng-href="#/{{category.name}}" ng-click="">{{category.name}}</a></li> -->
-              <!-- <li class="active"><a href="#/">Home{{categories}}</a></li> -->
               <li><a ng-href="#/about">About</a></li>
               <li ng-if='current_user'><a ng-href="#/profile">{{current_user.first_name}}&nbsp{{current_user.last_name}}</a></li>
               <li ng-if='current_user'><a ng-href="#/" ng-click='logout()'>Logout</a></li>
@@ -100,54 +92,126 @@
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
       </div>
     </div>
+
+    <!-- login model -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
         <div class="loginmodal-container">
           <h1>Login to Your Account</h1><br>
+           <div class="alert alert-danger" role="alert" id ="error_msg" style="display:none"></div>
           <form ng-submit='login(user)'>
             <input type="text" name="user" placeholder="Username" ng-model="user.user.email">
             <input type="password" name="pass" placeholder="Password" ng-model="user.user.password">
             <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
           <div class="login-help">
-            <a href="#">Register</a> - <a href="#">Forgot Password</a>
+            <a href="" ng-click="showRegisterModel()">Register</a><a href="#/" data-toggle="modal" data-target="#forgot-password-modal">Forgot Password</a>
             <button ng-click="authenticate('linkedin')">Sign in with LinkedIn</button>
-            <script type="text/javascript" src="//platform.linkedin.com/in.js">
-              //here goes the api key, and the callback function
-              // api_key: 75qwniykoelwjm
-              // authorize: true
-              // onLoad: onLinkedInLoad
-            </script>
-            <script type="in/Login"></script>
-            <script type="text/javascript">
             
-    
-              // // Setup an event listener to make an API call once auth is complete
-              // function onLinkedInLoad() {
-              //   IN.Event.on(IN, "auth", getProfileData);
-              // }
-
-              // // Handle the successful return from the API call
-              // function onSuccess(data) {
-              //   console.log(data);
-              //   linked_in(data);
-              // }
-
-              // // Handle an error response from the API call
-              // function onError(error) {
-              //   console.log(error);
-              // }
-              // // Use the API call wrapper to request the member's basic profile data
-              // function getProfileData() {
-              //   IN.API.Raw("/people/~").result(onSuccess).error(onError);
-              // }
-
-            </script>
+            <script type="in/Login"></script>
+            
           </div>
         </div>
       </div>
     </div>
+    <!-- /login model -->
 
+    <!-- Registration model -->
+    <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="container">
+          <div class="row centered-form">
+            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Register<small>It's free!</small></h3>
+                </div>
+                <div class="panel-body signup_form">
+                  <form role="form" ng-submit='signUp(registerUser)'>
+                    <div class="" role="alert" id ="signup_server_error_msg" style="display:none">
+                      <li ng-repeat="(key,value) in registerErrors">{{key}} {{value[0]}}</li>
+                    </div>
+                    <div class="" role="alert" id ="signup_error_msg" style="display:none"></div>
+                    <div class="row">
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <input type="text" ng-model="registerUser.user.first_name" class="form-control input-sm" placeholder="First Name">
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <input type="text" ng-model="registerUser.user.last_name" class="form-control input-sm" placeholder="Last Name">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <input type="email" ng-model="registerUser.user.email" class="form-control input-sm" placeholder="Email Address">
+                    </div>
+
+                    <div class="row">
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group password_field">
+                          <input type="password" ng-model="registerUser.user.password" class="form-control input-sm" placeholder="Password">
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group password_field">
+                          <input type="password" ng-model="registerUser.user.password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                        </div>
+                      </div>
+                    </div>
+                    <input type="submit" value="Register" class="btn btn-info btn-block">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Registration model -->
+
+    <!-- Forgot password model -->
+    <div class="modal fade" id="forgot-password-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="container">
+    
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                          <h3><i class="fa fa-lock fa-4x"></i></h3>
+                          <h2 class="text-center">Forgot Password?</h2>
+                          <p>You can reset your password here.</p>
+                            <div class="panel-body">
+                              
+                              <form class="form">
+                                <fieldset>
+                                  <div class="form-group">
+                                    <div class="input-group">
+                                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                      
+                                      <input id="emailInput" placeholder="email address" class="form-control" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <input class="btn btn-lg btn-primary btn-block" value="Send My Password" type="submit">
+                                  </div>
+                                </fieldset>
+                              </form>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+    </div>
+</div>
+    </div>
+    <!-- /Forgot password model -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -183,7 +247,6 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/linkedin.js"></script>
         <script src="scripts/services/localstorage.js"></script>
         <script src="scripts/services/secureServices.js"></script>
         <script src="scripts/services/credentialStore.js"></script>
@@ -194,8 +257,7 @@
         <script src="scripts/controllers/categories.js"></script>
         <script src="scripts/controllers/page.js"></script>
         <script src="scripts/controllers/faq.js"></script>
-        <script src="scripts/controllers/linkedin.js"></script>
-        
+               
         <!-- endbuild -->
 </body>
 </html>

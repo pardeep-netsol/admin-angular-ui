@@ -31,6 +31,7 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
 
    function updateUserData(user){
     $rootScope.current_user = user;
+    sessionStorage.setItem('current_user', JSON.stringify(user));
    }
 
    function isLoggedIn(){
@@ -53,6 +54,10 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
     $rootScope.current_user = null;
     $rootScope.Token = null;
     $rootScope.allCategories = [];
+    sessionStorage.setItem('current_user', '')
+    sessionStorage.setItem('Token', '')
+    sessionStorage.setItem('Email', '');
+
     // $localstorage.set('jwtToken', null);
   }
 

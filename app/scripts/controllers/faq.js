@@ -1,13 +1,13 @@
 angular.module('angularjsApp')
-  .controller('FaqCtrl', function ($scope, secureService, $routeParams, $rootScope, $localstorage,$sce) {
+  .controller('FaqCtrl', function ($scope, secureService, $routeParams, $rootScope, $localstorage, $sce) {
    
    	var allfaqs = secureService.getfaqbycategory($routeParams.faqCategoryName);
-    debugger
     allfaqs.then(function(result){
+
       $scope.faqs = result.data.faqs;
-      $scope.to_trusted = function(html_code) {
-     return $sce.trustAsHtml(html_code);
-     }
+      // $scope.to_trusted = function(html_code) {
+        // return $sce.trustAsHtml(html_code);
+     // }
 
       // $scope.div = document.createElement('div');
       // $scope.div.innerHTML = result.data.faqs.answer;

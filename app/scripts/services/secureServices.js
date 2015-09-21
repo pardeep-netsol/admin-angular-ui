@@ -63,8 +63,26 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     
   }
 
+  var registerNewUser = function(user){
+    var url = "http://localhost:3000/users.json"
+    var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
+    return $http.post(url, user, header).then(function(data){ 
+      credentialStore.setUserData(data.data)
+      var categories = getCategoryTree();
+      categories.then(function(result){
+        credentialStore.setCategorires(result);
+        $location.path('/profile');
+        $('#signup-modal').modal('hide');
+      });
+    },function(data){
+      $rootScope.registerErrors = data.data.errors;
+      $("#signup_server_error_msg").show();
+      alert("error");
+    }
+  );
+  }
+
   var getCategoryTree = function(){
-    debugger
     var url = wsURL + "categories/tree.json";
     return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
       if (!data.error) {
@@ -108,16 +126,16 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     });
   }
   var getallfaqs = function(){
-    var url = wsURL + "/faq_categories.json"
+    var url = wsURL + "faq_categories.json"
     return $http.get(url).then(function(data, status, headers, config){
       return data;
-
     });
   }
 
   var getfaqbycategory = function(categoryname){
-    var url = wsURL + "/faq_categories/faqs.json?name="+categoryname
-    $http.get(url).then(function(data, status, headers, config){
+    debugger
+    var url = wsURL + "faq_categories/faqs.json?name="+categoryname;
+    return $http.get(url).then(function(data){
       return data;
     });
   }
@@ -144,6 +162,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
 		getpage:getpage,
     getCategoryTree:getCategoryTree,
     login:login,
+    registerNewUser:registerNewUser,
     getCountries:getCountries,
     getStates:getStates,
     getchildren:getchildren,
