@@ -2,6 +2,7 @@
 
 angular.module('angularjsApp').factory('credentialStore',function($rootScope, $localstorage){
   function setUserData(user){
+    debugger
     sessionStorage.setItem('Token', user.authentication_token);
     sessionStorage.setItem('Email', user.email);
     sessionStorage.setItem('current_user', JSON.stringify(user));
@@ -37,7 +38,7 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
    function isLoggedIn(){
     // var jwtToken = $localstorage.get('jwtToken');
     // && jwtToken != null
-    return (sessionStorage.getItem('Token') != null);
+    return (sessionStorage.getItem('Token') != "");
   }
 
   function getToken(){

@@ -17,39 +17,58 @@ angular
     'ngSanitize',
     'ngTouch',
     'jkuri.datepicker',
-    'ui.tree'
-    // 'satellizer'
+    'ui.tree',
+    'satellizer'
   ])
 
   .constant("wsURL", "http://localhost:3000/api/v1/")
   // .constant("wsURL", "http://192.168.0.202:8500/api/v1/")
-  .config(function ($routeProvider, $httpProvider,  $locationProvider) {
-
+  .config(function ($routeProvider, $httpProvider,  $locationProvider, $authProvider) {
 //   // .constant("wsURL", "http://localhost:3000/api/v1/")
 //   .constant("wsURL", "http://192.168.0.202:8500/api/v1/")
 //   .config(function ($routeProvider, $httpProvider, $authProvider, $locationProvider) {
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    $httpProvider.interceptors.push('tokenInjector');
 
-    // $authProvider.linkedin({
-    //   // clientId: '75zih9h8w97e8m',
-    //   // url: 'http://localhost:3000/api/v1/users/social_login',
-    //   // redirectUri: 'http://localhost:9000',
-    //   // // provider: 'linkedin'
-    //   // name: 'linkedin'
+    $authProvider.linkedin({
+      clientId: '75zih9h8w97e8m',
+      url: 'http://localhost:3000/users/social_login/linkedin.json',
+      // authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
+      redirectUri: 'http://localhost:9000/',
+      state: '~!@#$%^&*()',
+      type: '2.0',
+      popupOptions: { width: 527, height: 582 },
+      provider: 'linkedin',
+      name: 'linkedin'
+    });
 
-    //   clientId: '75zih9h8w97e8m',
-    //   url: 'http://localhost:3000/users/social_login/linkedin',
-    //   authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
-    //   redirectUri: 'http://localhost:9000/',
-    //   // requiredUrlParams: ['state'],
-    //   // scope: ['r_emailaddress'],
-    //   // scopeDelimiter: ' ',
-    //   state: '9876543210',
-    //   type: '2.0',
-    //   popupOptions: { width: 527, height: 582 }
-    // });
+    $authProvider.facebook({
+      clientId: '1047234745287179',
+      url: 'http://localhost:3000/users/social_login/facebook.json',
+      // authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
+      redirectUri: 'http://localhost:3000/',
+      state: '~!@#$%^&*()',
+      type: '2.0',
+      popupOptions: { width: 527, height: 582 },
+      provider: 'facebook',
+      name: 'facebook'
+    });
+
+    $authProvider.twitter({
+      clientId: '75zih9h8w97e8m',
+      url: 'http://localhost:3000/users/social_login/twitter.json',
+      // authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
+      redirectUri: 'http://localhost:9000/',
+      state: '~!@#$%^&*()',
+      type: '2.0',
+      popupOptions: { width: 527, height: 582 },
+      provider: 'twitter',
+      name: 'twitter'
+    });
+
+    
 
     $routeProvider
       .when('/', {
@@ -101,7 +120,7 @@ angular
         redirectTo: '/'
       });
   })
-.run(function(secureService , $rootScope, $location, credentialStore,  $http){
+.run(function(secureService , $rootScope, $location, credentialStore, $auth, $http){
   var faqs = secureService.getallfaqs();
   faqs.then(function(result){
     $rootScope.allfaqs = result.data;
@@ -141,6 +160,15 @@ angular
     }
     secureService.login(user);
   }
+  $rootScope.forgotpass = {
+    user:{email:""}
+  } 
+
+  $rootScope.forgotPassword = function(forgotpass){
+    secureService.forgotPassword(forgotpass);
+    // alert(user.email);
+  }
+
   $rootScope.logout = function(){
     credentialStore.removeUserData();
   }
@@ -148,6 +176,11 @@ angular
   $rootScope.showRegisterModel = function(){
     $('#login-modal').modal('hide');
     $('#signup-modal').modal('show');
+  }
+
+  $rootScope.showforgotpasswordmodel = function(){
+    $('#login-modal').modal('hide');
+    $('#forgot-password-modal').modal('show');
   }
 
   $rootScope.signUp= function(registeruser){
@@ -182,9 +215,34 @@ angular
   }
   $rootScope.countries = secureService.getCountries();
 
-  // $http.defaults.headers.common.Authorization = 'Token token=' + $rootScope.Token;
-  // $http.defaults.headers.common['user-email'] = $rootScope.Email;
-  // $http.defaults.headers.common['Content-Type'] = 'application/json';
-  
+  // var linked_in = function(data){
+  //   alert(data);
+  // }
+  $rootScope.authenticate = function(provider) {
+      $auth.authenticate(provider)
+        .then(function(data) {
+          if (data.status == 200 && data.data.status_code == 1){
+            credentialStore.setUserData(data.data.user)
+            var categories = secureService.getCategoryTree();
+            categories.then(function(result){
+              credentialStore.setCategorires(result);
+            });
+            $location.path('/');
+            $('#login-modal').modal('hide');            
+          }
+          else{
+            alert('oops! something went wrong!');
+          }
+        })
+    .catch(function(response) {
+      alert('oops! something went wrong!');
+    });
+  };
+  // if (credentialStore.isLoggedIn){
+  //   debugger
+  //   $http.defaults.headers.common.Authorization = 'Token token=' + credentialStore.getToken();
+  //   $http.defaults.headers.common['user-email'] = credentialStore.getEmail();
+  //   $http.defaults.headers.common['Content-Type'] = 'application/json';
+  // }
 
 });

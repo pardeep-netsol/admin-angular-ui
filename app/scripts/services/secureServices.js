@@ -5,9 +5,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   
 	var getAllCategories = function(){
   	var url = wsURL + "categories/roots.json"
-    var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}};
-    var header1 = credentialStore.getheaders();
-		return $http.get(url, header1).then(function(data, status, headers, config){
+    return $http.get(url).then(function(data, status, headers, config){
       if (!data.error) {
        	return data;
      	}
@@ -16,7 +14,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
 
   var getchildren = function(name){
     var url = wsURL + "categories/children.json?name="+name
-    return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
+    return $http.get(url).then(function(data, status, headers, config){
       if (!data.error) {
         return data;
       }
@@ -40,16 +38,13 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
       }
     });
   }
-
-  
   
   var login = function(user){
-    debugger
     var url = "http://localhost:3000/users/sign_in.json"
     // var url = "http://192.168.0.202:8500/users/sign_in.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
-      credentialStore.setUserData(data.data.user)
+      credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
       var categories = getCategoryTree();
       categories.then(function(result){
         credentialStore.setCategorires(result);
@@ -59,8 +54,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     },function(data){
       alert("error");
     }
-  );
-    
+  );    
   }
 
   var registerNewUser = function(user){
@@ -77,20 +71,34 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     },function(data){
       $rootScope.registerErrors = data.data.errors;
       $("#signup_server_error_msg").show();
-      alert("error");
     }
   );
   }
 
+  var forgotPassword = function(user){
+    // var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
+    var url = "http://localhost:3000/users/password.json"
+    return $http.post(url, user).then(function(data){
+      $("#alert_msg").show();
+      $location.path("/");
+      $('#forgot-password-modal').modal('hide');
+    },function(data){
+      $rootScope.invalid_email = data.data.errors.email; 
+      $("#forgot_server_error_msg").show();
+    }
+  );
+  }
+
+
   var getCategoryTree = function(){
     var url = wsURL + "categories/tree.json";
-    return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
+    debugger
+    return $http.get(url).then(function(data, status, headers, config){
       if (!data.error) {
         return data;
       }
     });
   }
-
 
 	var getpage = function(categoryname, pagename){
     debugger
@@ -119,12 +127,14 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
      	}
     });
   }
+  
   var getuserprofile = function(id){
     var url = wsURL + "users/"+id+".json";
   	return $http.get(url,credentialStore.getheaders()).then(function(data, status, headers, config){
      	return data;
     });
   }
+  
   var getallfaqs = function(){
     var url = wsURL + "faq_categories.json"
     return $http.get(url).then(function(data, status, headers, config){
@@ -133,7 +143,6 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
   var getfaqbycategory = function(categoryname){
-    debugger
     var url = wsURL + "faq_categories/faqs.json?name="+categoryname;
     return $http.get(url).then(function(data){
       return data;
@@ -167,6 +176,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     getStates:getStates,
     getchildren:getchildren,
     getallfaqs:getallfaqs,
-    getfaqbycategory:getfaqbycategory
+    getfaqbycategory:getfaqbycategory,
+    forgotPassword:forgotPassword
 	};
 });

@@ -45,19 +45,23 @@ angular.module('angularjsApp')
     }
   
     $scope.savedetails =function(user){
-      if (user.country_hash != null){
+      if (user.country_hash != undefined && user.state_hash != undefined){
         user.country_hash = user.country_hash.name
         user.state_hash = user.state_hash.name
       }
+      debugger
       var userparams = {'user': user}
     	secureService.updateUser(userparams, $rootScope.current_user.id)
     }
 
     $scope.getCountryStates = function(country){
       $scope.states = [];
-      var state = secureService.getStates(country.name);
-      state.then(function(result){
-        $scope.states = result.data.states;
-      });
+      if (country != undefined){
+        $scope.user.state_hash = ""; 
+        var state = secureService.getStates(country.name);
+        state.then(function(result){
+          $scope.states = result.data.states;
+        });
+      }
     }
   });

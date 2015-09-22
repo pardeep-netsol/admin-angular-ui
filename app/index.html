@@ -8,6 +8,8 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/ngDatepicker/src/css/ngDatepicker.css" />
     <link rel="stylesheet" href="bower_components/angular-datepicker/dist/index.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
     <!-- endbower -->
@@ -83,6 +85,13 @@
     </div>
 
     <div class="container">
+      <div class="alert alert-success alert-dismissible" role="alert" style = "display:none;" id="alert_msg">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        We have send you a mail with reset password link. Please check your mail.
+        <!-- Better check yourself, you're not looking too good. -->
+      </div>
     <div ng-view="">
     </div>
     </div>
@@ -105,11 +114,14 @@
             <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
           <div class="login-help">
-            <a href="" ng-click="showRegisterModel()">Register</a><a href="#/" data-toggle="modal" data-target="#forgot-password-modal">Forgot Password</a>
-            <button ng-click="authenticate('linkedin')">Sign in with LinkedIn</button>
-            
-            <script type="in/Login"></script>
-            
+            <a href="" ng-click="showRegisterModel()">Register</a>&nbsp<a ng-click="showforgotpasswordmodel()">Forgot Password</a>
+            <!-- <a href="#">Register</a> - <a href="#">Forgot Password</a> -->
+            <br /><p>or login by</p>
+            <a ng-click="authenticate('linkedin')">Sign in with LinkedIn</a>
+            <br />
+            <a ng-click="authenticate('facebook')">Sign in with Facebook</a>
+            <br />
+            <a ng-click="authenticate('twitter')">Sign in with Twitter</a>
           </div>
         </div>
       </div>
@@ -185,15 +197,17 @@
                           <h3><i class="fa fa-lock fa-4x"></i></h3>
                           <h2 class="text-center">Forgot Password?</h2>
                           <p>You can reset your password here.</p>
+                          <div class="" role="alert" id ="forgot_server_error_msg" style="display:none">
+                            <li>{{invalid_email[0]}}</li>
+                          </div>
                             <div class="panel-body">
-                              
-                              <form class="form">
+                              <form class="form" ng-submit="forgotPassword(forgotpass)">
                                 <fieldset>
                                   <div class="form-group">
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
                                       
-                                      <input id="emailInput" placeholder="email address" class="form-control" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
+                                      <input id="emailInput" placeholder="email address" ng-model="forgotpass.user.email" class="form-control" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
                                     </div>
                                   </div>
                                   <div class="form-group">
