@@ -8,7 +8,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-datepicker/dist/index.css" />
+    <link rel="stylesheet" href="bower_components/angular-datepicker/dist/angular-datepicker.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -111,38 +111,12 @@
           </form>
           <div class="login-help">
             <a href="#">Register</a> - <a href="#">Forgot Password</a>
-            <button ng-click="authenticate('linkedin')">Sign in with LinkedIn</button>
-            <script type="text/javascript" src="//platform.linkedin.com/in.js">
-              //here goes the api key, and the callback function
-              // api_key: 75qwniykoelwjm
-              // authorize: true
-              // onLoad: onLinkedInLoad
-            </script>
-            <script type="in/Login"></script>
-            <script type="text/javascript">
-            
-    
-              // // Setup an event listener to make an API call once auth is complete
-              // function onLinkedInLoad() {
-              //   IN.Event.on(IN, "auth", getProfileData);
-              // }
-
-              // // Handle the successful return from the API call
-              // function onSuccess(data) {
-              //   console.log(data);
-              //   linked_in(data);
-              // }
-
-              // // Handle an error response from the API call
-              // function onError(error) {
-              //   console.log(error);
-              // }
-              // // Use the API call wrapper to request the member's basic profile data
-              // function getProfileData() {
-              //   IN.API.Raw("/people/~").result(onSuccess).error(onError);
-              // }
-
-            </script>
+            <br /><p>or login by</p>
+            <a ng-click="authenticate('linkedin')">Sign in with LinkedIn</a>
+            <br />
+            <a ng-click="authenticate('facebook')">Sign in with Facebook</a>
+            <br />
+            <a ng-click="authenticate('twitter')">Sign in with Twitter</a>
           </div>
         </div>
       </div>
@@ -168,7 +142,7 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
-    <script src="bower_components/angular-datepicker/dist/index.js"></script>
+    <script src="bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -183,7 +157,6 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-       
         <script src="scripts/services/localstorage.js"></script>
         <script src="scripts/services/secureServices.js"></script>
         <script src="scripts/services/credentialStore.js"></script>
