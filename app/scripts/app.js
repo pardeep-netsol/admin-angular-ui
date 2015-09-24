@@ -48,7 +48,7 @@ angular
       clientId: '1047234745287179',
       url: 'http://localhost:3000/users/social_login/facebook.json',
       // authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
-      redirectUri: 'http://localhost:3000/',
+      redirectUri: 'http://localhost:9000/',
       state: '~!@#$%^&*()',
       type: '2.0',
       popupOptions: { width: 527, height: 582 },
@@ -57,15 +57,25 @@ angular
     });
 
     $authProvider.twitter({
-      clientId: '75zih9h8w97e8m',
+      // clientId: 'wiBbvyS6ckQWaEdM5lkCmQknn',
       url: 'http://localhost:3000/users/social_login/twitter.json',
-      // authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
-      redirectUri: 'http://localhost:9000/',
-      state: '~!@#$%^&*()',
-      type: '2.0',
-      popupOptions: { width: 527, height: 582 },
-      provider: 'twitter',
-      name: 'twitter'
+      // redirectUri: 'http://localhost:3000/users/social_login/twitter_step_2.json',
+      // state: '~!@#$%^&*()',
+      // type: '2.0',
+      // popupOptions: { width: 527, height: 582 },
+      // provider: 'twitter',
+      // name: 'twitter'
+    });
+
+    $authProvider.google({
+      url: 'http://localhost:3000/users/social_login/google.json',
+      clientId: '78047627535-nrmfjhhegou9snqmnq8v44th9273osog.apps.googleusercontent.com',
+      redirectUri: 'http://localhost:9000/'
+      // state: '~!@#$%^&*()',
+      // type: '2.0',
+      // popupOptions: { width: 527, height: 582 },
+      // provider: 'google',
+      // name: 'google'
     });
 
     

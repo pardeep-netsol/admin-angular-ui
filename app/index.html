@@ -43,7 +43,7 @@
           <div class="collapse navbar-collapse" id="js-navbar-collapse" style="float:right;">
             <ul class="nav navbar-nav">
               <li ng-repeat="category in allCategories.categories">
-                <div class="dropdown">
+                <div class="dropdown" >
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   {{category.name}}
                   <span class="caret"></span>
@@ -57,9 +57,14 @@
                       </li>
                     </ul>
                   </li>
+                  <li ng-if="category.pages.length > 0" ng-repeat="page in category.pages">
+                    <a href="#/content/{{category.name}}/{{page.name}}">{{page.name}}</a>
+                  </li>
+
 
                 </ul>
-                </div></li>
+                </div>
+              </li>
                 <li>
                   <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -122,6 +127,8 @@
             <a ng-click="authenticate('facebook')">Sign in with Facebook</a>
             <br />
             <a ng-click="authenticate('twitter')">Sign in with Twitter</a>
+            <br />
+            <a ng-click="authenticate('google')">Sign in with google</a>
           </div>
         </div>
       </div>
@@ -271,7 +278,6 @@
         <script src="scripts/controllers/categories.js"></script>
         <script src="scripts/controllers/page.js"></script>
         <script src="scripts/controllers/faq.js"></script>
-               
         <!-- endbuild -->
 </body>
 </html>

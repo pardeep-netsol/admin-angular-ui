@@ -49,11 +49,9 @@ angular.module('angularjsApp')
         user.country_hash = user.country_hash.name
         user.state_hash = user.state_hash.name
       }
-      debugger
       var userparams = {'user': user}
     	secureService.updateUser(userparams, $rootScope.current_user.id)
     }
-
     $scope.getCountryStates = function(country){
       $scope.states = [];
       if (country != undefined){

@@ -92,7 +92,6 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
 
   var getCategoryTree = function(){
     var url = wsURL + "categories/tree.json";
-    debugger
     return $http.get(url).then(function(data, status, headers, config){
       if (!data.error) {
         return data;
@@ -101,7 +100,6 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
 	var getpage = function(categoryname, pagename){
-    debugger
 		var url = wsURL + "pages/page.json?name="+pagename+"&category_name="+categoryname
 		return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
     	if (!data.error) {
@@ -159,8 +157,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
         credentialStore.updateUserData(data.user)
         $location.path('/profile');
       }
-    }).finally(function(){
-    });
+    })
   }
 	return {
 		getAllCategories:getAllCategories,
