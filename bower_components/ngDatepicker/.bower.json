@@ -1,0 +1,38 @@
+{
+  "name": "ngDatepicker",
+  "homepage": "https://github.com/jkuri/ngDatepicker",
+  "authors": [
+    "Jan Kuri <jkuri88@gmail.com>"
+  ],
+  "description": "AngularJS Simple Date picker directive",
+  "main": "src/js/ngDatepicker.js",
+  "keywords": [
+    "AngularJS",
+    "Datepicker",
+    "date",
+    "picker"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "index.html",
+    "screenshot"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "moment": "~2.10.3"
+  },
+  "_release": "f4fb9f284c",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f4fb9f284c33f20be9a726d9d35e3929d206dccd"
+  },
+  "_source": "git://github.com/jkuri/ngDatepicker.git",
+  "_target": "*",
+  "_originalSource": "ngDatepicker"
+}
