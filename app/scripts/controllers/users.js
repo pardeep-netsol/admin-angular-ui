@@ -26,11 +26,12 @@ angular.module('angularjsApp')
     }
         
     var userprofile = $rootScope.current_user
+   
     $scope.user = {
     	first_name: userprofile.first_name,
     	last_name: userprofile.last_name,
     	gender: userprofile.gender,
-    	dob: userprofile.dob,
+    	dob: userprofile.dob != "" ? userprofile.dob : Date.now,
     	email: userprofile.email,
       country_hash: userprofile.country_hash,
       state_hash: userprofile.state_hash,
@@ -46,9 +47,9 @@ angular.module('angularjsApp')
       current_sign_in_ip: userprofile.current_sign_in_ip,
       last_sign_in_ip: userprofile.last_sign_in_ip
     }
+  
     $scope.savedetails =function(user){
-      debugger
-      if(user.country_hash != ""){
+      if (user.country_hash != undefined && user.state_hash != undefined){
         user.country_hash = user.country_hash.name
         user.state_hash = user.state_hash.name
       }
@@ -60,13 +61,15 @@ angular.module('angularjsApp')
       var userparams = {'user': user}
     	secureService.updateUser(userparams, $rootScope.current_user.id)
     }
-
     $scope.getCountryStates = function(country){
       $scope.states = [];
-      var state = secureService.getStates(country.name);
-      state.then(function(result){
-        $scope.states = result.data.states;
-      });
+      if (country != undefined){
+        $scope.user.state_hash = ""; 
+        var state = secureService.getStates(country.name);
+        state.then(function(result){
+          $scope.states = result.data.states;
+        });
+      }
     }
     $scope.wasSubmitted = false;
      $scope.submit = function() {

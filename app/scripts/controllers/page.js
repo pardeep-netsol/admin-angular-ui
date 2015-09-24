@@ -14,7 +14,6 @@ angular.module('angularjsApp')
     var requestpage = secureService.getpage($routeParams.categoryName, $routeParams.pageName); 
     requestpage.then(function(result){
    		$scope.page = result.data.page;
-      debugger
    		$scope.div = document.createElement('div');
       $scope.div.innerHTML = result.data.page.content;
       $($scope.div.getElementsByTagName('img')).map(function(){

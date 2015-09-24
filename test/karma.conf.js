@@ -22,7 +22,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // bower:js
-      'bower_components/jquery/dist/jquery.js',
+      'bower_components/jquery/jquery.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-cookies/angular-cookies.js',
@@ -36,7 +36,6 @@ module.exports = function(config) {
       'bower_components/angular-ui-tree/dist/angular-ui-tree.js',
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
       'bower_components/ngDatepicker/src/js/ngDatepicker.js',
-      'bower_components/ngLinkedIn/ngLinkedIn.js',
       'bower_components/satellizer/satellizer.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
