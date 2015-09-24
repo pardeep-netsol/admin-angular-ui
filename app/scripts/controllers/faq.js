@@ -5,22 +5,22 @@ angular.module('angularjsApp')
     debugger
     allfaqs.then(function(result){
       $scope.faqs = result.data.faqs;
-      $scope.to_trusted = function(html_code) {
-     return $sce.trustAsHtml(html_code);
-     }
+      
 
       $scope.div = document.createElement('div');
       var data = ""
       result.data.faqs.forEach(function(faq){
-        data = data+" "+faq.answer
+        $scope.div.innerHTML = faq.answer;
+        debugger
+        $($scope.div.getElementsByTagName('img')).map(function(){
+          var src = "http://localhost:3000"+$(this).attr('src');
+          this.src = src;
+        });
+        faq.answer = $($scope.div).prop('outerHTML')
+ 
       });
-      $scope.div.innerHTML = data;
-      $($scope.div.getElementsByTagName('img')).map(function(){
-        var src = "http://localhost:3000"+$(this).attr('src');
-        this.src = src;
-      });
-      $scope.faqs_content = $($scope.div).prop('outerHTML');
-      debugger
+      
+      
   //     $scope.myvalue =false;
   //   $scope.toggle = function(obj){    	
   //   	var myEl = angular.element(document.querySelector('#div_'+obj));    

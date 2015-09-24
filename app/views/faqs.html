@@ -9,31 +9,23 @@
 </div>
 
 <section id = "team" class = "bg-light-gray" style = "padding:0;">
-
-  <div class = "container a faq" >
-    <div class = "row faqtable" style = "margin-top: 5%; margin-bottom: 5%">
-
+  <div class = "container" >
+    <div class = "row " style = "margin-top: 5%; margin-bottom: 5%">
       <div ng-repeat= "faq in faqs">
-        <div class = "content container faqs">
-          <div class = "page-wrapper">
-              <div class = "page-content">
-                <div class = "row page-row">
-                  <div class = "faq-wrapper col-md-12 ">
-                    <div class = "panel-group" id = "accordion">
-                      <div class = "panel panel-default">
-                        <div class = "panel-heading dropdown" id = "{{faq.id}}">
-                        	<span style="font-weight:bold;font-size:12px;">QUESTION:</span><span class="cmt_button11" tabindex="-1" id = "{{faq.id}}" ng-click="toggle({{faq.id}})"><span style="padding-left:3px;">{{faq.question}}</span></span>
-                            <div   id="div_{{faq.id}}" class="testing">
-                            <span style="font-weight:bold;font-size:12px;">ANSWER:</span><span style=""><span ng-bind-html="faqs_content" ></span></span>
-                            </div>
-                        </div>
+        <div class = " container">
+            <div class = "row ">
+              <div class = " col-md-12 ">
+                  <div class = "panel panel-default">
+                    <div class = "panel-heading dropdown" id = "{{faq.id}}">
+                      <span style="font-weight:bold;font-size:12px;">QUESTION:</span><span class="cmt_button11" tabindex="-1" id = "{{faq.id}}" ng-click="toggle({{faq.id}})"><span style="padding-left:3px;">{{faq.question}}</span></span>
+                      <div   id="div_{{faq.id}}">
+                        <span style="font-weight:bold;font-size:12px;">ANSWER:</span><span style=""><span ng-bind-html="faq.answer" class="testing"></span></span>
                       </div>
                     </div>
-                  </div>
-                </div>
+                   </div>
               </div>
             </div>
-          </div>
+        </div>
       </div>
     </div>
   </div>

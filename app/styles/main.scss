@@ -1,6 +1,8 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$fa-font-path: "/bower_components/font-awesome/fonts";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "font-awesome/scss/font-awesome.scss";
 // endbower
 
 .browsehappy {
@@ -121,7 +123,9 @@ $color_alto_approx: rgb(221, 221, 221);
   }
 }
 .ng-binding > p{margin:-20px 56px 10px; paading-left:3px;}
-.ng-binding > div{margin:-20px 56px 10px; paading-left:3px;}
+.testing > div{margin:-20px 56px 10px !important; paading-left:3px important;}
+.ng-scope .ng-binding > div{margin:0px -2px 10px; paading-left:3px;}
+
 .table-user-information > tbody > tr {
     border-top: 1px solid rgb(221, 221, 221);
 }
@@ -151,3 +155,10 @@ $color_alto_approx: rgb(221, 221, 221);
     padding:3px 3px 3px 6px;
     background:#f2efe9;
 }
+.social_icons > a{padding-right:10px;}
+.linkedin{background-color:#428bca; padding-top:5px; padding-bottom:5px; color:white;margin-bottom:10px;width:60%;}
+.facebook{background-color:#3d599a; padding-top:5px; padding-bottom:5px; color:white;margin-bottom:10px;width:60%;}
+.twitter{background-color:#45b0e4; padding-top:5px; padding-bottom:5px; color:white;margin-bottom:10px;width:60%;}
+.google{background-color:#df4c32; padding-top:5px; padding-bottom:5px; color:white;margin-bottom:10px;width:60%;}
+.font_i{color:white;  padding-right:10px;}
+.social_icons{text-align:center;padding-left: 30px;}
