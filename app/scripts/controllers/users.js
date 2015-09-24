@@ -5,7 +5,11 @@ angular.module('angularjsApp')
     if ($rootScope.current_user == undefined){
       $location.path('/');
     }
-
+    $scope.VALID_FULL_NAME_REGEX=/^[a-zA-Z\s\-]+$/;
+    $scope.VALID_PHONE_NUMBER_REGEX = /^(\+\d{1,2})??[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    $scope.VALID_EMAIL_REGEX = /^[\w+\-.]+@[a-z\d\-.]+\.[a-z]+$/i;
+    $scope.VALID_NAME_REGEX = /^[^`!@#\$%\^&*+_=]+$/;
+    $scope.VALID_ZIP_REGEX = /^[^`!@#\$%\^&*+_=]+$/;
     var edituserprofile = function(){
       var state = secureService.getStates($rootScope.current_user.country_hash);
       state.then(function(result){
@@ -43,10 +47,16 @@ angular.module('angularjsApp')
       last_sign_in_ip: userprofile.last_sign_in_ip
     }
     $scope.savedetails =function(user){
+      debugger
       if(user.country_hash != ""){
         user.country_hash = user.country_hash.name
         user.state_hash = user.state_hash.name
       }
+      // if (user.first_name == undefined  ){
+      //   alert("error");
+      //   return false;
+
+      // }
       var userparams = {'user': user}
     	secureService.updateUser(userparams, $rootScope.current_user.id)
     }
@@ -58,4 +68,8 @@ angular.module('angularjsApp')
         $scope.states = result.data.states;
       });
     }
+    $scope.wasSubmitted = false;
+     $scope.submit = function() {
+     $scope.wasSubmitted = true;
+};
   });

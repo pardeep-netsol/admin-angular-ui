@@ -13,23 +13,33 @@
       </div> -->
       
       <!-- edit form column -->
-      <div class="col-md-9 personal-info">
+      <div class="col-md-9 personal-info" ng-controller="UserCtrl">
         <!-- <div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           <i class="fa fa-coffee"></i>
           This is an <strong>.alert</strong>. Use this to show important messages to the user.
         </div> --> 
-        <form class="form-horizontal col-md-12" role="form" style="left:45%;">
+        <form class="form-horizontal col-md-12" role="form" style="left:45%;" name="form" novalidation>
           <div class="form-group">
             <label class="col-lg-3 control-label"><span class="text-muted">First Name:</span> </label>
             <div class="col-lg-8">
-              <input type="text" ng-model="user.first_name" value="{{user.first_name}}">
+              <input type="text" ng-model="user.first_name" value="{{user.first_name}}" ng-pattern="VALID_FULL_NAME_REGEX" ng-maxlength="20" required name="first_name">
+              <span style="color:red" ng-show="form.first_name.$dirty && form.first_name.$invalid">
+               <p class="help-block" ng-show="form.first_name.$error.maxlength">Fristname is too long.</p>
+               <p class="help-block" ng-show="form.first_name.$error.required">Your Firstname is required.</p>
+               <p class="help-block" ng-show="form.first_name.$error.pattern">Firstname is invalid.</p>
+             </span>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label"><span class="text-muted">Last Name:</span></label>
             <div class="col-lg-8">
-              <input type="text" ng-model="user.last_name" value="{{user.last_name}}">
+              <input type="text" ng-model="user.last_name" value="{{user.last_name}}" name="last_name" ng-pattern="VALID_FULL_NAME_REGEX" required>
+              <span style="color:red" ng-show="form.last_name.$dirty && form.last_name.$invalid">
+               <p class="help-block" ng-show="form.last_name.$error.maxlength">Lastname is too long.</p>
+               <p class="help-block" ng-show="form.last_name.$error.required">Your Lastname is required.</p>
+               <p class="help-block" ng-show="form.last_name.$error.pattern">Lastname is invalid.</p>
+             </span>
             </div>
           </div>
           <div class="form-group">
@@ -44,7 +54,10 @@
           <div class="form-group">
             <label class="col-lg-3 control-label"><span class="text-muted">Alternate Email Address:</span></label>
             <div class="col-lg-8">
-              <input type="text" ng-model="user.alternate_email_address" value="{{user.alternate_email_address}}">
+              <input type="text" ng-model="user.alternate_email_address" value="{{user.alternate_email_address}}" ng-pattern="VALID_EMAIL_REGEX " name="email">
+              <span style="color:red" ng-show="form.email.$dirty && form.email.$invalid">
+                <p class="help-block" ng-show="form.email.$error.pattern">Email is invalid.</p>
+             </span>
             </div>
           </div>
           <div class="form-group">
@@ -57,13 +70,22 @@
           <div class="form-group">
             <label class="col-md-3 control-label"> <span class="text-muted">Phone:</span></label>
             <div class="col-md-8">
-              <input type="text" ng-model="user.phone_number" value="{{user.phone_number}}">
+              <input type="text" ng-model="user.phone_number" value="{{user.phone_number}}" ng-pattern="VALID_PHONE_NUMBER_REGEX" ng-maxlength="20" min-length="10" name="phone">
+              <span style="color:red" ng-show="form.phone.$dirty && form.phone.$invalid">
+               <p class="help-block" ng-show="form.phone.$error.maxlength">Phone no is too long.</p>
+               <p class="help-block" ng-show="form.phone.$error.minlength">Phone no is too short.</p>
+                <p class="help-block" ng-show="form.phone.$error.pattern">Phone is invalid.</p>
+             </span>
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label"><span class="text-muted">Alternate Phone Number:</span></label>
             <div class="col-md-8">
-              <input type="text" ng-model="user.alternate_phone_number" value="{{user.alternate_phone_number}}">
+              <input type="text" ng-model="user.alternate_phone_number" value="{{user.alternate_phone_number}}" ng-pattern="VALID_PHONE_NUMBER_REGEX" ng-maxlength="20" min-length="10" name="phone_name">
+              <span style="color:red" ng-show="form.phone_name.$dirty && form.phone_name.$invalid">
+               <p class="help-block" ng-show="form.phone_name.$error.maxlength">Phone no is too long.</p>
+               <p class="help-block" ng-show="form.phone.$error.pattern">Phone is invalid.</p>
+             </span>
             </div>
           </div>
           <div class="form-group">
@@ -94,12 +116,16 @@
           <div class="form-group">
             <label class="col-md-3 control-label"> <span class="text-muted">Zip:</span></label>
             <div class="col-md-8">
-             <input type="text" ng-model="user.zip_code" value="{{user.zip_code}}">
+             <input type="text" ng-model="user.zip_code" value="{{user.zip_code}}" ng-pattern="VALID_ZIP_REGEX " ng-maxlength="10" name="zip">
+             <span style="color:red" ng-show="form.zip.$dirty && form.zip.$invalid">
+               <p class="help-block" ng-show="form.zip.$error.maxlength">Phone no is too long.</p>
+               <p class="help-block" ng-show="form.zip.$error.pattern">zip  is invalid.</p>
+             </span>
             </div>
           </div>
           <div class="form-group">
             <div class="col-md-8">
-              <hr><button class="btn btn-primary " ng-click="savedetails(user)"><i class="glyphicon glyphicon-user"></i> Update</button>
+              <hr><button class="btn btn-primary " ng-click="savedetails(user)" type="submit" ng-disabled="form.$invalid"><i class="glyphicon glyphicon-user"></i> Update</button>
             </div>
             </div>
           </div>
