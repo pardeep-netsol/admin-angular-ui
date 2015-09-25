@@ -24,9 +24,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   var getCountries = function(){
     var url = wsURL + "countries.json"
     return $http.get(url).then(function(data, status, headers, config){
-      if (!data.error) {
-        return data;
-      }
+      return data;
     });
   }
 
@@ -40,8 +38,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
   
   var login = function(user){
-    var url = "http://localhost:3000/users/sign_in.json"
-    // var url = "http://192.168.0.202:8500/users/sign_in.json"
+    //var url = "http://localhost:3000/users/sign_in.json"
+    var url = "http://192.168.0.202:8500/users/sign_in.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
       credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
@@ -58,7 +56,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
   var registerNewUser = function(user){
-    var url = "http://localhost:3000/users.json"
+    // var url = "http://localhost:3000/users.json"
+    var url = "http://192.168.0.202:8500/users.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
       credentialStore.setUserData(data.data)
@@ -77,7 +76,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
 
   var forgotPassword = function(user){
     // var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
-    var url = "http://localhost:3000/users/password.json"
+    // var url = "http://localhost:3000/users/password.json"
+    var url = "http://192.168.0.202:8500/users/password.json"
     return $http.post(url, user).then(function(data){
       $("#alert_msg").show();
       $location.path("/");
@@ -89,6 +89,20 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   );
   }
 
+  var updateUserPassword = function (user, current_user){
+    var url = wsURL + "users/"+current_user.id+"/update_password.json"
+    return $http.put(url, user).then(function(data){
+      debugger
+      if (data.data.status_code == 1){
+        $("#password_form").hide();
+        $("#msg_box").html("Password Change Successfully");
+        $("#alert_msg").show();
+      }else{
+        $("#chngpswd_error_msg").html("<li>"+data.data.error+"</li>")
+        $("#chngpswd_error_msg").show();
+      }
+    });
+  }
 
   var getCategoryTree = function(){
     var url = wsURL + "categories/tree.json";
@@ -174,6 +188,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     getchildren:getchildren,
     getallfaqs:getallfaqs,
     getfaqbycategory:getfaqbycategory,
-    forgotPassword:forgotPassword
+    forgotPassword:forgotPassword,
+    updateUserPassword:updateUserPassword
 	};
 });

@@ -41,21 +41,21 @@
             <ul class="nav navbar-nav">
               <li ng-repeat="category in allCategories.categories">
                 <div class="dropdown" >
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <button class="btn btn-default dropdown-toggle ng-cloak" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   {{category.name}}
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
                   <li class="dropdown-submenu" ng-repeat="subcategory in category.sub_categories" ng-if="category.sub_categories.length > 0">
-                    <a tabindex="-1" ng-click="">{{subcategory.name}}</a>
+                    <a tabindex="-1" ng-click="" ng-bind="subcategory.name"></a>
                     <ul class="dropdown-menu">
                       <li ng-repeat="page in subcategory.pages">
-                        <a tabindex="-1" href="#/content/{{subcategory.name}}/{{page.name}}">{{page.name}}</a>
+                        <a tabindex="-1" href="#/content/{{subcategory.name}}/{{page.name}}" ng-bind="page.name"></a>
                       </li>
                     </ul>
                   </li>
                   <li ng-if="category.pages.length > 0" ng-repeat="page in category.pages">
-                    <a href="#/content/{{category.name}}/{{page.name}}">{{page.name}}</a>
+                    <a href="#/content/{{category.name}}/{{page.name}}" ng-bind="page.name"></a>
                   </li>
                 </ul>
                 </div>
@@ -68,13 +68,13 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                       <li ng-repeat = "faq in allfaqs.faq_categories">
-                        <a href="#/faqs/{{faq.name}}">{{faq.name}}</a>
+                        <a href="#/faqs/{{faq.name}}" ng-bind="faq.name"></a>
                       </li>
                     </ul>
                   </div>
                 </li>
               <li><a ng-href="#/about">About</a></li>
-              <li ng-if='current_user'><a ng-href="#/profile">{{current_user.first_name}}&nbsp{{current_user.last_name}}</a></li>
+              <li ng-if='current_user'><a ng-href="#/profile" class="ng-cloak">{{current_user.first_name}}&nbsp{{current_user.last_name}}</a></li>
               <li ng-if='current_user'><a ng-href="#/" ng-click='logout()'>Logout</a></li>
               <li ng-if="!current_user"><a href="#/" data-toggle="modal" data-target="#login-modal">Login</a></li>
             </ul>
@@ -89,7 +89,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        We have send you a mail with reset password link. Please check your mail.
+        <p id="msg_box">We have send you a mail with reset password link. Please check your mail.</p>
         <!-- Better check yourself, you're not looking too good. -->
       </div>
     <div ng-view="">

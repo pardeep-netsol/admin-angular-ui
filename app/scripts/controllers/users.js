@@ -1,23 +1,38 @@
 "use strict"
 angular.module('angularjsApp')
   .controller('UserCtrl', function ($scope, secureService, $rootScope, $location, credentialStore) {
-  	
-    if ($rootScope.current_user == undefined){
-      $location.path('/');
-    }
-    $scope.VALID_FULL_NAME_REGEX=/^[a-zA-Z\s\-]+$/;
+  	$scope.VALID_FULL_NAME_REGEX=/^[a-zA-Z\s\-]+$/;
     $scope.VALID_PHONE_NUMBER_REGEX = /^(\+\d{1,2})??[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
     $scope.VALID_EMAIL_REGEX = /^[\w+\-.]+@[a-z\d\-.]+\.[a-z]+$/i;
     $scope.VALID_NAME_REGEX = /^[^`!@#\$%\^&*+_=]+$/;
     $scope.VALID_ZIP_REGEX = /^[^`!@#\$%\^&*+_=]+$/;
+    
+    if ($rootScope.current_user == undefined){
+      $location.path('/');
+    }
+    $scope.showDiv = function(){
+      $("#password_form").toggle();
+    }
+
+    $scope.userData = {
+      existing_password : "",
+      user: {
+        password: "",
+        password_confirmation: ""
+      }
+    };
+
+    $scope.changePassword = function(userData){
+      secureService.updateUserPassword(userData, $rootScope.current_user)
+    }
+    
     var edituserprofile = function(){
       var state = secureService.getStates($rootScope.current_user.country_hash);
       state.then(function(result){
         $scope.states = result.data.states;
-        // $scope.countries = $rootScope.countries
         var country = $rootScope.countries;
-        country.then(function(result){
-          $scope.countries = result.data.countries;
+        country.then(function(res){
+          $scope.countries = res.data.countries;
         });
       });
     }
@@ -47,6 +62,7 @@ angular.module('angularjsApp')
       current_sign_in_ip: userprofile.current_sign_in_ip,
       last_sign_in_ip: userprofile.last_sign_in_ip
     }
+    debugger
   
     $scope.savedetails =function(user){
       if (user.country_hash != undefined && user.state_hash != undefined){
