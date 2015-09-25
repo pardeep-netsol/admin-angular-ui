@@ -1,7 +1,12 @@
 "use strict"
 angular.module('angularjsApp')
   .controller('UserCtrl', function ($scope, secureService, $rootScope, $location, credentialStore) {
-  	$scope.nameregx = /\A[a-zA-Z\s\-]+\z/;
+  	$scope.VALID_FULL_NAME_REGEX=/^[a-zA-Z\s\-]+$/;
+    $scope.VALID_PHONE_NUMBER_REGEX = /^(\+\d{1,2})??[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    $scope.VALID_EMAIL_REGEX = /^[\w+\-.]+@[a-z\d\-.]+\.[a-z]+$/i;
+    $scope.VALID_NAME_REGEX = /^[^`!@#\$%\^&*+_=]+$/;
+    $scope.VALID_ZIP_REGEX = /^[^`!@#\$%\^&*+_=]+$/;
+    
     if ($rootScope.current_user == undefined){
       $location.path('/');
     }
@@ -15,21 +20,19 @@ angular.module('angularjsApp')
         password: "",
         password_confirmation: ""
       }
-    }
+    };
 
     $scope.changePassword = function(userData){
       secureService.updateUserPassword(userData, $rootScope.current_user)
-      debugger
     }
-
+    
     var edituserprofile = function(){
       var state = secureService.getStates($rootScope.current_user.country_hash);
       state.then(function(result){
         $scope.states = result.data.states;
-        // $scope.countries = $rootScope.countries
         var country = $rootScope.countries;
-        country.then(function(result){
-          $scope.countries = result.data.countries;
+        country.then(function(res){
+          $scope.countries = res.data.countries;
         });
       });
     }
@@ -59,12 +62,18 @@ angular.module('angularjsApp')
       current_sign_in_ip: userprofile.current_sign_in_ip,
       last_sign_in_ip: userprofile.last_sign_in_ip
     }
+    debugger
   
     $scope.savedetails =function(user){
       if (user.country_hash != undefined && user.state_hash != undefined){
         user.country_hash = user.country_hash.name
         user.state_hash = user.state_hash.name
       }
+      // if (user.first_name == undefined  ){
+      //   alert("error");
+      //   return false;
+
+      // }
       var userparams = {'user': user}
     	secureService.updateUser(userparams, $rootScope.current_user.id)
     }
@@ -78,4 +87,8 @@ angular.module('angularjsApp')
         });
       }
     }
+    $scope.wasSubmitted = false;
+     $scope.submit = function() {
+     $scope.wasSubmitted = true;
+};
   });

@@ -187,6 +187,10 @@ a[ng-click]{
     height: 36px;
 }
 
+#password_form > form > .form-group > .col-lg-7 > input {
+    height: 25px;
+}
+
 
 /*datapicker*/
 .ng-datepicker {
