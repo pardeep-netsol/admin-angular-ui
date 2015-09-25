@@ -13,17 +13,24 @@
       </div> -->
       
       <!-- edit form column -->
-      <div class="col-md-9 personal-info">
+        <div class="col-md-9 personal-info">
         <!-- <div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           <i class="fa fa-coffee"></i>
           This is an <strong>.alert</strong>. Use this to show important messages to the user.
         </div> --> 
-        <form class="form-horizontal col-md-12" role="form" style="left:45%;">
-          <div class="form-group">
-            <label class="col-lg-3 control-label"><span class="text-muted">First Name:</span> </label>
+        
+
+
+        <form class="form-horizontal col-md-12" style="left:45%;"  name="myForm" novalidate>
+          <div class="form-group" >
+            <label class="col-lg-3 control-label"><span class="text-muted" >First Name:</span> </label>
             <div class="col-lg-8">
-              <input type="text" ng-model="user.first_name" value="{{user.first_name}}">
+              <input type="text" ng-model="user.first_name" value="{{user.first_name}}" name="first_name" ng-pattern ="/^[a-zA-Z0-9]*$/" required/>
+              <span style="color:red" ng-show="myForm.first_name.$dirty && myForm.first_name.$invalid">
+                <span ng-show="myForm.first_name.$error.required">Username is required.</span>
+                <span ng-show="myForm.first_name.$error.first_name">Username is Invalid.</span>
+              </span>
             </div>
           </div>
           <div class="form-group">
@@ -99,7 +106,7 @@
           </div>
           <div class="form-group">
             <div class="col-md-8">
-              <hr><button class="btn btn-primary " ng-click="savedetails(user)"><i class="glyphicon glyphicon-user"></i> Update</button>
+              <hr><button class="btn btn-primary " ng-click="savedetails(user)" ng-disabled="myForm.first_name.$dirty && myForm.first_name.$invalid"><i class="glyphicon glyphicon-user"></i> Update</button>
             </div>
             </div>
           </div>

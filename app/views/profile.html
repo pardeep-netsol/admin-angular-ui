@@ -8,24 +8,48 @@
    
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">User Profile</h3>
+              <h3 class="panel-title" style="float:left;">User Profile</h3>
+              <a class="chng_pswd" ng-click="showDiv()" href="" >Change Password</a>
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <!-- <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> --> <!-- <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
-              display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120"> --></div>
-                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                  <dl>
-                    <dt>DEPARTMENT:</dt>
-                    <dd>Administrator</dd>
-                    <dt>HIRE DATE</dt>
-                    <dd>11/12/2013</dd>
-                    <dt>DATE OF BIRTH</dt>
-                       <dd>11/12/2013</dd>
-                    <dt>GENDER</dt>
-                    <dd>Male</dd>
-                  </dl>
-                </div>-->
+                <div class="col-md-10 personal-info" id="password_form">
+                  <div class="" role="alert" id ="chngpswd_error_msg" style="display:none"></div>
+                  <form class="form-horizontal col-md-12" name="passwordForm"   novalidate>
+                    <div class="form-group" >
+                      <label class="col-lg-5 control-label"><span class="text-muted" >Old Password:</span> </label>
+                      <div class="col-lg-7">
+                        <input type="password" ng-model="userData.existing_password" name="existing_password" required/></br>
+                        <span  ng-show="passwordForm.existing_password.$dirty && passwordForm.existing_password.$invalid">
+                          <span ng-show="passwordForm.existing_password.$error.required">Old password is required.</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group" >
+                      <label class="col-lg-5 control-label"><span class="text-muted" >New Password:</span> </label>
+                      <div class="col-lg-7">
+                        <input type="password" ng-model="userData.user.password" name="password" required/></br>
+                        <span ng-show="passwordForm.password.$dirty && passwordForm.password.$invalid ">
+                          <span ng-show="passwordForm.password.$error.required">New Password is required.</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group" >
+                      <label class="col-lg-5 control-label"><span class="text-muted" >Confirm Password:</span> </label>
+                      <div class="col-lg-7">
+                        <input type="password" ng-model="userData.user.password_confirmation" name="password_confirmation" required/></br>
+                        <span ng-show="passwordForm.password_confirmation.$dirty && passwordForm.password_confirmation.$invalid">
+                          <span ng-show="passwordForm.password_confirmation.$error.required">Confirm Password is required.</span>
+                        </span>
+                      </div>
+                    </div> 
+                    <div class="form-group">
+                      <div class="col-md-8">
+                        <button class="btn btn-primary" ng-click="changePassword(userData)" ng-disabled="passwordForm.$invalid"><i class="glyphicon glyphicon-user"></i> Update</button>
+                      </div>
+                      </div>
+                  </form>
+                </div>
             <div class=" col-md-12 test1">
             <h1 class="col-md-12">{{user.first_name}}&nbsp{{user.last_name}}</h1>
                 

@@ -89,6 +89,20 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   );
   }
 
+  var updateUserPassword = function (user, current_user){
+    var url = wsURL + "users/"+current_user.id+"/update_password.json"
+    return $http.put(url, user).then(function(data){
+      debugger
+      if (data.data.status_code == 1){
+        $("#password_form").hide();
+        $("#msg_box").html("Password Change Successfully");
+        $("#alert_msg").show();
+      }else{
+        $("#chngpswd_error_msg").html("<li>"+data.data.error+"</li>")
+        $("#chngpswd_error_msg").show();
+      }
+    });
+  }
 
   var getCategoryTree = function(){
     var url = wsURL + "categories/tree.json";
@@ -174,6 +188,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     getchildren:getchildren,
     getallfaqs:getallfaqs,
     getfaqbycategory:getfaqbycategory,
-    forgotPassword:forgotPassword
+    forgotPassword:forgotPassword,
+    updateUserPassword:updateUserPassword
 	};
 });

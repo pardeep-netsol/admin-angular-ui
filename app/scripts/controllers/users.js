@@ -1,9 +1,25 @@
 "use strict"
 angular.module('angularjsApp')
   .controller('UserCtrl', function ($scope, secureService, $rootScope, $location, credentialStore) {
-  	
+  	$scope.nameregx = /\A[a-zA-Z\s\-]+\z/;
     if ($rootScope.current_user == undefined){
       $location.path('/');
+    }
+    $scope.showDiv = function(){
+      $("#password_form").toggle();
+    }
+
+    $scope.userData = {
+      existing_password : "",
+      user: {
+        password: "",
+        password_confirmation: ""
+      }
+    }
+
+    $scope.changePassword = function(userData){
+      secureService.updateUserPassword(userData, $rootScope.current_user)
+      debugger
     }
 
     var edituserprofile = function(){

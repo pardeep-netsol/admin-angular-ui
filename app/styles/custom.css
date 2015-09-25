@@ -165,3 +165,24 @@ a[ng-click]{
 #forgot-password-modal .modal-dialog .col-md-offset-4 {
   margin-left: 8%;
 }
+
+#password_form{
+  display: none;
+}
+.chng_pswd{
+  float: right;
+  font-size: 10px;
+}
+/*.panel-heading > h3 {
+  float: left;
+}
+.panel-heading > button {
+  margin-left: 49%;
+}*/
+
+.panel-info > .panel-heading {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+    height: 36px;
+}
