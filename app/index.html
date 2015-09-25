@@ -107,7 +107,7 @@
       <div class="modal-dialog">
         <div class="loginmodal-container">
           <h1>Login to Your Account</h1><br>
-           <div class="alert alert-danger" role="alert" id ="error_msg" style="display:none"></div>
+           <div class="alert login_err" role="alert" id ="error_msg" style="display:none"></div>
           <form ng-submit='login(user)'>
             <input type="text" name="user" placeholder="Username" ng-model="user.user.email">
             <input type="password" name="pass" placeholder="Password" ng-model="user.user.password">
@@ -267,7 +267,7 @@
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/ngDatepicker/src/js/ngDatepicker.js"></script>
-    <script src="bower_components/satellizer/satellizer.js"></script>
+    <script src="scripts/satellizer.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

@@ -62,7 +62,7 @@ angular
 
     $authProvider.twitter({
       // clientId: 'wiBbvyS6ckQWaEdM5lkCmQknn',
-      // url: 'http://localhost:3000/users/social_login/twitter.json',
+      // url: 'http://localhost:3000/users/social_login/twitter.json'
       url: 'http://192.168.0.202:8500/users/social_login/twitter.json',
       // redirectUri: 'http://localhost:3000/users/social_login/twitter_step_2.json',
       // state: '~!@#$%^&*()',

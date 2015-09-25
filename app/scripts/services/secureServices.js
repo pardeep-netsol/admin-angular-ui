@@ -50,7 +50,9 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
         $('#login-modal').modal('hide');
       });
     },function(data){
-      alert("error");
+      debugger
+      $("#error_msg").html(data.data.error);
+      $("#error_msg").show();
     }
   );    
   }
