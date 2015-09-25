@@ -131,6 +131,7 @@ angular
       });
   })
 .run(function(secureService , $rootScope, $location, credentialStore, $auth, $http){
+  $rootScope.countries = secureService.getCountries();
   var faqs = secureService.getallfaqs();
   faqs.then(function(result){
     $rootScope.allfaqs = result.data;
@@ -223,11 +224,7 @@ angular
     }
     secureService.registerNewUser(registeruser)
   }
-  $rootScope.countries = secureService.getCountries();
-
-  // var linked_in = function(data){
-  //   alert(data);
-  // }
+  
   $rootScope.authenticate = function(provider) {
       $auth.authenticate(provider)
         .then(function(data) {
@@ -248,11 +245,4 @@ angular
       alert('oops! something went wrong!');
     });
   };
-  // if (credentialStore.isLoggedIn){
-  //   debugger
-  //   $http.defaults.headers.common.Authorization = 'Token token=' + credentialStore.getToken();
-  //   $http.defaults.headers.common['user-email'] = credentialStore.getEmail();
-  //   $http.defaults.headers.common['Content-Type'] = 'application/json';
-  // }
-
 });
