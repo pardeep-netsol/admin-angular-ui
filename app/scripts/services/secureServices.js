@@ -48,6 +48,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
         credentialStore.setCategorires(result);
         $location.path('/');
         $('#login-modal').modal('hide');
+        debugger
       });
     },function(data){
       alert("error");

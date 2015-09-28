@@ -21,10 +21,10 @@ angular
     'satellizer'
   ])
 
-  //.constant("wsURL", "http://localhost:3000/api/v1/")
-  .constant("wsURL", "http://192.168.0.202:8500/api/v1/")
+  .constant("wsURL", "http://localhost:3000/api/v1/")
+  // .constant("wsURL", "http://192.168.0.202:8500/api/v1/")
   .config(function ($routeProvider, $httpProvider,  $locationProvider, $authProvider) {
-//   // .constant("wsURL", "http://localhost:3000/api/v1/")
+//   // .constant("wsURL", "http:/localhost:3000/api/v1/")
 //   .constant("wsURL", "http://192.168.0.202:8500/api/v1/")
 //   .config(function ($routeProvider, $httpProvider, $authProvider, $locationProvider) {
 
@@ -34,11 +34,11 @@ angular
 
     $authProvider.linkedin({
       clientId: '75zih9h8w97e8m',
-      // url: 'http://localhost:3000/users/social_login/linkedin.json',
-      url: 'http://192.168.0.202:8500/users/social_login/linkedin.json',
+      url: 'http://localhost:3000/users/social_login/linkedin.json',
+      // url: 'http://192.168.0.202:8500/users/social_login/linkedin.json',
       // authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
       // redirectUri: 'http://localhost:9000/',
-      redirectUri: 'http://192.168.0.202:9000/',
+      redirectUri: 'http://localhost:9000/',
       state: '~!@#$%^&*()',
       type: '2.0',
       popupOptions: { width: 527, height: 582 },
@@ -48,11 +48,11 @@ angular
 
     $authProvider.facebook({
       clientId: '1047234745287179',
-      // url: 'http://localhost:3000/users/social_login/facebook.json',
-      url: 'http://192.168.0.202:8500/users/social_login/facebook.json',
+      url: 'http://localhost:3000/users/social_login/facebook.json',
+      // url: 'http://192.168.0.202:8500/users/social_login/facebook.json',
       // authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
       // redirectUri: 'http://localhost:9000/',
-      redirectUri: 'http://192.168.0.202:9000/',
+      redirectUri: 'http://localhost:9000/',
       state: '~!@#$%^&*()',
       type: '2.0',
       popupOptions: { width: 527, height: 582 },
@@ -62,8 +62,8 @@ angular
 
     $authProvider.twitter({
       // clientId: 'wiBbvyS6ckQWaEdM5lkCmQknn',
-      // url: 'http://localhost:3000/users/social_login/twitter.json',
-      url: 'http://192.168.0.202:8500/users/social_login/twitter.json',
+      url: 'http://localhost:3000/users/social_login/twitter.json',
+      // url: 'http://192.168.0.202:8500/users/social_login/twitter.json',
       // redirectUri: 'http://localhost:3000/users/social_login/twitter_step_2.json',
       // state: '~!@#$%^&*()',
       // type: '2.0',
@@ -73,11 +73,11 @@ angular
     });
 
     $authProvider.google({
-      // url: 'http://localhost:3000/users/social_login/google.json',
-      url: 'http://192.168.0.202:8500/users/social_login/google.json',
+      url: 'http://localhost:3000/users/social_login/google.json',
+      // url: 'http://192.168.0.202:8500/users/social_login/google.json',
       clientId: '78047627535-nrmfjhhegou9snqmnq8v44th9273osog.apps.googleusercontent.com',
       // redirectUri: 'http://localhost:9000/'
-      redirectUri: 'http://192.168.0.202:9000/'
+      redirectUri: 'http://localhost:9000/'
       // state: '~!@#$%^&*()',
       // type: '2.0',
       // popupOptions: { width: 527, height: 582 },
@@ -171,6 +171,7 @@ angular
       $("#error_msg").html("Email can't be empty");
       $("#error_msg").show();
       return false;
+      debugger
     }else if(user.user.password==""){
       $("#error_msg").html("password can't be empty");
       $("#error_msg").show();

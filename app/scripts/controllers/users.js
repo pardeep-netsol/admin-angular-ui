@@ -62,7 +62,6 @@ angular.module('angularjsApp')
       current_sign_in_ip: userprofile.current_sign_in_ip,
       last_sign_in_ip: userprofile.last_sign_in_ip
     }
-    debugger
   
     $scope.savedetails =function(user){
       if (user.country_hash != undefined && user.state_hash != undefined){
