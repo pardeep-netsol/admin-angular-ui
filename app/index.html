@@ -38,9 +38,20 @@
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse" style="float:right;">
+            <ul class="nav navbar-nav" ng-repeat="category in allCategories.categories">
+              <li dropdown="">
+                <a href="" class="dropdown-toggle" dropdown-toggle id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {{category.name}}
+                  <b class="caret"></b>
+                </a>
+                <tree tree="category"></tree>
+
+              </li>
+            </ul>
+
             <ul class="nav navbar-nav">
-              <li ng-repeat="category in allCategories.categories">
-                <div class="dropdown" >
+              <!-- <li ng-repeat="category in allCategories.categories"> -->
+                <!-- <div class="dropdown" >
                 <button class="btn btn-default dropdown-toggle ng-cloak" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   {{category.name}}
                   <span class="caret"></span>
@@ -58,8 +69,8 @@
                     <a href="#/content/{{category.name}}/{{page.name}}" ng-bind="page.name"></a>
                   </li>
                 </ul>
-                </div>
-              </li>
+                </div> -->
+              <!-- </li> -->
                 <li>
                   <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -267,7 +278,7 @@
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/ngDatepicker/src/js/ngDatepicker.js"></script>
-    <script src="scripts/satellizer.js"></script>
+    <script src="bower_components/satellizer/satellizer.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -283,6 +294,7 @@
         <script src="scripts/controllers/categories.js"></script>
         <script src="scripts/controllers/page.js"></script>
         <script src="scripts/controllers/faq.js"></script>
+        <script src="scripts/directives/tree.js"></script>
         <!-- endbuild -->
 </body>
 </html>
