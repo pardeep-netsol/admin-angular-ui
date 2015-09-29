@@ -144,7 +144,7 @@ angular
     $rootScope.allfaqs = result.data;
   });
   $rootScope.user = {
-    user:{email: "",
+    user:{login: "",
     password: ""
   }}
 
@@ -167,14 +167,19 @@ angular
   }
 
   $rootScope.login = function(user){
-    if (user.user.email == ""){
+    if (user.user.login == ""){
       $("#error_msg").html("Email can't be empty");
-      $("#error_msg").show();
+      $("#error_msg").show().fadeOut(4000);
+
+//       $('document').ready(function() {
+//   setTimeout(function() {
+//     $('#flash').slideUp();
+//   }, 3000);
+// });
       return false;
-      debugger
     }else if(user.user.password==""){
       $("#error_msg").html("password can't be empty");
-      $("#error_msg").show();
+      $("#error_msg").show().fadeOut(4000);
       return false;
     }
     secureService.login(user);

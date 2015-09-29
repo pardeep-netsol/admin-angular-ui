@@ -109,7 +109,7 @@
           <h1>Login to Your Account</h1><br>
            <div class="alert alert-danger" role="alert" id ="error_msg" style="display:none"></div>
           <form ng-submit='login(user)'>
-            <input type="text" name="user" placeholder="Username" ng-model="user.user.email">
+            <input type="text" name="user" placeholder="Username" ng-model="user.user.login">
             <input type="password" name="pass" placeholder="Password" ng-model="user.user.password">
             <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
@@ -171,6 +171,10 @@
                         </div>
                       </div>
                     </div>
+                    
+                     <div class="form-group">
+                      <input type="text" ng-model="registerUser.user.username" class="form-control input-sm" placeholder="Username">
+                    </div> 
 
                     <div class="form-group">
                       <input type="email" ng-model="registerUser.user.email" class="form-control input-sm" placeholder="Email Address">
@@ -179,12 +183,12 @@
                     <div class="row">
                       <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group password_field">
-                          <input type="password" ng-model="registerUser.user.password" class="form-control input-sm" placeholder="Password">
+                          <input type="text" ng-model="registerUser.user.password" class="form-control input-sm" placeholder="Password">
                         </div>
                       </div>
                       <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group password_field">
-                          <input type="password" ng-model="registerUser.user.password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                          <input type="text" ng-model="registerUser.user.password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
                         </div>
                       </div>
                     </div>
