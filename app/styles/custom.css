@@ -67,7 +67,7 @@
   color: #fff;
   text-shadow: 0 1px rgba(0,0,0,0.1); 
   background-color: #4d90fe;
-  padding: 17px 0px;
+  padding: 13px 0px;
   font-family: roboto;
   font-size: 14px;
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
@@ -323,3 +323,8 @@ a[ng-click]{
   width: 52%;
 }
 /*/datepicker*/
+
+.login_err{
+  padding: 0px;
+  color: #a94442;
+}
