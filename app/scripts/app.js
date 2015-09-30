@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'jkuri.datepicker',
     'ui.tree',
-    'satellizer'
+    'satellizer',
+    'directives'
   ])
 
   .constant("wsURL", "http://localhost:3000/api/v1/")
@@ -259,3 +260,5 @@ angular
     });
   };
 });
+
+var directives = angular.module('directives', []);

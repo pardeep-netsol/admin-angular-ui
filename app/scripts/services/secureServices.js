@@ -58,8 +58,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
   var registerNewUser = function(user){
-    // var url = "http://localhost:3000/users.json"
     var url = "http://localhost:3000/users.json"
+    // var url = "http://192.168.0.202:8500/users.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
       credentialStore.setUserData(data.data)
@@ -78,8 +78,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
 
   var forgotPassword = function(user){
     // var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
-    // var url = "http://localhost:3000/users/password.json"
     var url = "http://localhost:3000/users/password.json"
+    // var url = "http://192.168.0.202:8500/users/password.json"
     return $http.post(url, user).then(function(data){
       $("#alert_msg").show();
       $location.path("/");
