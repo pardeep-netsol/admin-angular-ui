@@ -4,7 +4,7 @@ angular.module('angularjsApp').factory('tokenInjector',function($rootScope, $loc
   return {
     request: function(config){
       if (credentialStore.isLoggedIn()) {
-     		config.headers['Authorization'] = 'Token token=' + credentialStore.getToken();
+     	config.headers['Authorization'] = 'Token token=' + credentialStore.getToken();
         config.headers['user-email'] = credentialStore.getEmail();
         config.headers['Content-Type'] = 'application/json';
   	  }

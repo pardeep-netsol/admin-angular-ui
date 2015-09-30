@@ -94,7 +94,6 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   var updateUserPassword = function (user, current_user){
     var url = wsURL + "users/"+current_user.id+"/update_password.json"
     return $http.put(url, user).then(function(data){
-      debugger
       if (data.data.status_code == 1){
         $("#password_form").hide();
         $("#msg_box").html("Password Change Successfully");

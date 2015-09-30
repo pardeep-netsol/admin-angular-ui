@@ -13,7 +13,7 @@
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-10 personal-info" id="password_form">
+                <div class="col-md-12 personal-info" id="password_form" style="border-bottom: 1px solid #dddddd;">
                   <div class="" role="alert" id ="chngpswd_error_msg" style="display:none"></div>
                   <form class="form-horizontal col-md-12" name="passwordForm"   novalidate>
                     <div class="form-group" >
@@ -51,11 +51,15 @@
                   </form>
                 </div>
             <div class=" col-md-12 test1">
-            <h1 class="col-md-12">{{user.first_name}}&nbsp{{user.last_name}}</h1>
+           <!--  <h1 class="col-md-12">{{user.first_name}}&nbsp{{user.last_name}}</h1> -->
                 
                   <table class="table table-user-information col-md-12">
                  <!--    <h1>{{user.first_name}}&nbsp{{user.last_name}}</h1> -->
                     <tbody>
+                      <tr>
+                        <td> <span class="text-muted">UserName:</span></td>
+                        <td>{{user.username}}</td>
+                      </tr> 
                       <tr>
                         <td> <span class="text-muted">FirstName:</span></td>
                         <td>{{user.first_name}}</td>

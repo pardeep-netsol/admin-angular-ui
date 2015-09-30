@@ -15,7 +15,7 @@ directives.directive('tree', function($compile) {
         if (scope.tree.pages.length > 0){
           // element.append('<tree tree="root.pages"></tree>');
           scope.tree.pages.forEach(function(page){
-            element.append('<li><a href="">'+page.name+'</a></li>')
+            element.append('<li><a href="#/content/'+scope.tree.name+'/'+page.name+'">'+page.name+'</a></li>')
           })
         }
         $compile(element.contents())(scope);
