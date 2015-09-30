@@ -24,7 +24,7 @@ angular
   .constant("wsURL", "http://localhost:3000/api/v1/")
   // .constant("wsURL", "http://192.168.0.202:8500/api/v1/")
   .config(function ($routeProvider, $httpProvider,  $locationProvider, $authProvider) {
-//   // .constant("wsURL", "http://localhost:3000/api/v1/")
+//   // .constant("wsURL", "http:/localhost:3000/api/v1/")
 //   .constant("wsURL", "http://192.168.0.202:8500/api/v1/")
 //   .config(function ($routeProvider, $httpProvider, $authProvider, $locationProvider) {
 
@@ -144,7 +144,7 @@ angular
     $rootScope.allfaqs = result.data;
   });
   $rootScope.user = {
-    user:{email: "",
+    user:{login: "",
     password: ""
   }}
 
@@ -167,13 +167,19 @@ angular
   }
 
   $rootScope.login = function(user){
-    if (user.user.email == ""){
+    if (user.user.login == ""){
       $("#error_msg").html("Email can't be empty");
-      $("#error_msg").show();
+      $("#error_msg").show().fadeOut(4000);
+
+//       $('document').ready(function() {
+//   setTimeout(function() {
+//     $('#flash').slideUp();
+//   }, 3000);
+// });
       return false;
     }else if(user.user.password==""){
       $("#error_msg").html("password can't be empty");
-      $("#error_msg").show();
+      $("#error_msg").show().fadeOut(4000);
       return false;
     }
     secureService.login(user);

@@ -35,6 +35,7 @@ angular.module('angularjsApp')
           $scope.countries = res.data.countries;
         });
       });
+      debugger
     }
     if ($location.url() == "/editprofile"){
       edituserprofile();
@@ -43,6 +44,7 @@ angular.module('angularjsApp')
     var userprofile = $rootScope.current_user
    
     $scope.user = {
+      username: userprofile.username,
     	first_name: userprofile.first_name,
     	last_name: userprofile.last_name,
     	gender: userprofile.gender,
@@ -62,7 +64,6 @@ angular.module('angularjsApp')
       current_sign_in_ip: userprofile.current_sign_in_ip,
       last_sign_in_ip: userprofile.last_sign_in_ip
     }
-    debugger
   
     $scope.savedetails =function(user){
       if (user.country_hash != undefined && user.state_hash != undefined){
