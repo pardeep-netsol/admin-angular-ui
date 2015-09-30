@@ -22,7 +22,9 @@ angular
     'directives'
   ])
 
-  .constant("wsURL", "http://localhost:3000/api/v1/")
+  .constant("wsURL", "http://localhost:")
+  .constant("port","3000/")
+  .constant("api","api/v1/")
   // .constant("wsURL", "http://192.168.0.202:8500/api/v1/")
   .config(function ($routeProvider, $httpProvider,  $locationProvider, $authProvider) {
 //   // .constant("wsURL", "http:/localhost:3000/api/v1/")
