@@ -174,6 +174,21 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
       }
     })
   }
+
+  var checkUserEmail = function(data){
+    var url = wsURL + "users/check_availability?email="+ data
+    return $http.get(url).success(function(data){
+      return data;
+    })
+  }
+
+  var checkUserName = function(data){
+    var url = wsURL + "users/check_availability?username="+ data
+    return $http.get(url).success(function(data){
+      return data;
+    })
+  }
+
 	return {
 		getAllCategories:getAllCategories,
 		getCategoryPages:getCategoryPages,
@@ -190,6 +205,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     getallfaqs:getallfaqs,
     getfaqbycategory:getfaqbycategory,
     forgotPassword:forgotPassword,
-    updateUserPassword:updateUserPassword
+    updateUserPassword:updateUserPassword,
+    checkUserName:checkUserName,
+    checkUserEmail:checkUserEmail
 	};
 });
