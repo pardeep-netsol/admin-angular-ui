@@ -132,6 +132,17 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL,api
     });
   }
 
+  var resetPassword = function(user){
+    var url = wsURL+port+"users/password.json"
+    return $http.put(url, user).then(function(data){
+      alert("success");
+      debugger
+    },function(data){
+      alert("oops eroor");
+      debugger
+    });
+  }
+
   var getCategoryTree = function(){
     var url = wsURL+port+api + "categories/tree.json";
     return $http.get(url).then(function(data, status, headers, config){
@@ -236,7 +247,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL,api
     sendConfirmationMail:sendConfirmationMail,
     confirmEmail:confirmEmail,
     checkUserName:checkUserName,
-    checkUserEmail:checkUserEmail
+    checkUserEmail:checkUserEmail,
+    resetPassword:resetPassword
 
 	};
 });

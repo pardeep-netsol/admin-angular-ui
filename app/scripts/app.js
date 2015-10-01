@@ -141,8 +141,13 @@ angular
         controller: 'ConfirmationCtrl',
         controllerAs: 'confirm'
       })
+       .when('/reset_password/:ResetToken', {
+        templateUrl:'views/reset_password.html',
+        controller: 'ConfirmationCtrl',
+        controllerAs: 'confirm'
+      })
       .otherwise({
-        // redirectTo: '/'
+        redirectTo: '/'
       });
   })
 .run(function(secureService , $rootScope, $location, credentialStore, $auth, $http){
