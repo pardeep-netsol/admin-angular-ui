@@ -184,7 +184,6 @@ angular
   }
 
   $rootScope.login = function(user){
-    debugger
     if (user.user.login == ""){
       $("#error_msg").html("Email can't be empty");
       $("#error_msg").show().fadeOut(4000);

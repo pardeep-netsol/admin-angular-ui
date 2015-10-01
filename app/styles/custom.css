@@ -40,6 +40,19 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
+.panel-body input[type=text], input[type=password],input[type=email]{
+height: 44px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+    -webkit-appearance: none;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-top: 1px solid #c0c0c0;
+    /* border-radius: 2px; */
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
 
 .loginmodal-container input[type=text]:hover, input[type=password]:hover {
   border: 1px solid #b9b9b9;
@@ -330,3 +343,23 @@ a[ng-click]{
   padding: 0px;
   color: #a94442;
 }
+
+.separator {
+    border-right: 1px solid #dfdfe0; 
+}
+.icon-btn-save {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.input-group {
+    margin-bottom:10px; 
+}
+.btn-save-label {
+    position: relative;
+    left: -12px;
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 3px 0 0 3px;
+}
+.reset_password_form{padding-left:40px;padding-right:40px;}
