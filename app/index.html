@@ -103,7 +103,7 @@
             <input type="password" name="pass" placeholder="Password" ng-model="user.user.password">
             <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
-          <div class="login-help ">
+          <div class="login-help">
             <a href="" style="color:#428bca;" ng-click="showRegisterModel()">New User Register</a>
             <span style="float:right;"><a style="color:#235cb5;" ng-click="showforgotpasswordmodel()">Forgot Password?</a></span>
             <a href="" style="color:#428bca;" ng-click="showResendConfirmationModel()">Resend Confirmation Instructions?</a>
@@ -225,44 +225,41 @@
     <!-- /Forgot password model -->
 
     <!-- Resend Confirmation Email model -->
-    <div class="modal fade" id="resend-confirm-email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+   <div class="modal fade" id="resend-confirm-email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
         <div class="container">
-    
           <div class="row">
-              <div class="col-md-4 col-md-offset-4">
-                  <div class="panel panel-default">
-                      <div class="panel-body">
-                          <div class="text-center">
-                            <h3><i class="fa fa-lock fa-4x"></i></h3>
-                            <h2 class="text-center">Instructions not received?</h2>
-                            <p>You can resend the confirmation instructions here.</p>
-                            <div class="" role="alert" id ="resend_confirm_mail_error_msg" style="display:none">
-                              <li>{{invalid_email[0]}}</li>
+            <div class="col-md-4 col-md-offset-4">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="text-center">
+                    <h3><i class="fa fa-lock fa-4x"></i></h3>
+                    <h2 class="text-center">Instructions not received?</h2>
+                    <p>You can resend the confirmation instructions here.</p>
+                    <div class="" role="alert" id ="forgot_server_error_msg" style="display:none">
+                      <li>{{invalid_email[0]}}</li>
+                    </div>
+                    <div class="panel-body">
+                      <form class="form" ng-submit="forgotPassword(forgotpass)">
+                        <fieldset>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                              <input id="emailInput" placeholder="email address" ng-model="forgotpass.user.email" class="form-control" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
                             </div>
-                              <div class="panel-body">
-                                <form class="form" ng-submit="resend_confirm_mail(resendmail)">
-                                  <fieldset>
-                                    <div class="form-group">
-                                      <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                        
-                                        <input id="emailInput" placeholder="email address" ng-model="resendmail.user.email" class="form-control" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
-                                      </div>
-                                    </div>
-                                    <div class="form-group">
-                                      <input class="btn btn-lg btn-primary btn-block" value="Resend" type="submit">
-                                    </div>
-                                  </fieldset>
-                                </form>
-                                
-                              </div>
                           </div>
-                      </div>
+                          <div class="form-group">
+                            <input class="btn btn-lg btn-primary btn-block" value="Send My Password" type="submit">
+                          </div>
+                        </fieldset>
+                      </form>
+                    </div>
                   </div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
     <!-- /Resend Confirmation Email model -->

@@ -165,7 +165,9 @@ a[ng-click]{
 #forgot-password-modal .modal-dialog .col-md-offset-4 {
   margin-left: 8%;
 }
-
+#resend-confirm-email-modal .modal-dialog .col-md-offset-4 {
+  margin-left: 8%;
+}
 #password_form{
   display: none;
 }
