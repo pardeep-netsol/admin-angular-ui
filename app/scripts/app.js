@@ -39,7 +39,6 @@ angular
       clientId: '75zih9h8w97e8m',
       url: 'http://localhost:3000/users/social_login/linkedin.json',
       // url: 'http://192.168.0.202:8500/users/social_login/linkedin.json',
-      // authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
       redirectUri: 'http://localhost:9000/',
       // redirectUri: 'http://192.168.0.202:9000/',
       state: '~!@#$%^&*()',
@@ -53,7 +52,6 @@ angular
       clientId: '1047234745287179',
       url: 'http://localhost:3000/users/social_login/facebook.json',
       // url: 'http://192.168.0.202:8500/users/social_login/facebook.json',
-      // authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
       redirectUri: 'http://localhost:9000/',
       // redirectUri: 'http://192.168.0.202:9000/',
       state: '~!@#$%^&*()',
@@ -64,15 +62,8 @@ angular
     });
 
     $authProvider.twitter({
-      // clientId: 'wiBbvyS6ckQWaEdM5lkCmQknn',
       url: 'http://localhost:3000/users/social_login/twitter.json'
       // url: 'http://192.168.0.202:8500/users/social_login/twitter.json',
-      // redirectUri: 'http://localhost:3000/users/social_login/twitter_step_2.json',
-      // state: '~!@#$%^&*()',
-      // type: '2.0',
-      // popupOptions: { width: 527, height: 582 },
-      // provider: 'twitter',
-      // name: 'twitter'
     });
 
     $authProvider.google({
@@ -81,12 +72,7 @@ angular
       clientId: '78047627535-nrmfjhhegou9snqmnq8v44th9273osog.apps.googleusercontent.com',
       redirectUri: 'http://localhost:9000/'
       // redirectUri: 'http://192.168.0.202:9000/'
-      // state: '~!@#$%^&*()',
-      // type: '2.0',
-      // popupOptions: { width: 527, height: 582 },
-      // provider: 'google',
-      // name: 'google'
-    });
+     });
 
     
 
@@ -184,7 +170,6 @@ angular
   }
 
   $rootScope.login = function(user){
-    debugger
     if (user.user.login == ""){
       $("#error_msg").html("Email can't be empty");
       $("#error_msg").show().fadeOut(4000);
@@ -225,7 +210,6 @@ angular
   }
 
   $rootScope.resend_confirm_mail = function(data){
-    // alert(data.user.email);
     secureService.sendConfirmationMail(data)
   }
 
@@ -258,6 +242,23 @@ angular
       return false;
     }
     secureService.registerNewUser(registeruser)
+  }
+
+  $rootScope.parseErrors = function(data){
+    var key_text; 
+    var htmlList = "";
+    var errorList = [];
+    var errorMsg;
+
+    Object.keys(data).forEach(function(key){
+      key_text = key.replace(/_/g, ' ');
+      data[key].forEach(function(err){
+        errorMsg = key_text + " " + err;
+        errorList.push(errorMsg);
+        htmlList += '<li>' + errorMsg + '</li>'
+      })
+    });
+    return {htmlList: htmlList, errorList: errorList}
   }
   
   $rootScope.authenticate = function(provider) {

@@ -35,14 +35,12 @@ angular.module('angularjsApp')
           $scope.countries = res.data.countries;
         });
       });
-      debugger
     }
     if ($location.url() == "/editprofile"){
       edituserprofile();
     }
         
     var userprofile = $rootScope.current_user
-    debugger
     $scope.user = {
       username: userprofile.username,
     	first_name: userprofile.first_name,
@@ -109,7 +107,6 @@ angular.module('angularjsApp')
       var result = secureService.checkUserEmail(email)
       result.then(function(data){
        if (data.data.status_code == 0){
-        debugger
           $scope.form.email1.$setValidity('server',false);
         }else{
           $scope.form.email1.$setValidity('server',true);
