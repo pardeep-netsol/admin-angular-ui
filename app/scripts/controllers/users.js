@@ -109,7 +109,6 @@ angular.module('angularjsApp')
       var result = secureService.checkUserEmail(email)
       result.then(function(data){
        if (data.data.status_code == 0){
-        debugger
           $scope.form.email1.$setValidity('server',false);
         }else{
           $scope.form.email1.$setValidity('server',true);

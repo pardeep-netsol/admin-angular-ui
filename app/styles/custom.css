@@ -40,8 +40,8 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-.panel-body input[type=text], input[type=password],input[type=email]{
-height: 44px;
+.register input[type=text], input[type=password],input[type=email]{
+    height: 44px;
     font-size: 16px;
     width: 100%;
     margin-bottom: 10px;
@@ -363,3 +363,5 @@ a[ng-click]{
     border-radius: 3px 0 0 3px;
 }
 .reset_password_form{padding-left:40px;padding-right:40px;}
+.confirmation_panel{border-color:#d9edf7; margin-bottom:50px !important;width: 71%; margin-left:30%;}
+.password_confirmation-heading{background-color: #d9edf7 !important;border-color: #BCE8F1!important;color: #31708F !important;}
