@@ -103,12 +103,13 @@
             <input type="password" name="pass" placeholder="Password" ng-model="user.user.password">
             <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
-          <div class="login-help">
+          <div class="login-help ">
             <a href="" style="color:#428bca;" ng-click="showRegisterModel()">New User Register</a>
             <span style="float:right;"><a style="color:#235cb5;" ng-click="showforgotpasswordmodel()">Forgot Password?</a></span>
             <a href="" style="color:#428bca;" ng-click="showResendConfirmationModel()">Resend Confirmation Instructions?</a>
            <br />
-         </br>    
+         </br>
+           
           
             <div class="social_icons">
               <p style="color:#428bca;">Or Sign In Using!</p>
@@ -151,6 +152,10 @@
                         </div>
                       </div>
                     </div>
+                    
+                     <div class="form-group">
+                      <input type="text" ng-model="registerUser.user.username" class="form-control input-sm" placeholder="Username">
+                    </div> 
 
                     <div class="form-group">
                       <input type="email" ng-model="registerUser.user.email" class="form-control input-sm" placeholder="Email Address">
@@ -159,12 +164,12 @@
                     <div class="row">
                       <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group password_field">
-                          <input type="password" ng-model="registerUser.user.password" class="form-control input-sm" placeholder="Password">
+                          <input type="text" ng-model="registerUser.user.password" class="form-control input-sm" placeholder="Password">
                         </div>
                       </div>
                       <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group password_field">
-                          <input type="password" ng-model="registerUser.user.password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                          <input type="text" ng-model="registerUser.user.password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
                         </div>
                       </div>
                     </div>
@@ -214,9 +219,9 @@
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
-  </div>
     <!-- /Forgot password model -->
 
     <!-- Resend Confirmation Email model -->
@@ -287,7 +292,7 @@
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/ngDatepicker/src/js/ngDatepicker.js"></script>
-    <script src="scripts/satellizer.js"></script>
+    <script src="bower_components/satellizer/satellizer.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -303,6 +308,7 @@
         <script src="scripts/controllers/categories.js"></script>
         <script src="scripts/controllers/page.js"></script>
         <script src="scripts/controllers/faq.js"></script>
+        <script src="scripts/directives/tree.js"></script>
         <script src="scripts/controllers/confirmation.js"></script>
         <!-- endbuild -->
 </body>
