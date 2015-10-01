@@ -138,8 +138,13 @@ angular
         controller: 'LinkedInCtrl',
         controllerAs: 'linkedin'
       })
+       .when('/confirm_email/:Token', {
+        templateUrl:'views/main.html',
+        controller: 'ConfirmationCtrl',
+        controllerAs: 'confirm'
+      })
       .otherwise({
-        redirectTo: '/'
+        // redirectTo: '/'
       });
   })
 .run(function(secureService , $rootScope, $location, credentialStore, $auth, $http){
@@ -152,6 +157,10 @@ angular
     user:{login: "",
     password: ""
   }}
+
+  $rootScope.resendmail = {
+    user:{email: ""}
+  } 
 
   $rootScope.registerUser={
     user:{
@@ -172,16 +181,11 @@ angular
   }
 
   $rootScope.login = function(user){
+    debugger
     if (user.user.login == ""){
       $("#error_msg").html("Email can't be empty");
       $("#error_msg").show().fadeOut(4000);
-
-//       $('document').ready(function() {
-//   setTimeout(function() {
-//     $('#flash').slideUp();
-//   }, 3000);
-// });
-      return false;
+       return false;
     }else if(user.user.password==""){
       $("#error_msg").html("password can't be empty");
       $("#error_msg").show().fadeOut(4000);
@@ -210,6 +214,16 @@ angular
   $rootScope.showforgotpasswordmodel = function(){
     $('#login-modal').modal('hide');
     $('#forgot-password-modal').modal('show');
+  }
+
+  $rootScope.showResendConfirmationModel = function(){
+   $('#login-modal').modal('hide');
+   $('#resend-confirm-email-modal').modal('show');
+  }
+
+  $rootScope.resend_confirm_mail = function(data){
+    // alert(data.user.email);
+    secureService.sendConfirmationMail(data)
   }
 
   $rootScope.signUp= function(registeruser){

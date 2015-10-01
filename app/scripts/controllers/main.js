@@ -14,6 +14,8 @@ angular.module('angularjsApp')
       'AngularJS',
       'Karma'
     ];
+
+    
     // $scope.connect = function() {
     //   alert("hello");
     //   $linkedIn.authorize();
