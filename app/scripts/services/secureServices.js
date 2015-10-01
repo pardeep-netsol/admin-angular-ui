@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('angularjsApp').factory('secureService',function($http, wsURL,api,port, $location, credentialStore, $localstorage, $rootScope){
+angular.module('angularjsApp').factory('secureService',function($http, wsURL, api, port, $location, credentialStore, $localstorage, $rootScope){
 	
   
 	var getAllCategories = function(){
@@ -91,7 +91,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL,api
   }
 
   var sendConfirmationMail = function(user){
-    var url = "http://localhost:3000/users/confirmation.json"
+    var url = wsURL+port+"/users/confirmation.json"
     return $http.post(url, user).then(function(data){
       $('#resend-confirm-email-modal').modal('hide');
       $("#msg_box").html("Confirmation instructions sent successfully. Please check your mailbox and confirm you email.");
@@ -103,7 +103,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL,api
   }
 
   var confirmEmail = function(token){
-    var url = "http://localhost:3000/users/confirmation.json?confirmation_token="+token
+    var url = wsURL+port+"/users/confirmation.json?confirmation_token="+token
     return $http.get(url).then(function(data){
       $("#msg_box").html("Congrates! email has been confirmed. Please login..");
       $("#alert_msg").show();
