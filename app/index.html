@@ -38,43 +38,18 @@
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse" style="float:right;">
-            <ul class="nav navbar-nav">
-<!-- <<<<<<< HEAD
-              <li ng-repeat="category in allCategories.categories">
-                <div class="dropdown" >
-                <button class="btn btn-default dropdown-toggle ng-cloak" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  {{category.name}}
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                  <li class="dropdown-submenu" ng-repeat="subcategory in category.sub_categories" ng-if="category.sub_categories.length > 0">
-                    <a tabindex="-1" ng-click="" ng-bind="subcategory.name"></a>
-                    <ul class="dropdown-menu">
-                      <li ng-repeat="page in subcategory.pages">
-                        <a tabindex="-1" href="#/content/{{subcategory.name}}/{{page.name}}" ng-bind="page.name"></a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li ng-if="category.pages.length > 0" ng-repeat="page in category.pages">
-                    <a href="#/content/{{category.name}}/{{page.name}}" ng-bind="page.name"></a>
-                  </li>
-                </ul>
-                </div>
+            <ul class="nav navbar-nav" ng-repeat="category in allCategories.categories">
+              <li dropdown="">
+                <a href="" class="dropdown-toggle" dropdown-toggle id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {{category.name}}
+                  <b class="caret"></b>
+                </a>
+                <tree tree="category"></tree>
+
               </li>
-                <li>
-                  <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Faqs
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <li ng-repeat = "faq in allfaqs.faq_categories">
-                        <a href="#/faqs/{{faq.name}}" ng-bind="faq.name"></a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-======= -->
+            </ul>
+
+            <ul class="nav navbar-nav">
               <li>
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -88,7 +63,6 @@
                   </ul>
                 </div>
               </li>
-<!-- >>>>>>> 7b474d7754ca78c2e26dc0df9a9c44170d48fcc0 -->
               <li><a ng-href="#/about">About</a></li>
               <li ng-if='current_user'><a ng-href="#/profile" class="ng-cloak">{{current_user.first_name}}&nbsp{{current_user.last_name}}</a></li>
               <li ng-if='current_user'><a ng-href="#/" ng-click='logout()'>Logout</a></li>
@@ -129,13 +103,12 @@
             <input type="password" name="pass" placeholder="Password" ng-model="user.user.password">
             <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
-          <div class="login-help ">
+          <div class="login-help">
             <a href="" style="color:#428bca;" ng-click="showRegisterModel()">New User Register</a>
-            <span style="float:right;"><a style="color:#235cb5;" ng-click="">Resent Confirmation-Email</a></span>
-            <span style="float:left;"><a style="color:#235cb5;" ng-click="showforgotpasswordmodel()">Forgot Password ?</a></span>
+            <span style="float:right;"><a style="color:#235cb5;" ng-click="showforgotpasswordmodel()">Forgot Password?</a></span>
+            <a href="" style="color:#428bca;" ng-click="showResendConfirmationModel()">Resend Confirmation Instructions?</a>
            <br />
-         </br>
-           
+         </br>    
           
             <div class="social_icons">
               <p style="color:#428bca;">Or Sign In Using!</p>
@@ -241,11 +214,9 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
-
-    
+  </div>
     <!-- /Forgot password model -->
 
     <!-- Resend Confirmation Email model -->
