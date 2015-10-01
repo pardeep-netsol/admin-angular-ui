@@ -35,14 +35,12 @@ angular.module('angularjsApp')
           $scope.countries = res.data.countries;
         });
       });
-      debugger
     }
     if ($location.url() == "/editprofile"){
       edituserprofile();
     }
         
     var userprofile = $rootScope.current_user
-    debugger
     $scope.user = {
       username: userprofile.username,
     	first_name: userprofile.first_name,

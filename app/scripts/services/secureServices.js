@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('angularjsApp').factory('secureService',function($http, wsURL,api,port, $location, credentialStore, $localstorage, $rootScope){
+angular.module('angularjsApp').factory('secureService',function($http, wsURL, api, port, $location, credentialStore, $localstorage, $rootScope){
 	
   
 	var getAllCategories = function(){
@@ -59,7 +59,6 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL,api
     var url = wsURL+port+"users.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
-      debugger
       $("#signup-modal").modal('hide');
       $("#msg_box").html("You have been registed Successfully. Please check your mailbox and confirm you email.");
       $("#alert_msg").show();
@@ -71,8 +70,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL,api
       //   $('#signup-modal').modal('hide');
       // });
     },function(data){
-      debugger
-      $rootScope.registerErrors = data.data.errors;
+      // $rootScope.registerErrors = data.data.errors;
+      $("#signup_server_error_msg").html($rootScope.parseErrors(data.data.errors).htmlList);
       $("#signup_server_error_msg").show();
     }
   );
@@ -92,8 +91,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL,api
   }
 
   var sendConfirmationMail = function(user){
-    debugger
-    var url = "http://localhost:3000/users/confirmation.json"
+    var url = wsURL+port+"/users/confirmation.json"
     return $http.post(url, user).then(function(data){
       $('#resend-confirm-email-modal').modal('hide');
       $("#msg_box").html("Confirmation instructions sent successfully. Please check your mailbox and confirm you email.");
@@ -105,16 +103,15 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL,api
   }
 
   var confirmEmail = function(token){
-    var url = "http://localhost:3000/users/confirmation.json?confirmation_token="+token
+    var url = wsURL+port+"/users/confirmation.json?confirmation_token="+token
     return $http.get(url).then(function(data){
-      debugger
-      alert("success");
       $("#msg_box").html("Congrates! email has been confirmed. Please login..");
       $("#alert_msg").show();
       $location.path('/');
     },function(data){
-      debugger
-      alert("oops");
+      var errorHtml="";
+      $("#msg_box").html($rootScope.parseErrors(data.data).htmlList);
+      $("#alert_msg").show();
     });
   }
 
@@ -136,10 +133,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL,api
     var url = wsURL+port+"users/password.json"
     return $http.put(url, user).then(function(data){
       alert("success");
-      debugger
     },function(data){
       alert("oops eroor");
-      debugger
     });
   }
 
