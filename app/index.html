@@ -39,6 +39,7 @@
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse" style="float:right;">
             <ul class="nav navbar-nav">
+<!-- <<<<<<< HEAD
               <li ng-repeat="category in allCategories.categories">
                 <div class="dropdown" >
                 <button class="btn btn-default dropdown-toggle ng-cloak" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -73,6 +74,21 @@
                     </ul>
                   </div>
                 </li>
+======= -->
+              <li>
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Faqs
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat = "faq in allfaqs.faq_categories">
+                      <a href="#/faqs/{{faq.name}}" ng-bind="faq.name"></a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+<!-- >>>>>>> 7b474d7754ca78c2e26dc0df9a9c44170d48fcc0 -->
               <li><a ng-href="#/about">About</a></li>
               <li ng-if='current_user'><a ng-href="#/profile" class="ng-cloak">{{current_user.first_name}}&nbsp{{current_user.last_name}}</a></li>
               <li ng-if='current_user'><a ng-href="#/" ng-click='logout()'>Logout</a></li>
@@ -113,11 +129,14 @@
             <input type="password" name="pass" placeholder="Password" ng-model="user.user.password">
             <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
-          <div class="login-help">
+          <div class="login-help ">
             <a href="" style="color:#428bca;" ng-click="showRegisterModel()">New User Register</a>
-            <span style="float:right;"><a style="color:#235cb5;" ng-click="showforgotpasswordmodel()">Forgot Password?</a></span>
-            <a href="" style="color:#428bca;" ng-click="showResendConfirmationModel()">Resend Confirmation Instructions?</a>
+            <span style="float:right;"><a style="color:#235cb5;" ng-click="">Resent Confirmation-Email</a></span>
+            <span style="float:left;"><a style="color:#235cb5;" ng-click="showforgotpasswordmodel()">Forgot Password ?</a></span>
            <br />
+         </br>
+           
+          
             <div class="social_icons">
               <p style="color:#428bca;">Or Sign In Using!</p>
                <a ng-click="authenticate('linkedin')"  style="color:#428bca;padding-left: 13px;"><i class="fa fa-lg fa-linkedin " ></i></a>
@@ -125,21 +144,7 @@
                <a ng-click="authenticate('twitter')" style="color:#428bca;" ><i class="fa fa-lg fa-twitter " ></i> </a>
                <a ng-click="authenticate('google')" style="color:#428bca;" ><i class="fa fa-lg fa-google "></i></a>
             </div>
-
           </div>
-          <!-- <div class="login-help">
-            <a href="#">Register</a> - <a href="#">Forgot Password</a>
-            <br /><p style="color:#428bca;">Don't have an account?Sign Up!</p>
-            <div class="social_icons">
-               <a ng-click="authenticate('linkedin')" class="linkedin" style="color:white;"><i class="fa fa-lg fa-linkedin font_i" ></i>Sign In with Linkedin</a>
-               <br>
-               <a ng-click="authenticate('facebook')" style="color:white;" class="facebook"><i class="fa fa-lg fa-facebook font_i" ></i> Sign In with Facebook</a>
-               <br>
-               <a ng-click="authenticate('twitter')" style="color:white;" class="twitter"><i class="fa fa-lg fa-twitter font_i" ></i> Sign In with Twitter</a>
-               <br>
-               <a ng-click="authenticate('google')" style="color:white;" class="google"><i class="fa fa-lg fa-google-plus font_i"></i>Sign In with Google</a>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -205,41 +210,38 @@
     <div class="modal fade" id="forgot-password-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
         <div class="container">
-    
           <div class="row">
-              <div class="col-md-4 col-md-offset-4">
-                  <div class="panel panel-default">
-                      <div class="panel-body">
-                          <div class="text-center">
-                            <h3><i class="fa fa-lock fa-4x"></i></h3>
-                            <h2 class="text-center">Forgot Password?</h2>
-                            <p>You can reset your password here.</p>
-                            <div class="" role="alert" id ="forgot_server_error_msg" style="display:none">
-                              <li>{{invalid_email[0]}}</li>
+            <div class="col-md-4 col-md-offset-4">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="text-center">
+                    <h3><i class="fa fa-lock fa-4x"></i></h3>
+                    <h2 class="text-center">Forgot Password?</h2>
+                    <p>You can reset your password here.</p>
+                    <div class="" role="alert" id ="forgot_server_error_msg" style="display:none">
+                      <li>{{invalid_email[0]}}</li>
+                    </div>
+                    <div class="panel-body">
+                      <form class="form" ng-submit="forgotPassword(forgotpass)">
+                        <fieldset>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                              <input id="emailInput" placeholder="email address" ng-model="forgotpass.user.email" class="form-control" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
                             </div>
-                              <div class="panel-body">
-                                <form class="form" ng-submit="forgotPassword(forgotpass)">
-                                  <fieldset>
-                                    <div class="form-group">
-                                      <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                        
-                                        <input id="emailInput" placeholder="email address" ng-model="forgotpass.user.email" class="form-control" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
-                                      </div>
-                                    </div>
-                                    <div class="form-group">
-                                      <input class="btn btn-lg btn-primary btn-block" value="Send My Password" type="submit">
-                                    </div>
-                                  </fieldset>
-                                </form>
-                                
-                              </div>
                           </div>
-                      </div>
+                          <div class="form-group">
+                            <input class="btn btn-lg btn-primary btn-block" value="Send My Password" type="submit">
+                          </div>
+                        </fieldset>
+                      </form>
+                    </div>
                   </div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
     <!-- /Forgot password model -->

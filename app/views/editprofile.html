@@ -17,12 +17,14 @@
                 <div class="form-group">
                   <label class="col-lg-5 control-label"><span class="text-muted">User Name:</span> </label>
                   <div class="col-lg-7">
-                    <input type="text" ng-model="user.username" value="{{user.username}}" ng-pattern="VALID_FULL_NAME_REGEX" ng-maxlength="20" required name="username">
+                    <input type="text" ng-model="user.username" value="{{user.username}}" ng-pattern="VALID_FULL_NAME_REGEX" ng-maxlength="20" server-validation required name="username" ng-blur="checkUserName(user.username)">
                     <span style="color:red" ng-show="form.username.$dirty && form.username.$invalid">
                     <p class="help-block" ng-show="form.username.$error.maxlength">Username is too long.</p>
                     <p class="help-block" ng-show="form.username.$error.required">Your Username is required.</p>
-                        <!-- <p class="help-block" ng-show="form.username.$error.pattern">Firstname is invalid.</p> -->
+                    <p class="help-block" ng-show="form.username.$error.server">Username already taken.</p>
+                    <p class="help-block" ng-show="form.username.$error.pattern">Username is invalid.</p>
                     </span>
+                    <p class="username"></p>
                   </div>
                 </div>
                 <div class="form-group">
@@ -62,10 +64,12 @@
                 <div class="form-group">
                   <label class="col-lg-5 control-label"><span class="text-muted"> Email Address:</span></label>
                   <div class="col-lg-7">
-                    <input type="text" ng-model="user.email" value="{{user.email}}" ng-pattern="VALID_EMAIL_REGEX " name="email1">
+                    <input type="text" ng-model="user.email" value="{{user.email}}" server-validation ng-pattern="VALID_EMAIL_REGEX " name="email1" ng-blur="checkUserEmail(user.email)">
                     <span style="color:red" ng-show="form.email1.$dirty && form.email1.$invalid">
                       <p class="help-block" ng-show="form.email1.$error.pattern">Email is invalid.</p>
+                      <p class="help-block" ng-show="form.email1.$error.server">Email is alreay taken.</p>
                     </span>
+                    
                   </div>
                 </div>
 

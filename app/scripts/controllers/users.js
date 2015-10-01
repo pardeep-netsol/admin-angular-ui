@@ -42,13 +42,13 @@ angular.module('angularjsApp')
     }
         
     var userprofile = $rootScope.current_user
-   
+    debugger
     $scope.user = {
       username: userprofile.username,
     	first_name: userprofile.first_name,
     	last_name: userprofile.last_name,
     	gender: userprofile.gender,
-    	dob: userprofile.dob != "" ? userprofile.dob : Date.now,
+    	dob: userprofile.dob == null ?  new Date : userprofile.dob,
     	email: userprofile.email,
       country_hash: userprofile.country_hash,
       state_hash: userprofile.state_hash,
@@ -64,7 +64,7 @@ angular.module('angularjsApp')
       current_sign_in_ip: userprofile.current_sign_in_ip,
       last_sign_in_ip: userprofile.last_sign_in_ip
     }
-  
+    
     $scope.savedetails =function(user){
       if (user.country_hash != undefined && user.state_hash != undefined){
         user.country_hash = user.country_hash.name
@@ -91,5 +91,29 @@ angular.module('angularjsApp')
     $scope.wasSubmitted = false;
      $scope.submit = function() {
      $scope.wasSubmitted = true;
-};
+    };
+
+    $scope.checkUserName = function(username){
+      // alert(data);
+      var result = secureService.checkUserName(username)
+      result.then(function(data){
+        if (data.data.status_code == 0){
+          $scope.form.username.$setValidity('server',false);
+        }else{
+          $scope.form.username.$setValidity('server',true);
+        }
+      });
+    }
+
+    $scope.checkUserEmail = function(email){
+      var result = secureService.checkUserEmail(email)
+      result.then(function(data){
+       if (data.data.status_code == 0){
+        debugger
+          $scope.form.email1.$setValidity('server',false);
+        }else{
+          $scope.form.email1.$setValidity('server',true);
+        }
+      });
+    }
   });

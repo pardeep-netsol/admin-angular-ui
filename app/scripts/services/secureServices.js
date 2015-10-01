@@ -1,10 +1,10 @@
 'use strict'
 
-angular.module('angularjsApp').factory('secureService',function($http, wsURL, $location, credentialStore, $localstorage, $rootScope){
+angular.module('angularjsApp').factory('secureService',function($http, wsURL,api,port, $location, credentialStore, $localstorage, $rootScope){
 	
   
 	var getAllCategories = function(){
-  	var url = wsURL + "categories/roots.json"
+  	var url = wsURL+port+api + "categories/roots.json"
     return $http.get(url).then(function(data, status, headers, config){
       if (!data.error) {
        	return data;
@@ -13,7 +13,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
 	}
 
   var getchildren = function(name){
-    var url = wsURL + "categories/children.json?name="+name
+    var url = wsURL+port+api + "categories/children.json?name="+name
     return $http.get(url).then(function(data, status, headers, config){
       if (!data.error) {
         return data;
@@ -22,14 +22,14 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
   var getCountries = function(){
-    var url = wsURL + "countries.json"
+    var url = wsURL+port+api + "countries.json"
     return $http.get(url).then(function(data, status, headers, config){
       return data;
     });
   }
 
   var getStates = function(country){
-    var url = wsURL + "countries/states.json?country="+country
+    var url = wsURL+port+api + "countries/states.json?country="+country
     return $http.get(url).then(function(data, status, headers, config){
       if (!data.error) {
         return data;
@@ -38,8 +38,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
   
   var login = function(user){
-    var url = "http://localhost:3000/users/sign_in.json"
-    // var url = "http://192.168.0.202:8500/users/sign_in.json"
+    var url = wsURL+port+"users/sign_in.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
       credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
@@ -50,7 +49,6 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
         $('#login-modal').modal('hide');
       });
     },function(data){
-      debugger
       $("#error_msg").html(data.data.error);
       $("#error_msg").show();
     }
@@ -58,8 +56,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
   var registerNewUser = function(user){
-    var url = "http://localhost:3000/users.json"
-    // var url = "http://192.168.0.202:8500/users.json"
+    var url = wsURL+port+"users.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
       debugger
@@ -82,9 +79,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
   var forgotPassword = function(user){
-    // var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
-    var url = "http://localhost:3000/users/password.json"
-    // var url = "http://192.168.0.202:8500/users/password.json"
+    var url = wsURL+port+"users/password.json"
     return $http.post(url, user).then(function(data){
       $("#alert_msg").show();
       $location.path("/");
@@ -124,7 +119,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
   var updateUserPassword = function (user, current_user){
-    var url = wsURL + "users/"+current_user.id+"/update_password.json"
+    var url = wsURL+port+api + "users/"+current_user.id+"/update_password.json"
     return $http.put(url, user).then(function(data){
       if (data.data.status_code == 1){
         $("#password_form").hide();
@@ -138,7 +133,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
   var getCategoryTree = function(){
-    var url = wsURL + "categories/tree.json";
+    var url = wsURL+port+api + "categories/tree.json";
     return $http.get(url).then(function(data, status, headers, config){
       if (!data.error) {
         return data;
@@ -147,7 +142,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
 
 	var getpage = function(categoryname, pagename){
-		var url = wsURL + "pages/page.json?name="+pagename+"&category_name="+categoryname
+		var url = wsURL+port+api + "pages/page.json?name="+pagename+"&category_name="+categoryname
 		return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
     	if (!data.error) {
        	return data;
@@ -156,7 +151,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
 	}
 
 	var getCategoryPages = function(categoryName){
-   	var url = wsURL + "categories/pages.json?category_name="+categoryName
+   	var url = wsURL+port+api + "categories/pages.json?category_name="+categoryName
 		return $http.get(url, credentialStore.getheaders()).then(function(data, status, headers, config){
     	if (!data.error) {
        	return data;
@@ -165,7 +160,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
 	}
 
 	var getallUser = function(){
-		var url = wsURL + "users";
+		var url = wsURL+port+api + "users";
     return $http.get(url).then(function(data, status, headers, config){
     	if (!data.error) {
        	return data;
@@ -174,28 +169,28 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
   }
   
   var getuserprofile = function(id){
-    var url = wsURL + "users/"+id+".json";
+    var url = wsURL+port+api + "users/"+id+".json";
   	return $http.get(url,credentialStore.getheaders()).then(function(data, status, headers, config){
      	return data;
     });
   }
   
   var getallfaqs = function(){
-    var url = wsURL + "faq_categories.json"
+    var url = wsURL+port+api + "faq_categories.json"
     return $http.get(url).then(function(data, status, headers, config){
       return data;
     });
   }
 
   var getfaqbycategory = function(categoryname){
-    var url = wsURL + "faq_categories/faqs.json?name="+categoryname;
+    var url = wsURL+port+api + "faq_categories/faqs.json?name="+categoryname;
     return $http.get(url).then(function(data){
       return data;
     });
   }
 
   var updateUser = function(user_data, id){
-   	var url = wsURL + "users/"+id+".json"
+   	var url = wsURL+port+api+ "users/"+id+".json"
   	$http.put(url, user_data, credentialStore.getheaders()).success(function(data){
       if (data.error){
         alert("Error: " + data.error);
@@ -206,6 +201,21 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
       }
     })
   }
+
+  var checkUserEmail = function(data){
+    var url = wsURL + "users/check_availability?email="+ data
+    return $http.get(url).success(function(data){
+      return data;
+    })
+  }
+
+  var checkUserName = function(data){
+    var url = wsURL + "users/check_availability?username="+ data
+    return $http.get(url).success(function(data){
+      return data;
+    })
+  }
+
 	return {
 		getAllCategories:getAllCategories,
 		getCategoryPages:getCategoryPages,
@@ -224,6 +234,9 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, $l
     forgotPassword:forgotPassword,
     updateUserPassword:updateUserPassword,
     sendConfirmationMail:sendConfirmationMail,
-    confirmEmail:confirmEmail
+    confirmEmail:confirmEmail,
+    checkUserName:checkUserName,
+    checkUserEmail:checkUserEmail
+
 	};
 });
