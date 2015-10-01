@@ -9,7 +9,13 @@ angular.module('angularjsApp')
   						password_confirmation: ""}
   		}
   	}
+    $scope.isMatch = false;
   	$scope.resetUserPassword = function(user){
-  		secureService.resetPassword(user)
+      if(user.user.password != user.user.password_confirmation){
+        $scope.isMatch =true;
+      }else{
+        secureService.resetPassword(user)
+      }
   	}
+
   });
