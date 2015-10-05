@@ -19,7 +19,7 @@
                     <div class="form-group" >
                       <label class="col-lg-5 control-label"><span class="text-muted" >Old Password:</span> </label>
                       <div class="col-lg-7">
-                        <input type="password" ng-model="userData.existing_password" name="existing_password" required/></br>
+                        <input class="chngpsw" type="password" ng-model="userData.existing_password" name="existing_password" required/></br>
                         <span  ng-show="passwordForm.existing_password.$dirty && passwordForm.existing_password.$invalid">
                           <span ng-show="passwordForm.existing_password.$error.required">Old password is required.</span>
                         </span>
@@ -28,7 +28,7 @@
                     <div class="form-group" >
                       <label class="col-lg-5 control-label"><span class="text-muted" >New Password:</span> </label>
                       <div class="col-lg-7">
-                        <input type="password" ng-model="userData.user.password" name="password" required/></br>
+                        <input type="password" class="chngpsw" ng-model="userData.user.password" name="password" required/></br>
                         <span ng-show="passwordForm.password.$dirty && passwordForm.password.$invalid ">
                           <span ng-show="passwordForm.password.$error.required">New Password is required.</span>
                         </span>
@@ -37,7 +37,7 @@
                     <div class="form-group" >
                       <label class="col-lg-5 control-label"><span class="text-muted" >Confirm Password:</span> </label>
                       <div class="col-lg-7">
-                        <input type="password" ng-model="userData.user.password_confirmation" name="password_confirmation" required/></br>
+                        <input type="password" class="chngpsw" ng-model="userData.user.password_confirmation" name="password_confirmation" required/></br>
                         <span ng-show="passwordForm.password_confirmation.$dirty && passwordForm.password_confirmation.$invalid">
                           <span ng-show="passwordForm.password_confirmation.$error.required">Confirm Password is required.</span>
                         </span>

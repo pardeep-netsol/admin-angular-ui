@@ -39,10 +39,10 @@ angular
 
     $authProvider.linkedin({
       clientId: '75zih9h8w97e8m',
-      // url: 'http://localhost:3000/users/social_login/linkedin.json',
-      url: 'http://192.168.0.202:8500/users/social_login/linkedin.json',
-      // redirectUri: 'http://localhost:9000/',
-      redirectUri: 'http://192.168.0.202:9000/',
+      url: 'http://localhost:3000/users/social_login/linkedin.json',
+      // url: 'http://192.168.0.202:8500/users/social_login/linkedin.json',
+      redirectUri: 'http://localhost:9000/',
+      // redirectUri: 'http://192.168.0.202:9000/',
       state: '~!@#$%^&*()',
       type: '2.0',
       popupOptions: { width: 527, height: 582 },
@@ -52,10 +52,10 @@ angular
 
     $authProvider.facebook({
       clientId: '1047234745287179',
-      // url: 'http://localhost:3000/users/social_login/facebook.json',
-      url: 'http://192.168.0.202:8500/users/social_login/facebook.json',
-      // redirectUri: 'http://localhost:9000/',
-      redirectUri: 'http://192.168.0.202:9000/',
+      url: 'http://localhost:3000/users/social_login/facebook.json',
+      // url: 'http://192.168.0.202:8500/users/social_login/facebook.json',
+      redirectUri: 'http://localhost:9000/',
+      // redirectUri: 'http://192.168.0.202:9000/',
       state: '~!@#$%^&*()',
       type: '2.0',
       popupOptions: { width: 527, height: 582 },
@@ -64,16 +64,16 @@ angular
     });
 
     $authProvider.twitter({
-      // url: 'http://localhost:3000/users/social_login/twitter.json'
-      url: 'http://192.168.0.202:8500/users/social_login/twitter.json',
+      url: 'http://localhost:3000/users/social_login/twitter.json'
+      // url: 'http://192.168.0.202:8500/users/social_login/twitter.json',
     });
 
     $authProvider.google({
-      // url: 'http://localhost:3000/users/social_login/google.json',
-      url: 'http://192.168.0.202:8500/users/social_login/google.json',
+      url: 'http://localhost:3000/users/social_login/google.json',
+      // url: 'http://192.168.0.202:8500/users/social_login/google.json',
       clientId: '78047627535-nrmfjhhegou9snqmnq8v44th9273osog.apps.googleusercontent.com',
-      // redirectUri: 'http://localhost:9000/'
-      redirectUri: 'http://192.168.0.202:9000/'
+      redirectUri: 'http://localhost:9000/'
+      // redirectUri: 'http://192.168.0.202:9000/'
      });
 
     
@@ -196,19 +196,26 @@ angular
     credentialStore.removeUserData();
   }
 
+  $rootScope.showLoginModel=function(){
+     $(".chnglogin").val("");
+  }
+
   $rootScope.showRegisterModel = function(){
     $('#login-modal').modal('hide');
     $('#signup-modal').modal('show');
+    $(".chngreguser").val("");
   }
 
   $rootScope.showforgotpasswordmodel = function(){
     $('#login-modal').modal('hide');
     $('#forgot-password-modal').modal('show');
+    $(".chngpass").val("");
   }
 
   $rootScope.showResendConfirmationModel = function(){
    $('#login-modal').modal('hide');
    $('#resend-confirm-email-modal').modal('show');
+   $(".chngresendc_mail").val("");
   }
 
   $rootScope.resend_confirm_mail = function(data){

@@ -50,7 +50,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       });
     },function(data){
       $("#error_msg").html(data.data.error);
-      $("#error_msg").show();
+      $("#error_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);
     }
   );    
   }
@@ -61,7 +61,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
     return $http.post(url, user, header).then(function(data){ 
       $("#signup-modal").modal('hide');
       $("#msg_box").html("You have been registed Successfully. Please check your mailbox and confirm you email.");
-      $("#alert_msg").show();
+      $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);
       // credentialStore.setUserData(data.data)
       // var categories = getCategoryTree();
       // categories.then(function(result){
@@ -72,9 +72,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
     },function(data){
       // $rootScope.registerErrors = data.data.errors;
       $("#signup_server_error_msg").html($rootScope.parseErrors(data.data.errors).htmlList);
-      $("#signup_server_error_msg").show();
-    }
-  );
+      $("#signup_server_error_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);
+  });
   }
 
   var forgotPassword = function(user){
@@ -85,7 +84,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       $('#forgot-password-modal').modal('hide');
     },function(data){
       $rootScope.invalid_email = data.data.errors.email; 
-      $("#forgot_server_error_msg").show();
+      $("#forgot_server_error_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);
     }
   );
   }
@@ -95,10 +94,10 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
     return $http.post(url, user).then(function(data){
       $('#resend-confirm-email-modal').modal('hide');
       $("#msg_box").html("Confirmation instructions sent successfully. Please check your mailbox and confirm you email.");
-      $("#alert_msg").show();
+      $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
     },function(data){
       $rootScope.invalid_email = data.data.errors.email; 
-      $("#resend_confirm_mail_error_msg").show();
+      $("#resend_confirm_mail_error_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
     });
   }
 
@@ -106,12 +105,12 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
     var url = wsURL+port+"/users/confirmation.json?confirmation_token="+token
     return $http.get(url).then(function(data){
       $("#msg_box").html("Congrates! email has been confirmed. Please login..");
-      $("#alert_msg").show();
+      $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
       $location.path('/');
     },function(data){
       var errorHtml="";
       $("#msg_box").html($rootScope.parseErrors(data.data).htmlList);
-      $("#alert_msg").show();
+      $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
     });
   }
 
@@ -121,10 +120,10 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       if (data.data.status_code == 1){
         $("#password_form").hide();
         $("#msg_box").html("Password Change Successfully");
-        $("#alert_msg").show();
+        $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
       }else{
         $("#chngpswd_error_msg").html("<li>"+data.data.error+"</li>")
-        $("#chngpswd_error_msg").show();
+        $("#chngpswd_error_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
       }
     });
   }
@@ -204,6 +203,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       else {
         credentialStore.updateUserData(data.user)
         $location.path('/profile');
+        $("#msg_box").html(" Successfully updated");
+        $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);
       }
     })
   }

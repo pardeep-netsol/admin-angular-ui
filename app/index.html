@@ -51,22 +51,20 @@
 
             <ul class="nav navbar-nav">
               <li>
-                <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <a class="dropdown-toggle"  dropdown-toggle id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   Faqs
-                    <span class="caret"></span>
-                  </button>
+                    <b class="caret"></b>
+                  </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li ng-repeat = "faq in allfaqs.faq_categories">
                       <a href="#/faqs/{{faq.name}}" ng-bind="faq.name"></a>
                     </li>
                   </ul>
-                </div>
               </li>
               <li><a ng-href="#/about">About</a></li>
               <li ng-if='current_user'><a ng-href="#/profile" class="ng-cloak">{{current_user.first_name}}&nbsp{{current_user.last_name}}</a></li>
               <li ng-if='current_user'><a ng-href="#/" ng-click='logout()'>Logout</a></li>
-              <li ng-if="!current_user"><a href="#/" data-toggle="modal" data-target="#login-modal">Login</a></li>
+              <li ng-if="!current_user"><a href="#/" data-toggle="modal" ng-click="showLoginModel()" data-target="#login-modal">Login</a></li>
             </ul>
             
           </div>
@@ -76,10 +74,10 @@
 
     <div class="container">
       <div class="alert alert-success alert-dismissible" role="alert" style = "display:none;" id="alert_msg">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
-        <p id="msg_box">We have send you a mail with reset password link. Please check your mail.</p>
+        </button> -->
+        <p id="msg_box">We have sent you a mail with reset password link. Please check your mail.</p>
         <!-- Better check yourself, you're not looking too good. -->
       </div>
     <div ng-view="">
@@ -99,9 +97,9 @@
           <h2  style="font-size:28px;font-weight:bold;">Login To Your Account</h2><br>
            <div class="alert login_err" role="alert" id ="error_msg" style="display:none"></div>
           <form ng-submit='login(user)'>
-            <input type="text" name="user" placeholder="Username" ng-model="user.user.login">
-            <input type="password" name="pass" placeholder="Password" ng-model="user.user.password">
-            <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+            <input class="chnglogin" type="text" name="user" placeholder="Username" ng-model="user.user.login">
+            <input   class="chnglogin" type="password" name="pass" placeholder="Password" ng-model="user.user.password">
+            <input  type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
           <div class="login-help">
             <a href="" style="color:#428bca;" ng-click="showRegisterModel()">New User Register</a>
@@ -141,25 +139,25 @@
                     </div>
                     <div class="" role="alert" id ="signup_error_msg" style="display:none"></div>
                         <div class="form-group">
-                          <input type="text" ng-model="registerUser.user.first_name"  placeholder="First Name">
+                          <input class="chngreguser" type="text" ng-model="registerUser.user.first_name"  placeholder="First Name">
                       </div>
                         <div class="form-group">
-                          <input type="text" ng-model="registerUser.user.last_name"  placeholder="Last Name">
+                          <input class="chngreguser" type="text" ng-model="registerUser.user.last_name"  placeholder="Last Name">
                       </div>
                     
                      <div class="form-group">
-                      <input type="text" ng-model="registerUser.user.username"  placeholder="Username">
+                      <input class="chngreguser" type="text" ng-model="registerUser.user.username"  placeholder="Username">
                     </div> 
 
                     <div class="form-group">
-                      <input type="email" ng-model="registerUser.user.email"  placeholder="Email Address">
+                      <input class="chngreguser" type="email" ng-model="registerUser.user.email"  placeholder="Email Address">
                     </div>
 
                         <div class="form-group password_field">
-                          <input type="text" ng-model="registerUser.user.password"  placeholder="Password">
+                          <input class="chngreguser" type="password" ng-model="registerUser.user.password"  placeholder="Password">
                       </div>
                         <div class="form-group password_field">
-                          <input type="text" ng-model="registerUser.user.password_confirmation"  placeholder="Confirm Password">
+                          <input class="chngreguser" type="password" ng-model="registerUser.user.password_confirmation"  placeholder="Confirm Password">
                         </div>
 
                     <input type="submit" value="Register" class="btn btn-info btn-block">
@@ -194,7 +192,7 @@
                           <div class="form-group">
                             <div class="input-group">
                               <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                              <input id="emailInput" placeholder="email address" ng-model="forgotpass.user.email" class="form-control" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
+                              <input  id="emailInput" placeholder="email address" ng-model="forgotpass.user.email" class="form-control chngpass" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
                             </div>
                           </div>
                           <div class="form-group">
@@ -234,7 +232,7 @@
                           <div class="form-group">
                             <div class="input-group">
                               <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                              <input id="emailInput" placeholder="email address" ng-model="resendmail.user.email" class="form-control" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
+                              <input id="emailInput" placeholder="email address" ng-model="resendmail.user.email" class="form-control chngresendc_mail" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
                             </div>
                           </div>
                           <div class="form-group">
