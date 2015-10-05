@@ -39,6 +39,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
   
   var login = function(user){
     var url = wsURL+port+"users/sign_in.json"
+    debugger
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
       credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
@@ -79,7 +80,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
   var forgotPassword = function(user){
     var url = wsURL+port+"users/password.json"
     return $http.post(url, user).then(function(data){
-      $("#alert_msg").show();
+      $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
       $location.path("/");
       $('#forgot-password-modal').modal('hide');
     },function(data){
