@@ -1,4 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
+.jumbotron{
+  background-color: #ffffff;
+}
 
 /****** LOGIN MODAL ******/
 .loginmodal-container {

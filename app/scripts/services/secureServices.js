@@ -96,8 +96,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       $("#msg_box").html("Confirmation instructions sent successfully. Please check your mailbox and confirm you email.");
       $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
     },function(data){
-      $rootScope.invalid_email = data.data.errors.email; 
-      $("#resend_confirm_mail_error_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
+      $("#resend_server_error_msg").html($rootScope.parseErrors(data.data.errors).htmlList);
+      $("#resend_server_error_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
     });
   }
 
@@ -108,7 +108,6 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
       $location.path('/');
     },function(data){
-      var errorHtml="";
       $("#msg_box").html($rootScope.parseErrors(data.data).htmlList);
       $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
     });
@@ -131,9 +130,12 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
   var resetPassword = function(user){
     var url = wsURL+port+"users/password.json"
     return $http.put(url, user).then(function(data){
-      alert("success");
+      $("#msg_box").html("You have successfully reset you password");
+      $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
+      $location.path('/');
     },function(data){
-      alert("oops eroor");
+      $("#msg_box").html($rootScope.parseErrors(data.data.errors).htmlList);
+      $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
     });
   }
 
@@ -245,6 +247,5 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
     checkUserName:checkUserName,
     checkUserEmail:checkUserEmail,
     resetPassword:resetPassword
-
 	};
 });
