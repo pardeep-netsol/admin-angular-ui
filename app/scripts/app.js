@@ -22,10 +22,10 @@ angular
     'directives'
   ])
 
-  // .constant("wsURL", "http://localhost")
-  .constant("wsURL", "http://192.168.0.202")
-  // .constant("port",":3000/")
-  .constant("port",":8500/")
+  .constant("wsURL", "http://localhost")
+  // .constant("wsURL", "http://192.168.0.202")
+  .constant("port",":3000/")
+  // .constant("port",":8500/")
   .constant("api","api/v1/")
   // .constant("wsURL", "http://192.168.0.202:8500/api/v1/")
   .config(function ($routeProvider, $httpProvider,  $locationProvider, $authProvider) {
