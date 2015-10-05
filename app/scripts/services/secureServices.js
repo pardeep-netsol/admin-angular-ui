@@ -73,7 +73,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       // $rootScope.registerErrors = data.data.errors;
       $("#signup_server_error_msg").html($rootScope.parseErrors(data.data.errors).htmlList);
       $("#signup_server_error_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);
-  );
+  });
   }
 
   var forgotPassword = function(user){
@@ -203,6 +203,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       else {
         credentialStore.updateUserData(data.user)
         $location.path('/profile');
+        $("#msg_box").html(" Successfully updated");
+        $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);
       }
     })
   }

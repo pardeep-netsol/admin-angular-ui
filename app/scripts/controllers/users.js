@@ -24,6 +24,7 @@ angular.module('angularjsApp')
 
     $scope.changePassword = function(userData){
       secureService.updateUserPassword(userData, $rootScope.current_user)
+     $(".chngpsw").val("");
     }
     
     var edituserprofile = function(){
