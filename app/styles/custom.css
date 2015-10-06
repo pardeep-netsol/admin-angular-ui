@@ -389,3 +389,13 @@ a[ng-click]{
   left: 40%;
   position: absolute;
 }
+.form-signin-heading,
+  .checkbox {
+    margin-bottom: 16px;
+  }
+
+  .checkbox {
+    font-weight: normal;
+  }
+  .check input[type="checkbox"]{width: 22px;
+height: 22px;}

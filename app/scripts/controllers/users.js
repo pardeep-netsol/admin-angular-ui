@@ -23,12 +23,14 @@ angular.module('angularjsApp')
     };
 
     $scope.changePassword = function(userData){
+      debugger
       secureService.updateUserPassword(userData, $rootScope.current_user)
      $(".chngpsw").val("");
     }
     
     var edituserprofile = function(){
       var state = secureService.getStates($rootScope.current_user.country_hash);
+      debugger
       state.then(function(result){
         $scope.states = result.data.states;
         var country = $rootScope.countries;
@@ -58,10 +60,10 @@ angular.module('angularjsApp')
       address1: userprofile.address1,
       address2: userprofile.address2,
       zip_code: userprofile.zip_code,
-      sign_in_count: userprofile.sign_in_count,
-      current_sign_in_at: userprofile.current_sign_in_at,
-      current_sign_in_ip: userprofile.current_sign_in_ip,
-      last_sign_in_ip: userprofile.last_sign_in_ip
+      // sign_in_count: userprofile.sign_in_count,
+      // current_sign_in_at: userprofile.current_sign_in_at,
+      // current_sign_in_ip: userprofile.current_sign_in_ip,
+      // last_sign_in_ip: userprofile.last_sign_in_ip
     }
     
     $scope.savedetails =function(user){
