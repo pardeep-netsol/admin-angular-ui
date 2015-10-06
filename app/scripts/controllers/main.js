@@ -8,15 +8,14 @@
  * Controller of the angularjsApp
  */
 angular.module('angularjsApp')
-  .controller('MainCtrl', function ($scope, $routeParams, secureService, credentialStore) {
+  .controller('MainCtrl', function ($scope, $routeParams, $rootScope, secureService, credentialStore) {
     // this.awesomeThings = [
     //   'HTML5 Boilerplate',
     //   'AngularJS',
     //   'Karma'
     // ];
-    debugger
+    $rootScope.title = "Home";
     if (!credentialStore.isLoggedIn()){
-      debugger
       if (localStorage.getItem('token') != '' ){
         var token = localStorage.getItem('token');
         var email = localStorage.getItem('email');

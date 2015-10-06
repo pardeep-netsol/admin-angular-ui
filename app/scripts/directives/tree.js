@@ -11,16 +11,13 @@ directives.directive('tree', function($compile) {
     },
     templateUrl: 'tree/navbar-ul.html',
     link: function(scope, element, attrs) {
-      // scope.tree.forEach(function(root){
-        if (scope.tree.pages.length > 0){
-          // element.append('<tree tree="root.pages"></tree>');
-          scope.tree.pages.forEach(function(page){
-            element.append('<li><a href="#/content/'+scope.tree.name+'/'+page.name+'">'+page.name+'</a></li>')
-          })
-        }
-        $compile(element.contents())(scope);
+      if (scope.tree.pages.length > 0){
+        scope.tree.pages.forEach(function(page){
+          element.append('<li><a href="#/content/'+scope.tree.name+'/'+page.name+'">'+page.name+'</a></li>')
+        })
       }
-    // }
+      $compile(element.contents())(scope);
+    }
   };
 }).directive('leaf', function($compile) {
   return {
@@ -47,15 +44,6 @@ directives.directive('tree', function($compile) {
         } else {
           element.addClass('dropdown-submenu');
         }
-      //   if (angular.isArray(scope.leaf.pages) && (scope.leaf.pages.length > 0)) {
-      //     parent = element.parent();
-      //    scope.leaf.pages.forEach(function(page){
-      //     parent.append('<li><a href="">'+page.name+'</a></li>')
-      //     // element.append('<tree tree="leaf.pages"></tree>');
-        
-      //   });
-      //   // $compile(element.contents())(scope);
-      // }
         $compile(element.contents())(scope);
       }
       

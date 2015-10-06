@@ -6,7 +6,7 @@ angular.module('angularjsApp')
     $scope.VALID_EMAIL_REGEX = /^[\w+\-.]+@[a-z\d\-.]+\.[a-z]+$/i;
     $scope.VALID_NAME_REGEX = /^[^`!@#\$%\^&*+_=]+$/;
     $scope.VALID_ZIP_REGEX = /^[^`!@#\$%\^&*+_=]+$/;
-    
+    $rootScope.title="Profile";
     if ($rootScope.current_user == undefined){
       $location.path('/');
     }
