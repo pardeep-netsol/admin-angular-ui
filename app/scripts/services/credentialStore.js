@@ -37,7 +37,7 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
    function isLoggedIn(){
     // var jwtToken = $localstorage.get('jwtToken');
     // && jwtToken != null
-    return (sessionStorage.getItem('Token') != "");
+    return (sessionStorage.getItem('Token') != '' && sessionStorage.getItem('Token') != null);
   }
 
   function getToken(){
@@ -50,6 +50,17 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
     // return $localstorage.get("Email")
   }
 
+  function setEmailAndToken(Token, Email){
+    sessionStorage.setItem('Token', Token);
+    sessionStorage.setItem('Email', Email);
+  }
+
+  function setRememberMe(user){
+    debugger
+    localStorage.setItem('token', user.authentication_token)
+    localStorage.setItem('email', user.email)
+  }
+
   function removeUserData(){
     $rootScope.current_user = null;
     $rootScope.Token = null;
@@ -57,6 +68,8 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
     sessionStorage.setItem('current_user', '')
     sessionStorage.setItem('Token', '')
     sessionStorage.setItem('Email', '');
+    localStorage.setItem('token', '')
+    localStorage.setItem('email', '')
 
     // $localstorage.set('jwtToken', null);
   }
@@ -69,61 +82,8 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
     getEmail:getEmail,
     updateUserData:updateUserData,
     setCategorires:setCategorires,
-    getheaders:getheaders
+    getheaders:getheaders,
+    setEmailAndToken:setEmailAndToken,
+    setRememberMe:setRememberMe
   }
 });
-// 'use strict';
-
-// /**
-//  * @ngdoc function
-//  * @name ngVerifiedApp.controller:MainCtrl
-//  * @description
-//  * # MainCtrl
-//  * Controller of the ngVerifiedApp
-//  */
-//  angular.module('ngVerifiedApp').factory('credentialStore', function($rootScope, $localstorage){
-
-//   function setUserData(jwtToken, user){
-//     $rootScope.user = user;
-//  		$rootScope.jwtToken = jwtToken;
-//     $localstorage.set('jwtToken', jwtToken);
-//     $localstorage.set('type', 'user');
-//  	}
-
-//   function setOrgData(jwtToken, org){
-//     $rootScope.user = org;
-//     $rootScope.jwtToken = jwtToken;
-//     $localstorage.set('jwtToken', jwtToken);
-//     $localstorage.set('type', 'org');
-//   }
-
-//   function removeUserData(){
-//     $rootScope.user = null;
-//     $rootScope.jwtToken = null;
-//     $localstorage.set('jwtToken', null);
-//   }
-
-//   function getToken(){
-//     return $rootScope.jwtToken;
-//   }
-
-//   function isLoggedIn(){
-//     // var jwtToken = $localstorage.get('jwtToken');
-//     // && jwtToken != null
-//     return ($rootScope.jwtToken != null);
-//   }
-
-//   function setcat(data){
-//     $rootScope.cat = data;
-//   }
-
-//  	return {
-//     //Define API calls here.....
-//     	setUser: setUserData,
-//       setOrg: setOrgData,
-//       unsetUser: removeUserData,
-//       isLoggedIn: isLoggedIn,
-//       getToken: getToken,
-//       setcat: setcat
-//   	};
-//  });

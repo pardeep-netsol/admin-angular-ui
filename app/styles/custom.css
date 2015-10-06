@@ -1,4 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
+.jumbotron{
+  background-color: #ffffff;
+}
 
 /****** LOGIN MODAL ******/
 .loginmodal-container {
@@ -365,3 +368,24 @@ a[ng-click]{
 .reset_password_form{padding-left:40px;padding-right:40px;}
 .confirmation_panel{border-color:#d9edf7; margin-bottom:50px !important;width: 71%; margin-left:30%;}
 .password_confirmation-heading{background-color: #d9edf7 !important;border-color: #BCE8F1!important;color: #31708F !important;}
+.overlay{
+  /*width: 15%;*/
+  /* overflow: overlay; */
+  position: absolute;
+  /*top: 40%;*/
+  /*left: 40%;*/
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+  /*position: absolute;*/
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /*display: none;*/
+}
+.img_loader{
+  width: 15%;
+  top: 40%;
+  left: 40%;
+  position: absolute;
+}

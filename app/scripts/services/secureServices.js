@@ -38,11 +38,15 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
   }
   
   var login = function(user){
-    var url = wsURL+port+"users/sign_in.json"
     debugger
+    var url = wsURL+port+"users/sign_in.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
       credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
+      debugger
+      if (user.user.rememberMe){
+        credentialStore.setRememberMe(data.data.user)
+      }
       var categories = getCategoryTree();
       categories.then(function(result){
         credentialStore.setCategorires(result);
@@ -97,8 +101,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       $("#msg_box").html("Confirmation instructions sent successfully. Please check your mailbox and confirm you email.");
       $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
     },function(data){
-      $rootScope.invalid_email = data.data.errors.email; 
-      $("#resend_confirm_mail_error_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
+      $("#resend_server_error_msg").html($rootScope.parseErrors(data.data.errors).htmlList);
+      $("#resend_server_error_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
     });
   }
 
@@ -109,7 +113,6 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
       $location.path('/');
     },function(data){
-      var errorHtml="";
       $("#msg_box").html($rootScope.parseErrors(data.data).htmlList);
       $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
     });
@@ -132,9 +135,12 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
   var resetPassword = function(user){
     var url = wsURL+port+"users/password.json"
     return $http.put(url, user).then(function(data){
-      alert("success");
+      $("#msg_box").html("You have successfully reset you password");
+      $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
+      $location.path('/');
     },function(data){
-      alert("oops eroor");
+      $("#msg_box").html($rootScope.parseErrors(data.data.errors).htmlList);
+      $("#alert_msg").show().fadeTo(4000, 0).slideUp(1000).fadeTo(0,1);;
     });
   }
 
@@ -174,10 +180,16 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
     });
   }
   
-  var getuserprofile = function(id){
-    var url = wsURL+port+api + "users/"+id+".json";
-  	return $http.get(url,credentialStore.getheaders()).then(function(data, status, headers, config){
-     	return data;
+  var getuserprofile = function(email){
+    var url = wsURL+port+api + "users/user_by_email.json?email="+email;
+  	return $http.get(url).then(function(data, status, headers, config){
+      credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
+      var categories = getCategoryTree();
+      categories.then(function(result){
+        credentialStore.setCategorires(result);
+        $location.path('/');
+        $('#login-modal').modal('hide');
+      });
     });
   }
   
@@ -246,6 +258,5 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
     checkUserName:checkUserName,
     checkUserEmail:checkUserEmail,
     resetPassword:resetPassword
-
 	};
 });
