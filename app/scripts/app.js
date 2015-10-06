@@ -171,11 +171,11 @@ angular
   $rootScope.login = function(user){
     if (user.user.login == ""){
       $("#error_msg").html("Email can't be empty");
-      $("#error_msg").show().fadeOut(4000);
+      $rootScope.animatErrMsg("#error_msg");
        return false;
     }else if(user.user.password==""){
       $("#error_msg").html("password can't be empty");
-      $("#error_msg").show().fadeOut(4000);
+      $rootScope.animatErrMsg("#error_msg");
       return false;
     }
     secureService.login(user);
@@ -224,27 +224,27 @@ angular
     $("#signup_server_error_msg").hide();
     if (registeruser.user.first_name == ""){
       $("#signup_error_msg").append("<li>First Name can't be empty</li>");
-      $("#signup_error_msg").show();
+      $rootScope.animatErrMsg("#signup_error_msg");
       return false;
     }else if (registeruser.user.last_name == ""){
       $("#signup_error_msg").html("Last Name can't be empty");
-      $("#signup_error_msg").show();
+      $rootScope.animatErrMsg("#signup_error_msg");
       return false;
     }else if (registeruser.user.email == ""){
       $("#signup_error_msg").html("Email can't be empty");
-      $("#signup_error_msg").show();
+      $rootScope.animatErrMsg("#signup_error_msg");
       return false;
     }else if (registeruser.user.password == ""){
       $("#signup_error_msg").html("Password can't be empty");
-      $("#signup_error_msg").show();
+      $rootScope.animatErrMsg("#signup_error_msg");
       return false;
     }else if (registeruser.user.password_confirmation == ""){
       $("#signup_error_msg").html("Confirm Password can't be empty");
-      $("#signup_error_msg").show();
+      $rootScope.animatErrMsg("#signup_error_msg");
       return false;
     }else if (registeruser.user.password != registeruser.user.password_confirmation){
       $("#signup_error_msg").html("Password and Confirm Password not match.");
-      $("#signup_error_msg").show();
+      $rootScope.animatErrMsg("#signup_error_msg");
       return false;
     }
     secureService.registerNewUser(registeruser)
@@ -266,6 +266,10 @@ angular
     });
     return {htmlList: htmlList, errorList: errorList}
   }
+
+  $rootScope.animatErrMsg = function(div){
+    $(div).show().delay(5000).fadeTo(1000, 0).slideUp(1000).fadeTo(0,1);
+  }
   
   $rootScope.authenticate = function(provider) {
       $auth.authenticate(provider)
@@ -280,7 +284,8 @@ angular
             $('#login-modal').modal('hide');            
           }
           else{
-            alert('oops! something went wrong!');
+            $("#error_msg").html(data.data.message);
+            $rootScope.animatErrMsg("#error_msg");
           }
         })
     .catch(function(response) {
