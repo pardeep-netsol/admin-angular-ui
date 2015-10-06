@@ -42,6 +42,7 @@ angular.module('angularjsApp')
     }
         
     var userprofile = $rootScope.current_user
+    debugger
     $scope.user = {
       username: userprofile.username,
     	first_name: userprofile.first_name,
