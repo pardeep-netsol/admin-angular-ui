@@ -14,7 +14,8 @@ angular.module('angularjsApp')
     var requestpage = secureService.getpage($routeParams.categoryName, $routeParams.pageName); 
     requestpage.then(function(result){
    		$scope.page = result.data.page;
-   		$scope.div = document.createElement('div');
+      $rootScope.title = result.data.page.meta_title;
+      $scope.div = document.createElement('div');
       $scope.div.innerHTML = result.data.page.content;
       $($scope.div.getElementsByTagName('img')).map(function(){
         var src = "http://localhost:3000"+$(this).attr('src');

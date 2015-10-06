@@ -1,8 +1,8 @@
 <!doctype html>
-<html>
+<html ng-app="angularjsApp">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title ng-bind="title">z</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -16,12 +16,18 @@
     <link rel="stylesheet" href="styles/custom.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="angularjsApp" id="appBody">
+  <body  id="appBody">
+    <div class="loading-spiner-holder" data-loading >
+      <div class="loading-spiner overlay">
+        <img src="images/loading3.gif" class="img_loader" />
+      </div>
+    </div>
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <!-- <img src="images/loading1.gif" /> -->
     <div class="header" style="border:0px;">
       <div class="navbar navbar-default" role="navigation" style="">
         <div class="container" style="">
@@ -99,6 +105,7 @@
           <form ng-submit='login(user)'>
             <input class="chnglogin" type="text" name="user" placeholder="Username" ng-model="user.user.login">
             <input   class="chnglogin" type="password" name="pass" placeholder="Password" ng-model="user.user.password">
+            <input type="checkbox" ng-model="user.user.rememberMe">Remember Me
             <input  type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
           <div class="login-help">
@@ -276,6 +283,8 @@
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/ngDatepicker/src/js/ngDatepicker.js"></script>
+    <script src="bower_components/spin.js/spin.js"></script>
+    <script src="bower_components/angular-spinner/angular-spinner.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -293,6 +302,7 @@
         <script src="scripts/controllers/page.js"></script>
         <script src="scripts/controllers/faq.js"></script>
         <script src="scripts/directives/tree.js"></script>
+        <script src="scripts/directives/loader.js"></script>
         <script src="scripts/controllers/confirmation.js"></script>
         <!-- endbuild -->
 </body>

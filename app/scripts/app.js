@@ -19,7 +19,8 @@ angular
     'jkuri.datepicker',
     'ui.tree',
     'satellizer',
-    'directives'
+    'directives',
+    'directive.loading'
   ])
 
   .constant("wsURL", "http://localhost")
@@ -146,7 +147,8 @@ angular
   });
   $rootScope.user = {
     user:{login: "",
-    password: ""
+    password: "",
+    rememberMe:false
   }}
 
   $rootScope.resendmail = {
