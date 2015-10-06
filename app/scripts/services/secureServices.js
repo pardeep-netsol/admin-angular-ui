@@ -38,12 +38,10 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
   }
   
   var login = function(user){
-    debugger
     var url = wsURL+port+"users/sign_in.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
       credentialStore.setUserData(data.data.user, data.data.user.authentication_token)
-      debugger
       if (user.user.rememberMe){
         credentialStore.setRememberMe(data.data.user)
       }

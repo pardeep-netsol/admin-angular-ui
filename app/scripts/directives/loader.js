@@ -12,7 +12,6 @@ angular.module('directive.loading', [])
       };
       scope.$watch(scope.isLoading, function (v)
       {
-        debugger  
         if(v){
           window.setTimeout(function(){
             if ($http.pendingRequests.length > 0){

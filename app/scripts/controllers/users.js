@@ -23,14 +23,12 @@ angular.module('angularjsApp')
     };
 
     $scope.changePassword = function(userData){
-      debugger
       secureService.updateUserPassword(userData, $rootScope.current_user)
      $(".chngpsw").val("");
     }
     
     var edituserprofile = function(){
       var state = secureService.getStates($rootScope.current_user.country_hash);
-      debugger
       state.then(function(result){
         $scope.states = result.data.states;
         var country = $rootScope.countries;
@@ -109,7 +107,6 @@ angular.module('angularjsApp')
     }
 
     $scope.checkUserEmail = function(email){
-      debugger
       if (email != $rootScope.current_user.email){
         var result = secureService.checkUserEmail(email)
         result.then(function(data){
