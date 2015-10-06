@@ -6,12 +6,20 @@ angular.module('directive.loading', [])
     link: function (scope, elm, attrs)
     {
       scope.isLoading = function () {
-        return $http.pendingRequests.length > 0;
+        // window.setTimeout(function(){return $http.pendingRequests.length > 0}, 250);
+
+        return $http.pendingRequests.length > 0
       };
       scope.$watch(scope.isLoading, function (v)
       {
+        debugger  
         if(v){
-          elm.show();
+          window.setTimeout(function(){
+            if ($http.pendingRequests.length > 0){
+            elm.show(); 
+            }else{elm.hide()}
+          }, 2000);
+          // elm.show();
         }else{
           elm.hide();
         }

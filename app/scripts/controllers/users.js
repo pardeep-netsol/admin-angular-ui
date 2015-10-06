@@ -96,24 +96,29 @@ angular.module('angularjsApp')
 
     $scope.checkUserName = function(username){
       // alert(data);
-      var result = secureService.checkUserName(username)
-      result.then(function(data){
-        if (data.data.status_code == 0){
-          $scope.form.username.$setValidity('server',false);
-        }else{
-          $scope.form.username.$setValidity('server',true);
-        }
-      });
+      if(username != $rootScope.current_user.username){
+        var result = secureService.checkUserName(username)
+        result.then(function(data){
+          if (data.data.status_code == 0){
+            $scope.form.username.$setValidity('server',false);
+          }else{
+            $scope.form.username.$setValidity('server',true);
+          }
+        });
+      }
     }
 
     $scope.checkUserEmail = function(email){
-      var result = secureService.checkUserEmail(email)
-      result.then(function(data){
-       if (data.data.status_code == 0){
-          $scope.form.email1.$setValidity('server',false);
-        }else{
-          $scope.form.email1.$setValidity('server',true);
-        }
-      });
+      debugger
+      if (email != $rootScope.current_user.email){
+        var result = secureService.checkUserEmail(email)
+        result.then(function(data){
+         if (data.data.status_code == 0){
+            $scope.form.email1.$setValidity('server',false);
+          }else{
+            $scope.form.email1.$setValidity('server',true);
+          }
+        });
+      }
     }
   });

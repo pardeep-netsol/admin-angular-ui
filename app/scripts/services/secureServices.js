@@ -88,7 +88,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       $location.path("/");
       $('#forgot-password-modal').modal('hide');
     },function(data){
-      $rootScope.invalid_email = data.data.errors.email; 
+      $("#forgot_server_error_msg").html($rootScope.parseErrors(data.data.errors).htmlList)
+      // $rootScope.invalid_email = data.data.errors.email; 
       $rootScope.animatErrMsg("#forgot_server_error_msg");
     }
   );
@@ -223,14 +224,14 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
   }
 
   var checkUserEmail = function(data){
-    var url = wsURL + "users/check_availability?email="+ data
+    var url = wsURL+port+api+"users/check_availability?email="+ data
     return $http.get(url).success(function(data){
       return data;
     })
   }
 
   var checkUserName = function(data){
-    var url = wsURL + "users/check_availability?username="+ data
+    var url = wsURL+port+api+"users/check_availability?username="+ data
     return $http.get(url).success(function(data){
       return data;
     })
