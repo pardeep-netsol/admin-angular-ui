@@ -16,7 +16,7 @@ angular.module('angularjsApp')
     // ];
     $rootScope.title = "Home";
     if (!credentialStore.isLoggedIn()){
-      if (localStorage.getItem('token') != '' ){
+      if (localStorage.getItem('token') != '' && localStorage.getItem('token') != null){
         var token = localStorage.getItem('token');
         var email = localStorage.getItem('email');
         credentialStore.setEmailAndToken(token, email);

@@ -397,5 +397,14 @@ a[ng-click]{
   .checkbox {
     font-weight: normal;
   }
-  .check input[type="checkbox"]{width: 22px;
-height: 22px;}
+  .check input[type="checkbox"]{
+    width: 22px;
+    height: 22px;
+    float: left;
+  }
+  .remember-lable{
+    /*padding-left:30px; */
+    color:#808080; 
+    margin-top:5px;
+    font-weight: normal;
+  }
