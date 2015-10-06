@@ -100,12 +100,16 @@
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
         <div class="loginmodal-container">
-          <h2  style="font-size:28px;font-weight:bold;">Login To Your Account</h2><br>
+          <h2  style="font-size:27px;font-weight:bold;">Login To Your Account</h2><br>
            <div class="alert login_err" role="alert" id ="error_msg" style="display:none"></div>
-          <form ng-submit='login(user)'>
+          <form ng-submit='login(user)' class="form-signin-heading check">
             <input class="chnglogin" type="text" name="user" placeholder="Username" ng-model="user.user.login">
             <input   class="chnglogin" type="password" name="pass" placeholder="Password" ng-model="user.user.password">
-            <input type="checkbox" ng-model="user.user.rememberMe">Remember Me
+            <input type="checkbox" ng-model="user.user.rememberMe"value="remember-me" id="rememberMe" name="rememberMe">
+            <label class="checkbox " style="padding-left:30px; color:#808080; margin-top:-25px;">
+               <span>Remember me</span>
+            </label>
+
             <input  type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
           <div class="login-help">
