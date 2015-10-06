@@ -18,7 +18,8 @@ angular.module('angularjsApp')
       $scope.div = document.createElement('div');
       $scope.div.innerHTML = result.data.page.content;
       $($scope.div.getElementsByTagName('img')).map(function(){
-        var src = "http://localhost:3000"+$(this).attr('src');
+        // var src = "http://localhost:3000"+$(this).attr('src');
+        var src = "http://192.168.0.202:8500"+$(this).attr('src');
         this.src = src;
       });
       $scope.page_content = $($scope.div).prop('outerHTML');

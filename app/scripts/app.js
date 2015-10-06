@@ -119,12 +119,7 @@ angular
         templateUrl:'views/page.html',
         controller: 'PageCtrl',
         controllerAs: 'page'
-      })
-       .when('/auth/linkedin', {
-        templateUrl:'views/main.html',
-        controller: 'LinkedInCtrl',
-        controllerAs: 'linkedin'
-      })
+      })       
        .when('/confirm_email/:Token', {
         templateUrl:'views/main.html',
         controller: 'ConfirmationCtrl',
