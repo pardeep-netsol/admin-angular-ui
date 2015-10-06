@@ -82,6 +82,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
   var forgotPassword = function(user){
     var url = wsURL+port+"users/password.json"
     return $http.post(url, user).then(function(data){
+      debugger
+      $("#msg_box").html("We have sent you a mail with reset password link. Please check your mail.");
       $rootScope.animatErrMsg("#alert_msg");
       $location.path("/");
       $('#forgot-password-modal').modal('hide');
@@ -138,6 +140,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       $rootScope.animatErrMsg("#alert_msg");
       $location.path('/');
     },function(data){
+      debugger
       $("#msg_box").html($rootScope.parseErrors(data.data.errors).htmlList);
       $rootScope.animatErrMsg("#alert_msg");
     });

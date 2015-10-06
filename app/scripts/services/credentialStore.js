@@ -56,7 +56,6 @@ angular.module('angularjsApp').factory('credentialStore',function($rootScope, $l
   }
 
   function setRememberMe(user){
-    debugger
     localStorage.setItem('token', user.authentication_token)
     localStorage.setItem('email', user.email)
   }

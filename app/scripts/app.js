@@ -130,8 +130,13 @@ angular
         controller: 'ConfirmationCtrl',
         controllerAs: 'confirm'
       })
+       .when('/test',{
+        templateUrl:'views/reset_password.html',
+        controller: 'ConfirmationCtrl',
+        controllerAs: 'confirm'
+       })
       .otherwise({
-        redirectTo: '/'
+        // redirectTo: '/'
       });
   })
 .run(function(secureService , $rootScope, $location, credentialStore, $auth, $http){
@@ -159,9 +164,9 @@ angular
       last_name:""
     }
   }
-  if(!credentialStore.isLoggedIn()){
-    $location.path('/');
-  }
+  // if(!credentialStore.isLoggedIn()){
+  //   $location.path('/');
+  // }
   
   if (sessionStorage.getItem('Token') != '') {
     $rootScope.current_user = JSON.parse(sessionStorage.getItem('current_user'));
