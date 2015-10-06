@@ -412,3 +412,6 @@ a[ng-click]{
     list-style: none;
     color: #a94442;
   }
+  .sub_cat{
+    cursor: pointer;
+  }
