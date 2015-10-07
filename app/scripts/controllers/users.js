@@ -7,9 +7,10 @@ angular.module('angularjsApp')
     $scope.VALID_NAME_REGEX = /^[^`!@#\$%\^&*+_=]+$/;
     $scope.VALID_ZIP_REGEX = /^[^`!@#\$%\^&*+_=]+$/;
     $rootScope.title="Profile";
-    if ($rootScope.current_user == undefined){
+    if (!credentialStore.isLoggedIn()){
       $location.path('/');
     }
+    
     $scope.showDiv = function(){
       $("#password_form").toggle();
     }

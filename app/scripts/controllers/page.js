@@ -8,8 +8,11 @@
  * Controller of the angularjsApp
  */
 angular.module('angularjsApp')
-  .controller('PageCtrl', function ($scope, secureService, $routeParams, $rootScope, $localstorage ) {
-    $scope.page12 = "The is Demo page"+ $routeParams.categoryName;
+  .controller('PageCtrl', function ($scope, secureService, $routeParams, $rootScope, $localstorage, credentialStore, $location ) {
+    
+    if(!credentialStore.isLoggedIn()){
+      $location.path('/')
+    }
 
     var requestpage = secureService.getpage($routeParams.categoryName, $routeParams.pageName); 
     requestpage.then(function(result){
