@@ -141,6 +141,7 @@ angular
   })
 .run(function(secureService , $rootScope, $location, credentialStore, $auth, $http){
   $rootScope.countries = secureService.getCountries();
+  // $rootScope.title = "RoR Active Admin";
   var faqs = secureService.getallfaqs();
   faqs.then(function(result){
     $rootScope.allfaqs = result.data;
