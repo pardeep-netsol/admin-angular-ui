@@ -136,7 +136,7 @@ angular
         controllerAs: 'confirm'
        })
       .otherwise({
-        // redirectTo: '/'
+        redirectTo: '/'
       });
   })
 .run(function(secureService , $rootScope, $location, credentialStore, $auth, $http){
@@ -146,6 +146,19 @@ angular
   faqs.then(function(result){
     $rootScope.allfaqs = result.data;
   });
+
+  if (!credentialStore.isLoggedIn()){
+      if (localStorage.getItem('token') != '' && localStorage.getItem('token') != null){
+        var token = localStorage.getItem('token');
+        var email = localStorage.getItem('email');
+        credentialStore.setEmailAndToken(token, email);
+        secureService.getuserprofile(email);
+      }
+    }else{
+      secureService.getuserprofile(credentialStore.getEmail());
+    }
+
+  
   $rootScope.user = {
     user:{login: "",
     password: "",

@@ -105,11 +105,10 @@
           <form ng-submit='login(user)' class="form-signin-heading check">
             <input class="chnglogin" type="text" name="user" placeholder="Username" ng-model="user.user.login">
             <input   class="chnglogin" type="password" name="pass" placeholder="Password" ng-model="user.user.password">
-            <input type="checkbox" ng-model="user.user.rememberMe" id="rememberMe">
-            <label class="remember-lable">
-               <span>Remember me</span>
-            </label>
-
+            <div style="margin-bottom:20px; margin-top:10px;">
+            <input type="checkbox" ng-model="user.user.rememberMe" id="rememberMe" >
+              <span class="remember-lable">Remember me</span>
+            </div>  
             <input  type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
           <div class="login-help">
@@ -136,9 +135,9 @@
     <!-- Registration model -->
     <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
-        <div class="container">
+        <div class="loginmodal-container" style="padding-bottom:0px;">
           <div class="row centered-form">
-            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <!-- <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4"> -->
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h2 class="panel-title text-center" style="font-size:30px; font-weight:bold;    margin-top:20px;margin-bottom:20px;">Register User</h3>
@@ -175,7 +174,7 @@
                   </form>
                 </div>
               </div>
-            </div>
+            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -185,9 +184,9 @@
     <!-- Forgot password model -->
     <div class="modal fade" id="forgot-password-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
-        <div class="container">
+        <div class="loginmodal-container">
           <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <!-- <div class="col-md-4 col-md-offset-4"> -->
               <div class="panel panel-default">
                 <div class="panel-body">
                   <div class="text-center">
@@ -215,7 +214,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -225,9 +224,9 @@
     <!-- Resend Confirmation Email model -->
    <div class="modal fade" id="resend-confirm-email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
-        <div class="container">
+        <div class="loginmodal-container">
           <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <!-- <div class="col-md-4 col-md-offset-4"> -->
               <div class="panel panel-default">
                 <div class="panel-body">
                   <div class="text-center">
@@ -255,7 +254,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            <!-- </div> -->
           </div>
         </div>
       </div>

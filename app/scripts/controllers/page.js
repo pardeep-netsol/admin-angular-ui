@@ -9,7 +9,6 @@
  */
 angular.module('angularjsApp')
   .controller('PageCtrl', function ($scope, secureService, $routeParams, $rootScope, $localstorage, credentialStore, $location ) {
-    
     if(!credentialStore.isLoggedIn()){
       $location.path('/')
     }

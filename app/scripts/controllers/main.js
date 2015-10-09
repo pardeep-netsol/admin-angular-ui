@@ -15,15 +15,6 @@ angular.module('angularjsApp')
     //   'Karma'
     // ];
     $rootScope.title = "Home";
-    if (!credentialStore.isLoggedIn()){
-      if (localStorage.getItem('token') != '' && localStorage.getItem('token') != null){
-        var token = localStorage.getItem('token');
-        var email = localStorage.getItem('email');
-        credentialStore.setEmailAndToken(token, email);
-        secureService.getuserprofile(email);
-      }
-    }else{
-      secureService.getuserprofile(credentialStore.getEmail());
-    }
+    
     
   });

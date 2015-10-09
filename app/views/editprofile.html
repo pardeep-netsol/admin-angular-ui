@@ -131,8 +131,8 @@
                 <div class="form-group">
                   <label class="col-md-5 control-label"><span class="text-muted">Country:</span></label>
                   <div class="col-md-7">
-                    <select  ng-change="getCountryStates(user.country_hash)" ng-options="country.name for country in countries track by country.name" ng-model="user.country_hash" style="width:80%;" ng-selected="country.name" ng-value="user.country_hash">
-                    <option value="">{{user.country_hash}}</option>
+                    <select  ng-change="getCountryStates(user.country_hash)" ng-options="country.name for country in countries track by country.name" ng-model="user.country_hash" style="width:80%;"  ng-value="user.country_hash">
+                    <!-- <option value="">{{user.country_hash}}</option> -->
                     </select>
                   </div>
                 </div>
@@ -140,9 +140,8 @@
                 <div class="form-group">
                   <label class="col-md-5 control-label"><span class="text-muted">State:</span></label>
                   <div class="col-md-7">
-                    <select ng-model="user.state_hash"  ng-options="state.name for state in states track by state.name" style="width:80%;" ng-value="user.state_hash">
-                      <option value="">{{user.state_hash}}</option>
-                      </select>
+                    <select ng-model="user.state_hash"  ng-options="state.name for state in states track by state.name" style="width:80%;" ng-value="user.state_hash.name">
+                    </select>
                   </div>
                 </div>
         

@@ -2,10 +2,14 @@
 .jumbotron{
   background-color: #ffffff;
 }
+.modal-dialog{
+  width: 355px;
+}
 
 /****** LOGIN MODAL ******/
 .loginmodal-container {
   padding: 30px;
+  padding-bottom: 0px;
   max-width: 350px;
   width: 100% !important;
   background-color: #F7F7F7;
@@ -145,6 +149,9 @@ a[ng-click]{
 
 .col-sm-offset-2 {
     margin-left: 8%;
+}
+.panel{
+  margin: -30px -15px 20px;
 }
 
 .password_field input{
@@ -397,15 +404,11 @@ a[ng-click]{
   .checkbox {
     font-weight: normal;
   }
-  .check input[type="checkbox"]{
-    width: 22px;
-    height: 22px;
-    float: left;
-  }
+  /*.check input[type="checkbox"]{*/
+   
   .remember-lable{
-    /*padding-left:30px; */
+    font-size: 12px;
     color:#808080; 
-    margin-top:5px;
     font-weight: normal;
   }
   .errorMsg{
@@ -415,3 +418,27 @@ a[ng-click]{
   .sub_cat{
     cursor: pointer;
   }
+ /*.check p > input {
+    padding: 0px;
+    margin: 0px;
+    height: 16px;
+    width: 16px;
+    left: 0px;
+
+  }
+  .check p > label {
+    line-height: 16px;
+    padding: 0px 0px 0px 18px;
+    transition: color 1s ease 0s;
+}
+p:not(#foo) > input + label {
+    background: url(gr_custom-inputs.png) 0 -1px no-repeat;
+    height: 16px;
+    padding: 0 0 0 7px;
+}*/
+.check input[type="checkbox"]{
+
+    width: 13px;
+
+
+}

@@ -29,7 +29,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
   }
 
   var getStates = function(country){
-    var url = wsURL+port+api + "countries/states.json?country="+country
+    var url = wsURL+port+api + "countries/"+country+".json"
     return $http.get(url).then(function(data, status, headers, config){
       if (!data.error) {
         return data;
@@ -38,6 +38,9 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
   }
   
   var login = function(user){
+    debugger
+    // var password = user.user.password;
+    // delete user.user.password;
     var url = wsURL+port+"users/sign_in.json"
     var header = {headers:{'Authorization':'Token token=nil','Content-type':'application/json'}}
     return $http.post(url, user, header).then(function(data){ 
@@ -121,7 +124,7 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
 
   var updateUserPassword = function (user, current_user){
     var url = wsURL+port+api + "users/"+current_user.id+"/update_password.json"
-    return $http.put(url, user).then(function(data){
+    return $http.put(url,{},{headers:{"password_params": JSON.stringify(user)}}).then(function(data){
       if (data.data.status_code == 1){
         $("#password_form").hide();
         $("#msg_box").html("Password Change Successfully");
@@ -189,8 +192,8 @@ angular.module('angularjsApp').factory('secureService',function($http, wsURL, ap
       var categories = getCategoryTree();
       categories.then(function(result){
         credentialStore.setCategorires(result);
-        $location.path('/');
-        $('#login-modal').modal('hide');
+        // $location.path('/');
+        // $('#login-modal').modal('hide');
       });
     });
   }
